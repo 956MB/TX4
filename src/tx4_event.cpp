@@ -62,9 +62,9 @@ void tx4_event::calculateClips() {
 			if (file.isFile()) {
 				m_tempPlayer->setMedia(QUrl::fromLocalFile(file.absoluteFilePath()));
 				// TODO: waiting for every duration change connection is SLOW, also throwing many null reference pointer stub errors. need to find another way of getting media meta data SYNCHRONOUSLY and quick
-				//QEventLoop loop;
-				//loop.connect(this, SIGNAL(durationValueUpdated()), &loop, SLOT(quit()));
-				//loop.exec();
+				QEventLoop loop;
+				loop.connect(this, SIGNAL(durationValueUpdated()), &loop, SLOT(quit()));
+				loop.exec();
 				
 				splitBaseName(file.baseName());
 				sizeCount += file.size();
@@ -130,7 +130,7 @@ void tx4_event::parseEventJson() {
 
 			if (metadata_key == "Duration") {
 				i_TotalClipLength += var_data.toInt();
-				//emit durationValueUpdated();
+				emit durationValueUpdated();
 				return;
 			}
 		}
