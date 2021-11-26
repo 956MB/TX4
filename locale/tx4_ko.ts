@@ -4,7 +4,7 @@
 <context>
     <name>tx4_dir</name>
     <message>
-        <location filename="../tx4_dir.cpp" line="16"/>
+        <location filename="../src/tx4_dir.cpp" line="16"/>
         <source>Select root of &quot;TESLACAM&quot; drive...</source>
         <translation>&quot;TeslaCam&quot; 폴더의 루트 선택...</translation>
     </message>
@@ -12,7 +12,7 @@
 <context>
     <name>tx4_event_preview</name>
     <message>
-        <location filename="../tx4_event_preview.cpp" line="122"/>
+        <location filename="../src/tx4_event_preview.cpp" line="122"/>
         <source>THUMB UNAVAILABLE</source>
         <translation>썸네일을 사용할 수 없음</translation>
     </message>
@@ -35,36 +35,36 @@
 <context>
     <name>tx4_events_section</name>
     <message>
-        <location filename="../tx4.cpp" line="106"/>
+        <location filename="../src/tx4.cpp" line="106"/>
         <source>RECENT</source>
         <translation>최근의</translation>
     </message>
     <message>
-        <location filename="../tx4.cpp" line="107"/>
+        <location filename="../src/tx4.cpp" line="107"/>
         <source>SAVED</source>
         <translation>저장됨</translation>
     </message>
     <message>
-        <location filename="../tx4.cpp" line="108"/>
+        <location filename="../src/tx4.cpp" line="108"/>
         <source>SENTRY</source>
         <translation>보초</translation>
     </message>
     <message>
-        <location filename="../tx4_events_section.cpp" line="146"/>
-        <location filename="../tx4_events_section.cpp" line="314"/>
-        <location filename="../tx4_events_section.cpp" line="323"/>
+        <location filename="../src/tx4_events_section.cpp" line="146"/>
+        <location filename="../src/tx4_events_section.cpp" line="314"/>
+        <location filename="../src/tx4_events_section.cpp" line="323"/>
         <source> EVENTS</source>
         <translation> 이벤트</translation>
     </message>
     <message>
-        <location filename="../tx4_events_section.cpp" line="202"/>
+        <location filename="../src/tx4_events_section.cpp" line="202"/>
         <source>NO EVENTS LOADED</source>
         <translation>로드된 이벤트 없음</translation>
     </message>
     <message>
-        <location filename="../tx4_events_section.cpp" line="335"/>
-        <location filename="../tx4_events_section.cpp" line="346"/>
-        <location filename="../tx4_events_section.cpp" line="354"/>
+        <location filename="../src/tx4_events_section.cpp" line="335"/>
+        <location filename="../src/tx4_events_section.cpp" line="346"/>
+        <location filename="../src/tx4_events_section.cpp" line="354"/>
         <source> SELECTED</source>
         <translation> 선택된</translation>
     </message>
@@ -103,12 +103,12 @@
 <context>
     <name>tx4_toolbar</name>
     <message>
-        <location filename="../tx4_toolbar.cpp" line="29"/>
+        <location filename="../src/tx4_toolbar.cpp" line="29"/>
         <source>VIEW EVENTS</source>
         <translation>이벤트 보기</translation>
     </message>
     <message>
-        <location filename="../tx4_toolbar.cpp" line="30"/>
+        <location filename="../src/tx4_toolbar.cpp" line="30"/>
         <source>LOAD DIR</source>
         <translation>로드 디렉토리</translation>
     </message>
@@ -117,31 +117,31 @@
         <translation type="vanished">로드 디렉토리 (0)</translation>
     </message>
     <message>
-        <location filename="../tx4_toolbar.cpp" line="77"/>
+        <location filename="../src/tx4_toolbar.cpp" line="77"/>
         <source>DIR LOADED: </source>
         <translation>디렉토리 로드됨: </translation>
     </message>
     <message>
-        <location filename="../tx4_toolbar.cpp" line="79"/>
-        <location filename="../tx4_toolbar.cpp" line="83"/>
-        <location filename="../tx4_toolbar.cpp" line="179"/>
+        <location filename="../src/tx4_toolbar.cpp" line="79"/>
+        <location filename="../src/tx4_toolbar.cpp" line="83"/>
+        <location filename="../src/tx4_toolbar.cpp" line="179"/>
         <source>true</source>
         <translation>진실</translation>
     </message>
     <message>
-        <location filename="../tx4_toolbar.cpp" line="79"/>
-        <location filename="../tx4_toolbar.cpp" line="83"/>
-        <location filename="../tx4_toolbar.cpp" line="179"/>
+        <location filename="../src/tx4_toolbar.cpp" line="79"/>
+        <location filename="../src/tx4_toolbar.cpp" line="83"/>
+        <location filename="../src/tx4_toolbar.cpp" line="179"/>
         <source>false</source>
         <translation>거짓</translation>
     </message>
     <message>
-        <location filename="../tx4_toolbar.cpp" line="81"/>
+        <location filename="../src/tx4_toolbar.cpp" line="81"/>
         <source>AUTO LOAD: </source>
         <translation>자동 로드: </translation>
     </message>
     <message>
-        <location filename="../tx4_toolbar.cpp" line="46"/>
+        <location filename="../src/tx4_toolbar.cpp" line="46"/>
         <source>EVENT QUEUE: </source>
         <translation>로드 디렉토리:</translation>
     </message>

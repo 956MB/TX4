@@ -8,11 +8,11 @@ include($$PWD/QGoodWindow/QGoodWindow.pri)
 CONFIG += c++11
 
 SOURCES += \
-    main.cpp \
-    phot.cpp
+    /src/main.cpp \
+    /src/phot.cpp
 
 HEADERS += \
-    phot.h
+    /src/phot.h
 
 TRANSLATIONS += /locale/tx4_en.ts \
                 /locale/tx4_fi.ts \
@@ -20,16 +20,16 @@ TRANSLATIONS += /locale/tx4_en.ts \
 
 qgoodwindow {
 SOURCES += \
-    captionbutton.cpp \
-    iconwidget.cpp \
-    titlebar.cpp \
-    titlewidget.cpp
+    /src/captionbutton.cpp \
+    /src/iconwidget.cpp \
+    /src/titlebar.cpp \
+    /src/titlewidget.cpp
 
 HEADERS += \
-    captionbutton.h \
-    iconwidget.h \
-    titlebar.h \
-    titlewidget.h
+    /src/captionbutton.h \
+    /src/iconwidget.h \
+    /src/titlebar.h \
+    /src/titlewidget.h
 
 RESOURCES += \
     res.qrc

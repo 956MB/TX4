@@ -42,13 +42,13 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="captionbutton.cpp">
+    <ClCompile Include="src\captionbutton.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="iconwidget.cpp">
+    <ClCompile Include="src\iconwidget.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="main.cpp">
+    <ClCompile Include="src\main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="QGoodWindow\QGoodWindowSource\qgoodwindow.cpp">
@@ -57,66 +57,66 @@
     <ClCompile Include="QGoodWindow\QGoodWindowSource\shadow.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="titlebar.cpp">
+    <ClCompile Include="src\titlebar.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="titlewidget.cpp">
+    <ClCompile Include="src\titlewidget.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="QGoodWindow\QGoodWindowSource\winwidget.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="tx4.cpp">
+    <ClCompile Include="src\tx4.cpp">
       <Filter>Generated Files</Filter>
     </ClCompile>
-    <ClCompile Include="tx4_events_section.cpp">
+    <ClCompile Include="src\tx4_events_section.cpp">
       <Filter>Generated Files</Filter>
     </ClCompile>
-    <ClCompile Include="tx4_label.cpp">
+    <ClCompile Include="src\tx4_label.cpp">
       <Filter>Generated Files</Filter>
     </ClCompile>
-    <ClCompile Include="tx4_event.cpp">
+    <ClCompile Include="src\tx4_event.cpp">
       <Filter>Generated Files</Filter>
     </ClCompile>
-    <ClCompile Include="tx4_event_preview.cpp">
+    <ClCompile Include="src\tx4_event_preview.cpp">
       <Filter>Generated Files</Filter>
     </ClCompile>
-    <ClCompile Include="tx4_grid_layout.cpp">
+    <ClCompile Include="src\tx4_grid_layout.cpp">
       <Filter>Generated Files</Filter>
     </ClCompile>
-    <ClCompile Include="tx4_checkbox.cpp">
+    <ClCompile Include="src\tx4_checkbox.cpp">
       <Filter>Generated Files</Filter>
     </ClCompile>
-    <ClCompile Include="tx4_preview_bar.cpp">
+    <ClCompile Include="src\tx4_preview_bar.cpp">
       <Filter>Generated Files</Filter>
     </ClCompile>
-    <ClCompile Include="tx4_shortcuts.cpp">
+    <ClCompile Include="src\tx4_shortcuts.cpp">
       <Filter>Generated Files</Filter>
     </ClCompile>
-    <ClCompile Include="tx4_meta_info.cpp">
+    <ClCompile Include="src\tx4_meta_info.cpp">
       <Filter>Generated Files</Filter>
     </ClCompile>
-    <ClCompile Include="tx4_toolbar.cpp">
+    <ClCompile Include="src\tx4_toolbar.cpp">
       <Filter>Generated Files</Filter>
     </ClCompile>
-    <ClCompile Include="tx4_toolbar_button.cpp">
+    <ClCompile Include="src\tx4_toolbar_button.cpp">
       <Filter>Generated Files</Filter>
     </ClCompile>
-    <ClCompile Include="tx4_worker.cpp">
+    <ClCompile Include="src\tx4_worker.cpp">
       <Filter>Generated Files</Filter>
     </ClCompile>
-    <ClCompile Include="tx4_dir.cpp">
+    <ClCompile Include="src\tx4_dir.cpp">
       <Filter>Generated Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <QtMoc Include="captionbutton.h">
+    <QtMoc Include="src\captionbutton.h">
       <Filter>Header Files</Filter>
     </QtMoc>
     <ClInclude Include="QGoodWindow\QGoodWindowSource\common.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <QtMoc Include="iconwidget.h">
+    <QtMoc Include="src\iconwidget.h">
       <Filter>Header Files</Filter>
     </QtMoc>
     <QtMoc Include="QGoodWindow\QGoodWindowSource\qgoodwindow.h">
@@ -125,52 +125,52 @@
     <QtMoc Include="QGoodWindow\QGoodWindowSource\shadow.h">
       <Filter>Header Files</Filter>
     </QtMoc>
-    <QtMoc Include="titlebar.h">
+    <QtMoc Include="src\titlebar.h">
       <Filter>Header Files</Filter>
     </QtMoc>
-    <QtMoc Include="titlewidget.h">
+    <QtMoc Include="src\titlewidget.h">
       <Filter>Header Files</Filter>
     </QtMoc>
     <QtMoc Include="QGoodWindow\QGoodWindowSource\winwidget.h">
       <Filter>Header Files</Filter>
     </QtMoc>
-    <QtMoc Include="tx4.h">
+    <QtMoc Include="src\tx4.h">
       <Filter>Generated Files</Filter>
     </QtMoc>
-    <QtMoc Include="tx4_events_section.h">
+    <QtMoc Include="src\tx4_events_section.h">
       <Filter>Generated Files</Filter>
     </QtMoc>
-    <QtMoc Include="tx4_label.h">
+    <QtMoc Include="src\tx4_label.h">
       <Filter>Generated Files</Filter>
     </QtMoc>
-    <QtMoc Include="tx4_event.h">
+    <QtMoc Include="src\tx4_event.h">
       <Filter>Generated Files</Filter>
     </QtMoc>
-    <QtMoc Include="tx4_event_preview.h">
+    <QtMoc Include="src\tx4_event_preview.h">
       <Filter>Generated Files</Filter>
     </QtMoc>
-    <QtMoc Include="tx4_grid_layout.h">
+    <QtMoc Include="src\tx4_grid_layout.h">
       <Filter>Generated Files</Filter>
     </QtMoc>
-    <QtMoc Include="tx4_checkbox.h">
+    <QtMoc Include="src\tx4_checkbox.h">
       <Filter>Generated Files</Filter>
     </QtMoc>
-    <QtMoc Include="tx4_preview_bar.h">
+    <QtMoc Include="src\tx4_preview_bar.h">
       <Filter>Generated Files</Filter>
     </QtMoc>
-    <QtMoc Include="tx4_shortcuts.h">
+    <QtMoc Include="src\tx4_shortcuts.h">
       <Filter>Generated Files</Filter>
     </QtMoc>
-    <QtMoc Include="tx4_meta_info.h">
+    <QtMoc Include="src\tx4_meta_info.h">
       <Filter>Generated Files</Filter>
     </QtMoc>
-    <QtMoc Include="tx4_toolbar.h">
+    <QtMoc Include="src\tx4_toolbar.h">
       <Filter>Generated Files</Filter>
     </QtMoc>
-    <QtMoc Include="tx4_toolbar_button.h">
+    <QtMoc Include="src\tx4_toolbar_button.h">
       <Filter>Generated Files</Filter>
     </QtMoc>
-    <QtMoc Include="tx4_dir.h">
+    <QtMoc Include="src\tx4_dir.h">
       <Filter>Generated Files</Filter>
     </QtMoc>
   </ItemGroup>
@@ -257,10 +257,10 @@
     <None Include="_workspaces.db" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="tx4_util.h">
+    <ClInclude Include="src\tx4_util.h">
       <Filter>Generated Files</Filter>
     </ClInclude>
-    <ClInclude Include="tx4_worker.h">
+    <ClInclude Include="src\tx4_worker.h">
       <Filter>Generated Files</Filter>
     </ClInclude>
   </ItemGroup>
