@@ -35,3 +35,49 @@ void tx4_label::setLabelText(QString newText) {
 	labelText = newText;
 	this->setText(newText);
 }
+void tx4_label::setLabelColor(QString newStyle) {
+	this->setStyleSheet(newStyle);
+}
+
+
+
+tx4_key_value_label::tx4_key_value_label(const QString &key, const QString &value, const int &size, const QString &key_style, const QString &value_style, const QFont::Weight &weight, const Qt::AlignmentFlag &align, const QString &font, QWidget *parent) : QWidget(parent) {
+	keyText = key;
+	valueText = value;
+	keyStyle = key_style;
+	valueStyle = value_style;
+	l_keyLabel = new tx4_label(key, size, key_style, weight, align, font);
+	l_valueLabel = new tx4_label(value, size, value_style, weight, align, font);
+
+	initLayout();
+}
+
+tx4_key_value_label::~tx4_key_value_label() {}
+
+void tx4_key_value_label::initLayout() {
+	QHBoxLayout *h_keyValueLayout = new QHBoxLayout(this);
+	Util::setLayoutZero(h_keyValueLayout);
+
+	h_keyValueLayout->addWidget(l_keyLabel);
+	h_keyValueLayout->addWidget(new tx4_label(":", 10, labelStyle, QFont::Medium, Qt::AlignCenter, "Anonymous Pro"));
+	h_keyValueLayout->addSpacerItem(new QSpacerItem(5, 0, QSizePolicy::Fixed, QSizePolicy::Expanding));
+	h_keyValueLayout->addWidget(new tx4_label("[", 10, braceStyle, QFont::Medium, Qt::AlignCenter, "Anonymous Pro"));
+	h_keyValueLayout->addWidget(l_valueLabel);
+	h_keyValueLayout->addWidget(new tx4_label("]", 10, braceStyle, QFont::Medium, Qt::AlignCenter, "Anonymous Pro"));
+}
+void tx4_key_value_label::setKeyLabelText(QString newText) {
+	keyText = newText;
+	l_keyLabel->setLabelText(keyText);
+}
+void tx4_key_value_label::setValueLabelText(QString newText) {
+	valueText = newText;
+	l_valueLabel->setLabelText(valueText);
+}
+void tx4_key_value_label::setKeyLabelColor(QString newStyle) {
+	keyStyle = newStyle;
+	l_keyLabel->setStyleSheet(keyStyle);
+}
+void tx4_key_value_label::setValueLabelColor(QString newStyle) {
+	valueStyle = newStyle;
+	l_valueLabel->setStyleSheet(valueStyle);
+}
