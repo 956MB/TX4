@@ -41,3 +41,10 @@ target_wrapper.*
 
 # QtCreator CMake
 CMakeLists.txt.user*
+
+.vs/
+[Dd]ebug/
+[Dd]ebugPublic/
+[Rr]elease/
+[Rr]eleases/
+*.db

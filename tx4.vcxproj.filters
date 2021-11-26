@@ -1,0 +1,278 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Generated Files">
+      <UniqueIdentifier>{71ED8ED8-ACB9-4CE9-BBE1-E00B30144E11}</UniqueIdentifier>
+      <Extensions>cpp;c;cxx;moc;h;def;odl;idl;res;</Extensions>
+    </Filter>
+    <Filter Include="Generated Files">
+      <UniqueIdentifier>{71ED8ED8-ACB9-4CE9-BBE1-E00B30144E11}</UniqueIdentifier>
+      <Extensions>cpp;c;cxx;moc;h;def;odl;idl;res;</Extensions>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    </Filter>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{D9D6E242-F8AF-46E4-B9FD-80ECBC20BA3E}</UniqueIdentifier>
+      <Extensions>qrc;*</Extensions>
+      <ParseFiles>false</ParseFiles>
+    </Filter>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{D9D6E242-F8AF-46E4-B9FD-80ECBC20BA3E}</UniqueIdentifier>
+      <Extensions>qrc;*</Extensions>
+      <ParseFiles>false</ParseFiles>
+    </Filter>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Translation Files">
+      <UniqueIdentifier>{639EADAA-A684-42e4-A9AD-28FC9BCB8F7C}</UniqueIdentifier>
+      <Extensions>ts</Extensions>
+      <ParseFiles>false</ParseFiles>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="captionbutton.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="iconwidget.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="main.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="QGoodWindow\QGoodWindowSource\qgoodwindow.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="QGoodWindow\QGoodWindowSource\shadow.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="titlebar.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="titlewidget.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="QGoodWindow\QGoodWindowSource\winwidget.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="tx4.cpp">
+      <Filter>Generated Files</Filter>
+    </ClCompile>
+    <ClCompile Include="tx4_events_section.cpp">
+      <Filter>Generated Files</Filter>
+    </ClCompile>
+    <ClCompile Include="tx4_label.cpp">
+      <Filter>Generated Files</Filter>
+    </ClCompile>
+    <ClCompile Include="tx4_event.cpp">
+      <Filter>Generated Files</Filter>
+    </ClCompile>
+    <ClCompile Include="tx4_event_preview.cpp">
+      <Filter>Generated Files</Filter>
+    </ClCompile>
+    <ClCompile Include="tx4_grid_layout.cpp">
+      <Filter>Generated Files</Filter>
+    </ClCompile>
+    <ClCompile Include="tx4_checkbox.cpp">
+      <Filter>Generated Files</Filter>
+    </ClCompile>
+    <ClCompile Include="tx4_preview_bar.cpp">
+      <Filter>Generated Files</Filter>
+    </ClCompile>
+    <ClCompile Include="tx4_shortcuts.cpp">
+      <Filter>Generated Files</Filter>
+    </ClCompile>
+    <ClCompile Include="tx4_meta_info.cpp">
+      <Filter>Generated Files</Filter>
+    </ClCompile>
+    <ClCompile Include="tx4_toolbar.cpp">
+      <Filter>Generated Files</Filter>
+    </ClCompile>
+    <ClCompile Include="tx4_toolbar_button.cpp">
+      <Filter>Generated Files</Filter>
+    </ClCompile>
+    <ClCompile Include="tx4_worker.cpp">
+      <Filter>Generated Files</Filter>
+    </ClCompile>
+    <ClCompile Include="tx4_dir.cpp">
+      <Filter>Generated Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <QtMoc Include="captionbutton.h">
+      <Filter>Header Files</Filter>
+    </QtMoc>
+    <ClInclude Include="QGoodWindow\QGoodWindowSource\common.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <QtMoc Include="iconwidget.h">
+      <Filter>Header Files</Filter>
+    </QtMoc>
+    <QtMoc Include="QGoodWindow\QGoodWindowSource\qgoodwindow.h">
+      <Filter>Header Files</Filter>
+    </QtMoc>
+    <QtMoc Include="QGoodWindow\QGoodWindowSource\shadow.h">
+      <Filter>Header Files</Filter>
+    </QtMoc>
+    <QtMoc Include="titlebar.h">
+      <Filter>Header Files</Filter>
+    </QtMoc>
+    <QtMoc Include="titlewidget.h">
+      <Filter>Header Files</Filter>
+    </QtMoc>
+    <QtMoc Include="QGoodWindow\QGoodWindowSource\winwidget.h">
+      <Filter>Header Files</Filter>
+    </QtMoc>
+    <QtMoc Include="tx4.h">
+      <Filter>Generated Files</Filter>
+    </QtMoc>
+    <QtMoc Include="tx4_events_section.h">
+      <Filter>Generated Files</Filter>
+    </QtMoc>
+    <QtMoc Include="tx4_label.h">
+      <Filter>Generated Files</Filter>
+    </QtMoc>
+    <QtMoc Include="tx4_event.h">
+      <Filter>Generated Files</Filter>
+    </QtMoc>
+    <QtMoc Include="tx4_event_preview.h">
+      <Filter>Generated Files</Filter>
+    </QtMoc>
+    <QtMoc Include="tx4_grid_layout.h">
+      <Filter>Generated Files</Filter>
+    </QtMoc>
+    <QtMoc Include="tx4_checkbox.h">
+      <Filter>Generated Files</Filter>
+    </QtMoc>
+    <QtMoc Include="tx4_preview_bar.h">
+      <Filter>Generated Files</Filter>
+    </QtMoc>
+    <QtMoc Include="tx4_shortcuts.h">
+      <Filter>Generated Files</Filter>
+    </QtMoc>
+    <QtMoc Include="tx4_meta_info.h">
+      <Filter>Generated Files</Filter>
+    </QtMoc>
+    <QtMoc Include="tx4_toolbar.h">
+      <Filter>Generated Files</Filter>
+    </QtMoc>
+    <QtMoc Include="tx4_toolbar_button.h">
+      <Filter>Generated Files</Filter>
+    </QtMoc>
+    <QtMoc Include="tx4_dir.h">
+      <Filter>Generated Files</Filter>
+    </QtMoc>
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="release\moc_predefs.h.cbt">
+      <Filter>Generated Files</Filter>
+    </CustomBuild>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="icons\back-100-invisible.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="icons\back-100.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="icons\close-active-dark.ico">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="icons\close-active-light.ico">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="icons\close-inactive-dark.ico">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="icons\close-inactive-light.ico">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="icons\forward-100-invisible.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="icons\forward-100.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="icons\icons8-multiply-50-2.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="icons\icons8-multiply-50.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="icons\maximize-active-dark.ico">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="icons\maximize-active-light.ico">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="icons\maximize-inactive-dark.ico">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="icons\maximize-inactive-light.ico">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="icons\minimize-active-dark.ico">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="icons\minimize-active-light.ico">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="icons\minimize-inactive-dark.ico">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="icons\minimize-inactive-light.ico">
+      <Filter>Resource Files</Filter>
+    </None>
+    <QtRcc Include="res.qrc">
+      <Filter>Resource Files</Filter>
+    </QtRcc>
+    <None Include="icons\restore-active-dark.ico">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="icons\restore-active-light.ico">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="icons\restore-inactive-dark.ico">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="icons\restore-inactive-light.ico">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="tx4.pro" />
+    <None Include=".qmake.stash" />
+    <None Include="locale\tx4_ko.qm" />
+    <None Include="locale\tx4_en.qm" />
+    <None Include="locale\tx4_fi.qm" />
+    <None Include="_workspaces.db" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="tx4_util.h">
+      <Filter>Generated Files</Filter>
+    </ClInclude>
+    <ClInclude Include="tx4_worker.h">
+      <Filter>Generated Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <QtTranslation Include="locale\tx4_en.ts">
+      <Filter>Translation Files</Filter>
+    </QtTranslation>
+    <QtTranslation Include="locale\tx4_ko.ts">
+      <Filter>Translation Files</Filter>
+    </QtTranslation>
+    <QtTranslation Include="locale\tx4_fi.ts">
+      <Filter>Translation Files</Filter>
+    </QtTranslation>
+  </ItemGroup>
+</Project>
