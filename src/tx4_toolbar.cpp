@@ -74,23 +74,15 @@ void tx4_toolbar::initContents() {
 	loadedContainer->setSizePolicy(QSizePolicy::Fixed, QSizePolicy::Expanding);
 	QHBoxLayout *h_loadedContainerLayout = new QHBoxLayout(loadedContainer);
 	Util::setLayoutZero(h_loadedContainerLayout);
-	l_eventsLoadedTitle = new tx4_label(tx4_toolbar::tr("DIR LOADED: "), 9, titleLabelStyle, QFont::DemiBold, Qt::AlignLeft, "Anonymous Pro");
+
+	l_eventsLoadedTitle = new tx4_key_value_label(tx4_toolbar::tr("DIR LOADED"), eventsLoaded ? tx4_toolbar::tr("true") : tx4_toolbar::tr("false"), 9, titleLabelStyle, eventsLoaded ? loadedTrueLabelStyle : loadedFalseLabelStyle, QFont::Medium, Qt::AlignLeft, "Anonymous Pro");
 	l_eventsLoadedTitle->setSizePolicy(QSizePolicy::Fixed, QSizePolicy::Expanding);
-	l_eventsLoadedValue = new tx4_label(eventsLoaded ? tx4_toolbar::tr("true") : tx4_toolbar::tr("false") , 9, eventsLoaded ? loadedTrueLabelStyle : loadedFalseLabelStyle, QFont::DemiBold, Qt::AlignLeft, "Anonymous Pro");
-	l_eventsLoadedValue->setSizePolicy(QSizePolicy::Fixed, QSizePolicy::Expanding);
-	l_autoLoadTitle = new tx4_label(tx4_toolbar::tr("AUTO LOAD: "), 9, titleLabelStyle, QFont::DemiBold, Qt::AlignLeft, "Anonymous Pro");
+	l_autoLoadTitle = new tx4_key_value_label(tx4_toolbar::tr("AUTO LOAD"), autoLoad ? tx4_toolbar::tr("true") : tx4_toolbar::tr("false"), 9, titleLabelStyle, autoLoad ? loadedTrueLabelStyle : loadedFalseLabelStyle, QFont::Medium, Qt::AlignLeft, "Anonymous Pro");
 	l_autoLoadTitle->setSizePolicy(QSizePolicy::Fixed, QSizePolicy::Expanding);
-	l_autoLoadValue = new tx4_label(autoLoad ? tx4_toolbar::tr("true") : tx4_toolbar::tr("false") , 9, autoLoad ? loadedTrueLabelStyle : loadedFalseLabelStyle, QFont::DemiBold, Qt::AlignLeft, "Anonymous Pro");
-	l_autoLoadValue->setSizePolicy(QSizePolicy::Fixed, QSizePolicy::Expanding);
 
 	h_loadedContainerLayout->addWidget(l_eventsLoadedTitle);
-	h_loadedContainerLayout->addWidget(new tx4_label("[", 10, braceStyle, QFont::Medium, Qt::AlignCenter, "Anonymous Pro"));
-	h_loadedContainerLayout->addWidget(l_eventsLoadedValue);
-	h_loadedContainerLayout->addWidget(new tx4_label("] ", 10, braceStyle, QFont::Medium, Qt::AlignCenter, "Anonymous Pro"));
+	h_loadedContainerLayout->addSpacerItem(new QSpacerItem(5, 0, QSizePolicy::Fixed, QSizePolicy::Expanding));
 	h_loadedContainerLayout->addWidget(l_autoLoadTitle);
-	h_loadedContainerLayout->addWidget(new tx4_label("[", 10, braceStyle, QFont::Medium, Qt::AlignCenter, "Anonymous Pro"));
-	h_loadedContainerLayout->addWidget(l_autoLoadValue);
-	h_loadedContainerLayout->addWidget(new tx4_label("]", 10, braceStyle, QFont::Medium, Qt::AlignCenter, "Anonymous Pro"));
 
 	h_eventQueueContainerLayout->addWidget(l_selectedEventsTitle);
 	h_eventQueueContainerLayout->addSpacerItem(new QSpacerItem(20, 0, QSizePolicy::Fixed, QSizePolicy::Expanding));
@@ -176,7 +168,7 @@ void tx4_toolbar::updateEventQueue(QList<tx4_event_preview*> eventQueue) {
 
 void tx4_toolbar::toggleEventsLoaded(bool loaded) {
 	eventsLoaded = loaded;
-	l_eventsLoadedValue->setText(eventsLoaded ? tx4_toolbar::tr("true") : tx4_toolbar::tr("false"));
-	l_eventsLoadedValue->setStyleSheet(eventsLoaded ? loadedTrueLabelStyle : loadedFalseLabelStyle);
+	l_eventsLoadedTitle->l_valueLabel->setText(eventsLoaded ? tx4_toolbar::tr("true") : tx4_toolbar::tr("false"));
+	l_eventsLoadedTitle->l_valueLabel->setStyleSheet(eventsLoaded ? loadedTrueLabelStyle : loadedFalseLabelStyle);
 	b_loadEventsButton->setButtonState(!eventsLoaded);
 }

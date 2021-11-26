@@ -19,7 +19,7 @@ tx4_events_section::tx4_events_section(const QString &title, QWidget *parent)
 
 	this->setAttribute(Qt::WA_StyledBackground); // <--- this attribute solves issue of background color not being drawn on custom widget, no need for reimplementing paintEvent, yet.
 	//this->setFixedHeight(RECENTS_H);
-	this->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
+	this->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Fixed);
 	this->setStyleSheet(sectionStyle);
 
 	initContents();
@@ -132,33 +132,39 @@ void tx4_events_section::initContents() {
 	v_contentsLayout->setContentsMargins(0,16,0,16);
 
 	QWidget *titleContainer = new QWidget;
+	titleContainer->setFixedHeight(24);
 	titleContainer->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Fixed);
 	titleContainer->setStyleSheet(titleBarStyle);
 	QHBoxLayout *h_titleContainerLayout = new QHBoxLayout(titleContainer);
 	Util::setLayoutZero(h_titleContainerLayout);
-	h_titleContainerLayout->setContentsMargins(20,3,20,3);
+	h_titleContainerLayout->setContentsMargins(20,0,20,0);
 	w_rightContainer = new QWidget;
 	w_rightContainer->setSizePolicy(QSizePolicy::Fixed, QSizePolicy::Fixed);
 	QHBoxLayout *h_rightContainerLayout = new QHBoxLayout(w_rightContainer);
 	Util::setLayoutZero(h_rightContainerLayout);
 	//h_titleContainerLayout->setSpacing(15);
 	l_sectionTitle = new tx4_label(sectionTitle, 10, titleLabelStyle, QFont::Medium, Qt::AlignLeft, "Anonymous Pro");
+	b_returnButton = new tx4_toolbar_button(tx4_events_section::tr("RETURN"), false, "");
+	connect(b_returnButton, &tx4_toolbar_button::clicked, this, &tx4_events_section::on_returnClick);
 	l_countSubitle = new tx4_label(QString::number(totalEvents) + tx4_events_section::tr(" EVENTS"), 10, subLabelStyle, QFont::Medium, Qt::AlignLeft, "Anonymous Pro");
 	l_sizeSubitle = new tx4_label(totalSize, 10, subLabelStyle, QFont::Medium, Qt::AlignLeft, "Anonymous Pro");
 	l_lengthSubitle = new tx4_label(totalLength, 10, subLabelStyle, QFont::Medium, Qt::AlignLeft, "Anonymous Pro");
 	h_rightContainerLayout->addWidget(l_countSubitle);
-	h_rightContainerLayout->addSpacerItem(new QSpacerItem(15, 0, QSizePolicy::Fixed, QSizePolicy::Expanding));
+	h_rightContainerLayout->addSpacerItem(new QSpacerItem(10, 0, QSizePolicy::Fixed, QSizePolicy::Expanding));
 	h_rightContainerLayout->addWidget(new tx4_label("[", 10, subLabelBraceStyle, QFont::Medium, Qt::AlignCenter, "Anonymous Pro"));
 	h_rightContainerLayout->addWidget(l_sizeSubitle);
 	h_rightContainerLayout->addWidget(new tx4_label("]", 10, subLabelBraceStyle, QFont::Medium, Qt::AlignCenter, "Anonymous Pro"));
-	h_rightContainerLayout->addSpacerItem(new QSpacerItem(15, 0, QSizePolicy::Fixed, QSizePolicy::Expanding));
+	h_rightContainerLayout->addSpacerItem(new QSpacerItem(5, 0, QSizePolicy::Fixed, QSizePolicy::Expanding));
 	h_rightContainerLayout->addWidget(new tx4_label("[", 10, subLabelBraceStyle, QFont::Medium, Qt::AlignCenter, "Anonymous Pro"));
 	h_rightContainerLayout->addWidget(l_lengthSubitle);
 	h_rightContainerLayout->addWidget(new tx4_label("]", 10, subLabelBraceStyle, QFont::Medium, Qt::AlignCenter, "Anonymous Pro"));
 
 	h_titleContainerLayout->addWidget(l_sectionTitle);
+	h_titleContainerLayout->addSpacerItem(new QSpacerItem(40, 0, QSizePolicy::Fixed, QSizePolicy::Expanding));
+	h_titleContainerLayout->addWidget(b_returnButton);
 	h_titleContainerLayout->addStretch();
 	h_titleContainerLayout->addWidget(w_rightContainer);
+	b_returnButton->setVisible(false);
 
 	w_sectionScroll = new QWidget;
 	w_sectionScroll->setStyleSheet(scrollAreaStyle);
@@ -181,16 +187,29 @@ void tx4_events_section::initContents() {
 	w_scrollContainer = new QWidget;
 	w_scrollContainer->setFixedHeight(PREVIEW_H);
 	w_scrollContainer->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Fixed);
-	w_scrollContainer->setStyleSheet(titleBarStyle);
+	w_scrollContainer->setStyleSheet(scrollAreaStyle);
 	QHBoxLayout *h_scrollContainerLayout = new QHBoxLayout(w_scrollContainer);
 	Util::setLayoutZero(h_scrollContainerLayout);
-	h_scrollContainerLayout->setContentsMargins(20, 0, 20, 0);
+	h_scrollContainerLayout->setContentsMargins(10, 0, 10, 0);
+
+	QWidget *buttonholder = new QWidget;
+	buttonholder->setStyleSheet(buttonHolderStyle);
+	buttonholder->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Fixed);
+	QHBoxLayout *h_buttonholderLayout = new QHBoxLayout(buttonholder);
+	Util::setLayoutZero(h_buttonholderLayout);
+	//h_buttonholderLayout->setContentsMargins(20, 0, 20, 0);
+	b_navButtonLeft = new tx4_nav_button("", true, "", true);
+	b_navButtonRight = new tx4_nav_button("", true, "", false);
+	connect(b_navButtonLeft, &tx4_nav_button::buttonClicked, this, &tx4_events_section::on_navLeftClick);
+	connect(b_navButtonRight, &tx4_nav_button::buttonClicked, this, &tx4_events_section::on_navRightClick);
+
 	scrollarea = new QScrollArea();
 	scrollarea->verticalScrollBar()->setEnabled(false);
 	scrollarea->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
 	scrollarea->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
 	scrollarea->setStyleSheet(scrollAreaStyle);
 	scrollarea->setWidget(w_sectionScroll);
+	scrollarea->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Fixed);
 
 	 //empty state message
 	w_emptyState = new QWidget;
@@ -215,8 +234,14 @@ void tx4_events_section::initContents() {
 	s_emptyStateStackLayout->setContentsMargins(20, 0, 20, 0);
 
 	h_scrollContainerLayout->addWidget(scrollarea);
+	//h_buttonholderLayout->addSpacerItem(new QSpacerItem(16, 0, QSizePolicy::Fixed, QSizePolicy::Expanding));
+	h_buttonholderLayout->addWidget(b_navButtonLeft);
+	h_buttonholderLayout->addWidget(w_scrollContainer);
+	//h_buttonholderLayout->addStretch();
+	h_buttonholderLayout->addWidget(b_navButtonRight);
+	//h_buttonholderLayout->addSpacerItem(new QSpacerItem(16, 0, QSizePolicy::Fixed, QSizePolicy::Expanding));
 	s_emptyStateStackLayout->addWidget(w_emptyState);
-	s_emptyStateStackLayout->addWidget(w_scrollContainer);
+	s_emptyStateStackLayout->addWidget(buttonholder);
 	v_contentsLayout->addWidget(titleContainer);
 	v_contentsLayout->addWidget(emptyStateStack);
 
@@ -238,6 +263,13 @@ void tx4_events_section::toggleEventsLoaded(bool active) {
 	initEmptyState(eventsLoaded);
 }
 
+void tx4_events_section::setNavButtonStates(bool style_left, bool style_right, bool enable_left, bool enable_right) {
+	b_navButtonLeft->setButtonState(style_left);
+	b_navButtonRight->setButtonState(style_right);
+	b_navButtonLeft->setVisible(enable_left);
+	b_navButtonRight->setVisible(enable_right);
+}
+
 
 // SCROLLWHEEL EVENTS: {
 	void tx4_events_section::wheelEvent(QWheelEvent* event) {
@@ -249,19 +281,42 @@ void tx4_events_section::toggleEventsLoaded(bool active) {
 	}
 	void tx4_events_section::scrollLeft() {
 		if (scrollarea->rect().contains(scrollarea->mapFromGlobal(QCursor::pos()))) {
-			if (scrollValue > scrollarea->horizontalScrollBar()->minimum()) {
-				scrollValue = scrollValue-SCROLL_DIFF;
-				scrollarea->horizontalScrollBar()->setValue(scrollValue);
-			}
+			goLeft(SCROLL_DIFF);
 		}
 	}
 	void tx4_events_section::scrollRight() {
 		if (scrollarea->rect().contains(scrollarea->mapFromGlobal(QCursor::pos()))) {
-			if (scrollValue < scrollarea->horizontalScrollBar()->maximum()) {
-				scrollValue = scrollValue+SCROLL_DIFF;
-				scrollarea->horizontalScrollBar()->setValue(scrollValue);
-			}
+			goRight(SCROLL_DIFF);
 		}
+	}
+	void tx4_events_section::on_navLeftClick() {
+		goLeft(CLICK_SCROLL_DIFF);
+	}
+	void tx4_events_section::on_navRightClick() {
+		goRight(CLICK_SCROLL_DIFF);
+	}
+	void tx4_events_section::goLeft(const int &amount) {
+		if (scrollValue > scrollarea->horizontalScrollBar()->minimum()) {
+			scrollValue = scrollValue-amount;
+			scrollarea->horizontalScrollBar()->setValue(scrollValue);
+		} else {
+			b_returnButton->setButtonState(false);
+			b_returnButton->setVisible(false);
+		}
+	}
+	void tx4_events_section::goRight(const int &amount) {
+		if (scrollValue < scrollarea->horizontalScrollBar()->maximum()) {
+			scrollValue = scrollValue+amount;
+			scrollarea->horizontalScrollBar()->setValue(scrollValue);
+			b_returnButton->setButtonState(true);
+			b_returnButton->setVisible(true);
+		}
+	}
+	void tx4_events_section::on_returnClick() {
+		scrollValue = 0;
+		scrollarea->horizontalScrollBar()->setValue(scrollValue);
+		b_returnButton->setButtonState(false);
+		b_returnButton->setVisible(false);
 	}
 // }
 

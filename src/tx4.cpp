@@ -317,9 +317,11 @@ bool tx4::event(QEvent *event) {
 				w_savedSection->populateEvents(o_tx4Dir->savedEvents);
 				w_sentrySection->populateEvents(o_tx4Dir->sentryEvents);
 				w_toolbar->toggleEventsLoaded(true);
-				//w_recentSection->toggleEventsLoaded(true);
 				w_savedSection->toggleEventsLoaded(true);
 				w_sentrySection->toggleEventsLoaded(true);
+				w_recentSection->setNavButtonStates(false, false, false, false);
+				w_savedSection->setNavButtonStates(true, true, true, true);
+				w_sentrySection->setNavButtonStates(true, true, true, true);
 			} else {
 				qDebug() << "exit:: " << false;
 			}

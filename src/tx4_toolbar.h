@@ -32,10 +32,10 @@ class tx4_toolbar : public QWidget {
 		tx4_toolbar_button *b_loadEventsButton;
 		tx4_label *l_selectedEventsTitle;
 		tx4_label *l_queueTitle;
-		tx4_label *l_eventsLoadedTitle;
-		tx4_label *l_eventsLoadedValue;
-		tx4_label *l_autoLoadTitle;
-		tx4_label *l_autoLoadValue;
+		tx4_key_value_label *l_eventsLoadedTitle;
+		//tx4_label *l_eventsLoadedValue;
+		tx4_key_value_label *l_autoLoadTitle;
+		//tx4_label *l_autoLoadValue;
 		QScrollArea *queueScrollarea;
 		int scrollValue;
 		int eventQueueCount;
