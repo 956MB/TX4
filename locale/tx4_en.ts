@@ -56,6 +56,10 @@
         <source> SELECTED</source>
         <translation> SELECTED</translation>
     </message>
+    <message>
+        <source>RETURN</source>
+        <translation>RETURN</translation>
+    </message>
 </context>
 <context>
     <name>tx4_recents</name>
@@ -104,7 +108,7 @@
     </message>
     <message>
         <source>DIR LOADED: </source>
-        <translation>DIR LOADED: </translation>
+        <translation type="vanished">DIR LOADED: </translation>
     </message>
     <message>
         <source>true</source>
@@ -116,7 +120,7 @@
     </message>
     <message>
         <source>AUTO LOAD: </source>
-        <translation>AUTO LOAD: </translation>
+        <translation type="vanished">AUTO LOAD: </translation>
     </message>
     <message>
         <source>EVENT QUEUE (</source>
@@ -129,6 +133,14 @@
     <message>
         <source>EVENT QUEUE: </source>
         <translation>EVENT QUEUE:</translation>
+    </message>
+    <message>
+        <source>DIR LOADED</source>
+        <translation>DIR LOADED</translation>
+    </message>
+    <message>
+        <source>AUTO LOAD</source>
+        <translation>AUTO LOAD</translation>
     </message>
 </context>
 </TS>

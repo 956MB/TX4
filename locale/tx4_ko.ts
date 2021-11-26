@@ -50,21 +50,26 @@
         <translation>보초</translation>
     </message>
     <message>
-        <location filename="../src/tx4_events_section.cpp" line="146"/>
-        <location filename="../src/tx4_events_section.cpp" line="314"/>
-        <location filename="../src/tx4_events_section.cpp" line="323"/>
+        <location filename="../src/tx4_events_section.cpp" line="147"/>
+        <source>RETURN</source>
+        <translation>반품</translation>
+    </message>
+    <message>
+        <location filename="../src/tx4_events_section.cpp" line="149"/>
+        <location filename="../src/tx4_events_section.cpp" line="369"/>
+        <location filename="../src/tx4_events_section.cpp" line="378"/>
         <source> EVENTS</source>
         <translation> 이벤트</translation>
     </message>
     <message>
-        <location filename="../src/tx4_events_section.cpp" line="202"/>
+        <location filename="../src/tx4_events_section.cpp" line="221"/>
         <source>NO EVENTS LOADED</source>
         <translation>로드된 이벤트 없음</translation>
     </message>
     <message>
-        <location filename="../src/tx4_events_section.cpp" line="335"/>
-        <location filename="../src/tx4_events_section.cpp" line="346"/>
-        <location filename="../src/tx4_events_section.cpp" line="354"/>
+        <location filename="../src/tx4_events_section.cpp" line="390"/>
+        <location filename="../src/tx4_events_section.cpp" line="401"/>
+        <location filename="../src/tx4_events_section.cpp" line="409"/>
         <source> SELECTED</source>
         <translation> 선택된</translation>
     </message>
@@ -113,32 +118,40 @@
         <translation>로드 디렉토리</translation>
     </message>
     <message>
+        <location filename="../src/tx4_toolbar.cpp" line="78"/>
+        <source>DIR LOADED</source>
+        <translation>디렉토리 로드됨</translation>
+    </message>
+    <message>
+        <location filename="../src/tx4_toolbar.cpp" line="80"/>
+        <source>AUTO LOAD</source>
+        <translation>자동 로드</translation>
+    </message>
+    <message>
         <source>EVENT QUEUE (0)</source>
         <translation type="vanished">로드 디렉토리 (0)</translation>
     </message>
     <message>
-        <location filename="../src/tx4_toolbar.cpp" line="77"/>
         <source>DIR LOADED: </source>
-        <translation>디렉토리 로드됨: </translation>
+        <translation type="vanished">디렉토리 로드됨:</translation>
     </message>
     <message>
-        <location filename="../src/tx4_toolbar.cpp" line="79"/>
-        <location filename="../src/tx4_toolbar.cpp" line="83"/>
-        <location filename="../src/tx4_toolbar.cpp" line="179"/>
+        <location filename="../src/tx4_toolbar.cpp" line="78"/>
+        <location filename="../src/tx4_toolbar.cpp" line="80"/>
+        <location filename="../src/tx4_toolbar.cpp" line="171"/>
         <source>true</source>
         <translation>진실</translation>
     </message>
     <message>
-        <location filename="../src/tx4_toolbar.cpp" line="79"/>
-        <location filename="../src/tx4_toolbar.cpp" line="83"/>
-        <location filename="../src/tx4_toolbar.cpp" line="179"/>
+        <location filename="../src/tx4_toolbar.cpp" line="78"/>
+        <location filename="../src/tx4_toolbar.cpp" line="80"/>
+        <location filename="../src/tx4_toolbar.cpp" line="171"/>
         <source>false</source>
         <translation>거짓</translation>
     </message>
     <message>
-        <location filename="../src/tx4_toolbar.cpp" line="81"/>
         <source>AUTO LOAD: </source>
-        <translation>자동 로드: </translation>
+        <translation type="vanished">자동 로드: </translation>
     </message>
     <message>
         <location filename="../src/tx4_toolbar.cpp" line="46"/>

@@ -50,21 +50,26 @@
         <translation>VARTIOMIES</translation>
     </message>
     <message>
-        <location filename="../src/tx4_events_section.cpp" line="146"/>
-        <location filename="../src/tx4_events_section.cpp" line="314"/>
-        <location filename="../src/tx4_events_section.cpp" line="323"/>
+        <location filename="../src/tx4_events_section.cpp" line="147"/>
+        <source>RETURN</source>
+        <translation>PALATA</translation>
+    </message>
+    <message>
+        <location filename="../src/tx4_events_section.cpp" line="149"/>
+        <location filename="../src/tx4_events_section.cpp" line="369"/>
+        <location filename="../src/tx4_events_section.cpp" line="378"/>
         <source> EVENTS</source>
         <translation> TAPAHTUMAT</translation>
     </message>
     <message>
-        <location filename="../src/tx4_events_section.cpp" line="202"/>
+        <location filename="../src/tx4_events_section.cpp" line="221"/>
         <source>NO EVENTS LOADED</source>
         <translation>TAPAHTUMAT EI LAADUT</translation>
     </message>
     <message>
-        <location filename="../src/tx4_events_section.cpp" line="335"/>
-        <location filename="../src/tx4_events_section.cpp" line="346"/>
-        <location filename="../src/tx4_events_section.cpp" line="354"/>
+        <location filename="../src/tx4_events_section.cpp" line="390"/>
+        <location filename="../src/tx4_events_section.cpp" line="401"/>
+        <location filename="../src/tx4_events_section.cpp" line="409"/>
         <source> SELECTED</source>
         <translation> VALITTU</translation>
     </message>
@@ -114,28 +119,36 @@
         <translation>JONOTTAA:</translation>
     </message>
     <message>
-        <location filename="../src/tx4_toolbar.cpp" line="77"/>
-        <source>DIR LOADED: </source>
-        <translation>LADATTU: </translation>
+        <location filename="../src/tx4_toolbar.cpp" line="78"/>
+        <source>DIR LOADED</source>
+        <translation>LADATTU</translation>
     </message>
     <message>
-        <location filename="../src/tx4_toolbar.cpp" line="79"/>
-        <location filename="../src/tx4_toolbar.cpp" line="83"/>
-        <location filename="../src/tx4_toolbar.cpp" line="179"/>
+        <location filename="../src/tx4_toolbar.cpp" line="80"/>
+        <source>AUTO LOAD</source>
+        <translation>AUTOMAATTINEN LATAA</translation>
+    </message>
+    <message>
+        <source>DIR LOADED: </source>
+        <translation type="vanished">LADATTU:</translation>
+    </message>
+    <message>
+        <location filename="../src/tx4_toolbar.cpp" line="78"/>
+        <location filename="../src/tx4_toolbar.cpp" line="80"/>
+        <location filename="../src/tx4_toolbar.cpp" line="171"/>
         <source>true</source>
         <translation>totta</translation>
     </message>
     <message>
-        <location filename="../src/tx4_toolbar.cpp" line="79"/>
-        <location filename="../src/tx4_toolbar.cpp" line="83"/>
-        <location filename="../src/tx4_toolbar.cpp" line="179"/>
+        <location filename="../src/tx4_toolbar.cpp" line="78"/>
+        <location filename="../src/tx4_toolbar.cpp" line="80"/>
+        <location filename="../src/tx4_toolbar.cpp" line="171"/>
         <source>false</source>
         <translation>väärä</translation>
     </message>
     <message>
-        <location filename="../src/tx4_toolbar.cpp" line="81"/>
         <source>AUTO LOAD: </source>
-        <translation>AUTOMAATTINEN LATAA: </translation>
+        <translation type="vanished">AUTOMAATTINEN LATAA: </translation>
     </message>
 </context>
 </TS>
