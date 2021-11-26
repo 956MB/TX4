@@ -28,5 +28,9 @@
         <file>locale/tx4_ko.qm</file>
         <file>locale/tx4_fi.ts</file>
         <file>locale/tx4_fi.qm</file>
+        <file>icons/icons8-expand-arrow-left.png</file>
+        <file>icons/icons8-expand-arrow-left-hover.png</file>
+        <file>icons/icons8-expand-arrow-right.png</file>
+        <file>icons/icons8-expand-arrow-right-hover.png</file>
     </qresource>
 </RCC>

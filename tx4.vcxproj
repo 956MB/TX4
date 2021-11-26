@@ -217,8 +217,10 @@
     <ClCompile Include="src\tx4_shortcuts.cpp" />
     <ClCompile Include="src\tx4_toolbar.cpp" />
     <ClCompile Include="src\tx4_toolbar_button.cpp" />
+    <ClCompile Include="src\tx4_nav_button.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <QtMoc Include="src\tx4_nav_button.h" />
     <QtMoc Include="src\tx4_event.h" />
     <QtMoc Include="src\tx4_event_preview.h" />
     <QtMoc Include="src\tx4_grid_layout.h" />

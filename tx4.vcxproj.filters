@@ -108,6 +108,9 @@
     <ClCompile Include="src\tx4_dir.cpp">
       <Filter>Generated Files</Filter>
     </ClCompile>
+    <ClCompile Include="src\tx4_nav_button.cpp">
+      <Filter>Generated Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <QtMoc Include="src\captionbutton.h">
@@ -171,6 +174,9 @@
       <Filter>Generated Files</Filter>
     </QtMoc>
     <QtMoc Include="src\tx4_dir.h">
+      <Filter>Generated Files</Filter>
+    </QtMoc>
+    <QtMoc Include="src\tx4_nav_button.h">
       <Filter>Generated Files</Filter>
     </QtMoc>
   </ItemGroup>
