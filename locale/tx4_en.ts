@@ -2,6 +2,21 @@
 <!DOCTYPE TS>
 <TS version="2.1" language="en_US">
 <context>
+    <name>tx4_control_bar</name>
+    <message>
+        <source>PLAY</source>
+        <translation>PLAY</translation>
+    </message>
+    <message>
+        <source>PAUSE</source>
+        <translation>PAUSE</translation>
+    </message>
+    <message>
+        <source>SYNC CLIPS</source>
+        <translation>SYNC</translation>
+    </message>
+</context>
+<context>
     <name>tx4_dir</name>
     <message>
         <source>Select root of &quot;TESLACAM&quot; drive...</source>
@@ -59,6 +74,14 @@
     <message>
         <source>RETURN</source>
         <translation>RETURN</translation>
+    </message>
+    <message>
+        <source>SELECT ALL</source>
+        <translation>SELECT ALL</translation>
+    </message>
+    <message>
+        <source>DESELECT ALL</source>
+        <translation>DESELECT ALL</translation>
     </message>
 </context>
 <context>

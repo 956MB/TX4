@@ -87,4 +87,42 @@ class Util {
 			}
 		}
 
+		static inline QString formatTimeline(int sec) {
+			int seconds      = sec;
+			int milliseconds = sec * 1000;
+			int minutes      = seconds / 60; 
+			seconds          = seconds % 60;
+			int hours        = minutes / 60;
+			minutes          = minutes % 60;
+
+			QTime time;
+			time.setHMS(hours, minutes, seconds, milliseconds);
+
+			//return time.toString("hh:mm:ss");
+			return time.toString("hh:mm:ss");
+		}
+
+		static inline void clearLayout(QLayout *layout) {
+			if (layout == NULL)
+				return;
+			QLayoutItem *item;
+			while((item = layout->takeAt(0))) {
+				if (item->layout()) {
+					clearLayout(item->layout());
+					delete item->layout();
+				}
+				if (item->widget()) {
+				   delete item->widget();
+				}
+				delete item;
+			}
+		}
+
+		template<typename T>
+		static inline void deleteAndCleanup(T*& ptr)
+		{
+			delete ptr;
+			ptr = NULL;
+		}
+
 };

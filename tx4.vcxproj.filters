@@ -84,7 +84,7 @@
     <ClCompile Include="src\tx4_grid_layout.cpp">
       <Filter>Generated Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\tx4_checkbox.cpp">
+    <ClCompile Include="src\tx4_queue_entry.cpp">
       <Filter>Generated Files</Filter>
     </ClCompile>
     <ClCompile Include="src\tx4_preview_bar.cpp">
@@ -109,6 +109,15 @@
       <Filter>Generated Files</Filter>
     </ClCompile>
     <ClCompile Include="src\tx4_nav_button.cpp">
+      <Filter>Generated Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\tx4_viewer.cpp">
+      <Filter>Generated Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\tx4_view.cpp">
+      <Filter>Generated Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\tx4_control_bar.cpp">
       <Filter>Generated Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -155,7 +164,7 @@
     <QtMoc Include="src\tx4_grid_layout.h">
       <Filter>Generated Files</Filter>
     </QtMoc>
-    <QtMoc Include="src\tx4_checkbox.h">
+    <QtMoc Include="src\tx4_queue_entry.h">
       <Filter>Generated Files</Filter>
     </QtMoc>
     <QtMoc Include="src\tx4_preview_bar.h">
@@ -177,6 +186,15 @@
       <Filter>Generated Files</Filter>
     </QtMoc>
     <QtMoc Include="src\tx4_nav_button.h">
+      <Filter>Generated Files</Filter>
+    </QtMoc>
+    <QtMoc Include="src\tx4_viewer.h">
+      <Filter>Generated Files</Filter>
+    </QtMoc>
+    <QtMoc Include="src\tx4_view.h">
+      <Filter>Generated Files</Filter>
+    </QtMoc>
+    <QtMoc Include="src\tx4_control_bar.h">
       <Filter>Generated Files</Filter>
     </QtMoc>
   </ItemGroup>

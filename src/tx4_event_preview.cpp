@@ -70,6 +70,12 @@ void tx4_event_preview::setSelectIdx(int idx) {
 	l_selectIdxLabel->setLabelText(QString::number(selectIndex));
 }
 
+void tx4_event_preview::setOwnStylesheet(QString parentSS, QString barSS, QString selectIdxSS, QString metaSS) {
+	this->setStyleSheet(parentSS);
+	previewInfoBar->setStyleSheet(barSS);
+	l_selectIdxLabel->setStyleSheet(selectIdxSS);
+}
+
 
 void tx4_event_preview::initContents() {
 	QStackedLayout *s_stackLayout = new QStackedLayout(this);
@@ -94,7 +100,7 @@ void tx4_event_preview::initContents() {
 	w_selectIdxContainerTop->setStyleSheet(selectIdxScreenStyle);
 	QHBoxLayout *v_selectIdxContainerTopLayout = new QHBoxLayout(w_selectIdxContainerTop);
 	Util::setLayoutZero(v_selectIdxContainerTopLayout);
-	l_selectIdxLabel = new tx4_label("-1", 10, selectIdxLabelStyle, QFont::Medium, Qt::AlignCenter, "Anonymous Pro");
+	l_selectIdxLabel = new tx4_label("-1", 10, selectIdxLabelStyle, QFont::Medium, Qt::AlignCenter);
 	v_selectIdxContainerTopLayout->addStretch();
 	v_selectIdxContainerTopLayout->addWidget(l_selectIdxLabel);
 	v_selectIdxLayout->addWidget(w_selectIdxContainerTop);
@@ -119,7 +125,7 @@ void tx4_event_preview::initContents() {
 	QVBoxLayout *v_contentLayout = new QVBoxLayout(w_contentScreen);
 	Util::setLayoutZero(v_contentLayout);
 	v_contentLayout->addStretch();
-	v_contentLayout->addWidget(new tx4_label(tx4_event_preview::tr("THUMB UNAVAILABLE"), 10, thumbUnavailableLabelStyle, QFont::Medium, Qt::AlignCenter, "Anonymous Pro"));
+	v_contentLayout->addWidget(new tx4_label(tx4_event_preview::tr("THUMB UNAVAILABLE"), 10, thumbUnavailableLabelStyle, QFont::Medium, Qt::AlignCenter));
 	v_contentLayout->addSpacerItem(new QSpacerItem(0, 5, QSizePolicy::Expanding, QSizePolicy::Fixed));
 	v_contentLayout->addStretch();
 	previewInfoBar = new tx4_preview_bar(s_dateString, s_locString, s_sizeString, s_lengthString, s_locStyle, "event.json", false);
@@ -161,40 +167,36 @@ void tx4_event_preview::initContents() {
 void tx4_event_preview::enterEvent(QEvent *e) {
     if (previewActive && !previewSelected) {
         previewHovered = true;
-
-		if (selectModeActive) {
-			//this->setStyleSheet(hoverStyle_SelectMode);
-			this->setStyleSheet(hoverStyle);
-			//previewInfoBar->setStyleSheet(previewInfoBar->barStyleHover_SelectMode);
-			previewInfoBar->setStyleSheet(previewInfoBar->barStyleHover);
-			//if (metaInfo != NULL) { metaInfo->metaInfoBar->setStyleSheet(previewInfoBar->barStyleHover_SelectMode); }
-			if (metaInfo != NULL) { metaInfo->metaInfoBar->setHoverStyle(metaDataActive); }
-		} else {
-			this->setStyleSheet(hoverStyle);
-			previewInfoBar->setStyleSheet(previewInfoBar->barStyleHover);
-			//if (metaInfo != NULL) { metaInfo->metaInfoBar->setStyleSheet(previewInfoBar->barStyleHover); }
-			if (metaInfo != NULL) { metaInfo->metaInfoBar->setHoverStyle(metaDataActive); }
-		}
-		//contentLabel->setStyleSheet(contentStyleHover);
-		//checkbox->setCheckboxState(false);
-		//checkbox->setVisible(true);
+		setOwnStylesheet(hoverStyle, previewInfoBar->barStyleHover, selectIdxLabelStyle);
+		if (metaInfo != NULL) { metaInfo->metaInfoBar->setHoverStyle(metaDataActive, previewInfoBar->barStyleHoverTop); }
 
         QWidget::enterEvent(e);
     }
+	//else if (previewActive && previewSelected) {
+	//	previewHovered = true;
+	//	//setOwnStylesheet(queueHoverStyle_SelectMode, queue_barStyleHover, queue_selectIdxLabelStyle);
+	//	if (metaInfo != NULL) { metaInfo->metaInfoBar->setHoverStyle(metaDataActive, previewInfoBar->queue_barStyleHoverTop); }
+	//	emit selectedEnter();
+
+ //       QWidget::enterEvent(e);
+	//}
 }
 void tx4_event_preview::leaveEvent(QEvent *e) {
     if (previewActive && !previewSelected) {
         previewHovered = false;
-		this->setStyleSheet(normalStyle);
-		previewInfoBar->setStyleSheet(previewInfoBar->barStyleNormal);
+		setOwnStylesheet(normalStyle, previewInfoBar->barStyleNormal, selectIdxLabelStyle);
 		if (metaInfo != NULL) { metaInfo->metaInfoBar->setStyleSheet(previewInfoBar->barStyleNormal); }
-		//if (metaInfo != NULL) { metaInfo->metaInfoBar->setHoverStyle(metaDataActive); }
-		//contentLabel->setStyleSheet(contentStyleNormal);
-		//checkbox->setCheckboxState(false);
-		//checkbox->setVisible(false);
 			
         QWidget::leaveEvent(e);
     }
+	//else if (previewActive && previewSelected) {
+	//	previewHovered = false;
+	//	//setOwnStylesheet(hoverStyle_SelectMode, previewInfoBar->barStyleHover_SelectMode, selectIdxLabelStyle);
+	//	if (metaInfo != NULL) { metaInfo->metaInfoBar->setStyleSheet(previewInfoBar->barStyleHover_SelectModeTop); }
+	//	emit selectedLeave();
+
+ //       QWidget::leaveEvent(e);
+	//}
 }
 void tx4_event_preview::mouseReleaseEvent(QMouseEvent *e) {
     if (previewActive) {
@@ -213,32 +215,21 @@ void tx4_event_preview::mouseReleaseEvent(QMouseEvent *e) {
 void tx4_event_preview::leftClick() {
 	if (previewActive && selectModeActive) {
 		if (previewSelected) {
-			previewSelected = false;
-			this->setStyleSheet(normalStyle);
-			previewInfoBar->setStyleSheet(previewInfoBar->barStyleNormal);
-			if (metaInfo != NULL) { metaInfo->metaInfoBar->setStyleSheet(previewInfoBar->barStyleNormal); }
-			w_selectIdxScreen->setVisible(false);
-			emit deselect(previewIndex);
+			deselectPreview();
 		} else {
-			previewSelected = true;
-			this->setStyleSheet(hoverStyle_SelectMode);
-			previewInfoBar->setStyleSheet(previewInfoBar->barStyleHover_SelectMode);
-			//if (metaInfo != NULL) { metaInfo->metaInfoBar->setStyleSheet(previewInfoBar->barStyleHover_SelectMode); }
-			if (metaInfo != NULL) { metaInfo->metaInfoBar->setSelectedStyle(metaDataActive); }
-			//if (metaInfo != NULL) { metaInfo->metaInfoBar->setHoverStyle(metaDataActive); }
-			w_selectIdxScreen->setVisible(true);
-			emit select(previewIndex);
+			selectPreview();
 		}
-	} else if (previewActive && !selectModeActive) {
-		//metaDataActive = !metaDataActive;
-		//if (metaDataActive) {
-		//	addCreateMetaInfo();
-		//} else {
-		//	removeMetaInfo();
-		//}
-		//w_metaDataScreen->setVisible(metaDataActive);
-		//w_contentContainer->setVisible(!metaDataActive);
 	}
+	//else if (previewActive && !selectModeActive) {
+	//	//metaDataActive = !metaDataActive;
+	//	//if (metaDataActive) {
+	//	//	addCreateMetaInfo();
+	//	//} else {
+	//	//	removeMetaInfo();
+	//	//}
+	//	//w_metaDataScreen->setVisible(metaDataActive);
+	//	//w_contentContainer->setVisible(!metaDataActive);
+	//}
 }
 void tx4_event_preview::rightClick() {
 	if (previewActive) {
@@ -246,13 +237,34 @@ void tx4_event_preview::rightClick() {
 		if (metaDataActive) {
 			addCreateMetaInfo();
 			if (metaInfo != NULL && previewSelected) { metaInfo->metaInfoBar->setSelectedStyle(metaDataActive); }
+			w_selectIdxScreen->setVisible(false);
 		} else {
 			removeMetaInfo();
-			if (previewSelected) { previewInfoBar->setStyleSheet(previewInfoBar->barStyleHover_SelectMode); }
+			if (previewSelected) {
+				previewInfoBar->setStyleSheet(previewInfoBar->barStyleHover_SelectMode);
+				w_selectIdxScreen->setVisible(true);
+			}
 		}
 		w_metaDataScreen->setVisible(metaDataActive);
 		w_contentContainer->setVisible(!metaDataActive);
 	}
+}
+
+
+// TODO: public select/deselect for all
+void tx4_event_preview::selectPreview() {
+	previewSelected = true;
+	setOwnStylesheet(hoverStyle_SelectMode, previewInfoBar->barStyleHover_SelectMode, selectIdxLabelStyle);
+	if (metaInfo != NULL) { metaInfo->metaInfoBar->setSelectedStyle(metaDataActive); }
+	w_selectIdxScreen->setVisible(true);
+	emit select(previewIndex);
+}
+void tx4_event_preview::deselectPreview() {
+	previewSelected = false;
+	setOwnStylesheet(normalStyle, previewInfoBar->barStyleNormal, selectIdxLabelStyle);
+	if (metaInfo != NULL) { metaInfo->metaInfoBar->setStyleSheet(previewInfoBar->barStyleNormal); }
+	w_selectIdxScreen->setVisible(false);
+	emit deselect(previewIndex);
 }
 
 

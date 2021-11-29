@@ -22,23 +22,24 @@ bool tx4_dir::loadTeslaDrive(bool force_dir, QString dir) {
 	QDir driveRoot(s_drivePathPrefix);
 
 	if (driveRoot.exists()) {
-		if (driveRoot.dirName() != s_teslaCamFolder) { emit &tx4_dir::no_teslaCamFolder; return false; } else { d_driveRootDir = driveRoot; }
+		if (driveRoot.dirName() != s_teslaCamFolder) { emit &tx4_dir::err_teslaCamFolder; return false; } else { d_driveRootDir = driveRoot; }
 
 		QDir savedDir(s_drivePathPrefix + s_savedClipsFolder);
 		QDir sentryDir(s_drivePathPrefix + s_sentryClipsFolder);
-		if (!savedDir.exists()) { emit &tx4_dir::no_savedClipsFolder; return false; } else { d_savedClipsDir = savedDir; }
-		if (!sentryDir.exists()) { emit &tx4_dir::no_sentryClipsFolder; return false; } else { d_sentryClipsDir = sentryDir; }
+		if (!savedDir.exists()) { emit &tx4_dir::err_savedClipsFolder; return false; } else { d_savedClipsDir = savedDir; }
+		if (!sentryDir.exists()) { emit &tx4_dir::err_sentryClipsFolder; return false; } else { d_sentryClipsDir = sentryDir; }
 
-		bool savedClipsSuccess = loopClipsDir(d_savedClipsDir, true);
-		bool sentryClipsSuccess = loopClipsDir(d_sentryClipsDir, false);
-		if (!savedClipsSuccess) { emit &tx4_dir::no_savedClipsFolder; return false; }
-		if (!sentryClipsSuccess) { emit &tx4_dir::no_sentryClipsFolder; return false; }
+		bool savedClipsSuccess = loopClipsDir(savedEvents, d_savedClipsDir, true);
+		bool sentryClipsSuccess = loopClipsDir(sentryEvents, d_sentryClipsDir, false);
+		if (!savedClipsSuccess) { emit &tx4_dir::err_savedClipsFolderEmpty; return false; }
+		if (!sentryClipsSuccess) { emit &tx4_dir::err_sentryClipsFolderEmpty; return false; }
 
 			 return true;
 	} else { return false; }
 }
 
-bool tx4_dir::loopClipsDir(QDir useDir, bool saved) {
+bool tx4_dir::loopClipsDir(QList<tx4_event*> &eventList, QDir useDir, bool saved) {
+	eventList.clear();
 	QFileInfoList dirContents = useDir.entryInfoList(QDir::Dirs | QDir::NoSymLinks | QDir::NoDot | QDir::NoDotDot, QDir::Time);
 
 	if (dirContents.isEmpty()) { return false; }
@@ -49,17 +50,9 @@ bool tx4_dir::loopClipsDir(QDir useDir, bool saved) {
 		QDir eventDir(eventFI.absoluteFilePath());
 		//qDebug() << eventDir.dirName();
 
-		if (saved) {
-			tx4_event *savedEvent = new tx4_event(eventDir);
-			formDisplayStrings(savedEvent);
-			savedEvents.append(savedEvent);
-		} else {
-			tx4_event *sentryEvent = new tx4_event(eventDir);
-			formDisplayStrings(sentryEvent);
-			sentryEvents.append(sentryEvent);
-		}
-
-		//return true;
+		tx4_event *_event = new tx4_event(eventDir);
+		formDisplayStrings(_event);
+		eventList.append(_event);
 	}
 
 	return true;

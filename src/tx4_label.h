@@ -9,7 +9,7 @@ class tx4_label : public QLabel {
 	Q_OBJECT
 
 	public:
-		explicit tx4_label(const QString &text, const int &size, const QString &style, const QFont::Weight &weight, const Qt::AlignmentFlag &align, const QString &font, QWidget *parent = nullptr);
+		explicit tx4_label(const QString &text, const int &size, const QString &style, const QFont::Weight &weight, const Qt::AlignmentFlag &align, const QString &font = "Anonymous Pro", QWidget *parent = nullptr);
 		~tx4_label();
 
 	public:
@@ -23,7 +23,7 @@ class tx4_key_value_label : public QWidget {
 	Q_OBJECT
 
 	public:
-		explicit tx4_key_value_label(const QString &key, const QString &value, const int &size, const QString &key_style, const QString &value_style, const QFont::Weight &weight, const Qt::AlignmentFlag &align, const QString &font, QWidget *parent = nullptr);
+		explicit tx4_key_value_label(const QString &key, const QString &value, const int &size, const QString &key_style, const QString &value_style, const QFont::Weight &weight, const Qt::AlignmentFlag &align, const QString &font = "Anonymous Pro", QWidget *parent = nullptr);
 		~tx4_key_value_label();
 
 	public:

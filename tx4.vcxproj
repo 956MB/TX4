@@ -206,7 +206,7 @@
     <ClCompile Include="src\titlewidget.cpp" />
     <ClCompile Include="QGoodWindow\QGoodWindowSource\winwidget.cpp" />
     <ClCompile Include="src\tx4.cpp" />
-    <ClCompile Include="src\tx4_checkbox.cpp" />
+    <ClCompile Include="src\tx4_queue_entry.cpp" />
     <ClCompile Include="src\tx4_event.cpp" />
     <ClCompile Include="src\tx4_event_preview.cpp" />
     <ClCompile Include="src\tx4_grid_layout.cpp" />
@@ -218,13 +218,19 @@
     <ClCompile Include="src\tx4_toolbar.cpp" />
     <ClCompile Include="src\tx4_toolbar_button.cpp" />
     <ClCompile Include="src\tx4_nav_button.cpp" />
+    <ClCompile Include="src\tx4_viewer.cpp" />
+    <ClCompile Include="src\tx4_view.cpp" />
+    <ClCompile Include="src\tx4_control_bar.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <QtMoc Include="src\tx4_control_bar.h" />
+    <QtMoc Include="src\tx4_view.h" />
+    <QtMoc Include="src\tx4_viewer.h" />
     <QtMoc Include="src\tx4_nav_button.h" />
     <QtMoc Include="src\tx4_event.h" />
     <QtMoc Include="src\tx4_event_preview.h" />
     <QtMoc Include="src\tx4_grid_layout.h" />
-    <QtMoc Include="src\tx4_checkbox.h" />
+    <QtMoc Include="src\tx4_queue_entry.h" />
     <QtMoc Include="src\tx4_preview_bar.h" />
     <QtMoc Include="src\tx4_shortcuts.h" />
     <QtMoc Include="src\tx4_meta_info.h" />

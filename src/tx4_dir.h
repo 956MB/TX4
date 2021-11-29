@@ -18,9 +18,11 @@ class tx4_dir : public QWidget {
 		bool loadTeslaDrive(bool force_dir = true, QString dir = "C:/Users/infga/Downloads/TeslaCam");
 
 	signals:
-		void no_teslaCamFolder();
-		void no_savedClipsFolder();
-		void no_sentryClipsFolder();
+		void err_teslaCamFolder();
+		void err_savedClipsFolder();
+		void err_sentryClipsFolder();
+		void err_savedClipsFolderEmpty();
+		void err_sentryClipsFolderEmpty();
 
 	private:
 		QString s_drivePathPrefix;
@@ -32,7 +34,7 @@ class tx4_dir : public QWidget {
 		QString s_savedClipsFolder = "/SavedClips";
 		QString s_sentryClipsFolder = "/SentryClips";
 
-		bool loopClipsDir(QDir useDir, bool saved);
+		bool loopClipsDir(QList<tx4_event*> &eventList, QDir useDir, bool saved);
 		void formDisplayStrings(tx4_event *_event);
 };
 

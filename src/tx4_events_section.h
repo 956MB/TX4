@@ -12,6 +12,7 @@
 #define SECTION_H 250
 #define SCROLL_DIFF 250
 #define CLICK_SCROLL_DIFF 250
+//#define TITLE_BUTTONS_DIST 40
 
 class tx4_events_section : public QWidget {
 	Q_OBJECT
@@ -21,23 +22,29 @@ class tx4_events_section : public QWidget {
 		~tx4_events_section();
 
 		bool eventsLoaded;
+		QList<tx4_event_preview*> previews;
+		QList<tx4_event*> events;
 		QList<tx4_event_preview*> selectedPreviews;
+		QList<tx4_event*> selectedEvents;
 		void toggleSelectMode(bool active);
 		void toggleEventsLoaded(bool active);
 		void initEmptyState(bool active);
-		void clearLayout(QLayout *layout);
 		void populateEvents(QList<tx4_event*> events);
 		void setNavButtonStates(bool style_left, bool style_right, bool enable_left, bool enable_right);
+		void setSelectDeselectButtonState(bool state = false, bool visible = true);
+
+		// TODO: public select/deselect for all
+		void selectAll();
+		void deselectAll();
 
 	protected:
 		virtual void wheelEvent(QWheelEvent* event);
 
 	signals:
-		void eventSelect(tx4_event_preview *);
-		void eventDeselect(tx4_event_preview *);
+		void eventSelect(tx4_event *, tx4_event_preview *);
+		void eventDeselect(tx4_event *, tx4_event_preview *);
 
 	private:
-		QList<tx4_event_preview*> previews;
 		tx4_label *l_sectionTitle;
 		tx4_label *l_countSubitle;
 		tx4_label *l_sizeSubitle;
@@ -51,13 +58,17 @@ class tx4_events_section : public QWidget {
 		tx4_nav_button *b_navButtonLeft;
 		tx4_nav_button *b_navButtonRight;
 		tx4_toolbar_button *b_returnButton;
+		tx4_toolbar_button *b_selectDeselectAllButton;
 
-		int scrollValue;
+		int i_scrollValue;
 		bool selectModeActive;
-		int selectedCount;
-		int totalEvents;
-		QString totalSize;
-		QString totalLength;
+		bool selectAllClicked;
+		int i_selectedCount;
+		int i_totalEvents;
+		qint64 i_selectedSize;
+		qint64 i_selectedLength;
+		QString s_totalSize;
+		QString s_totalLength;
 		QString sectionTitle;
 
 		QString titleBarStyle = "background-color: rgba(38, 38, 38, 255); border: none; outline: none;";
@@ -93,6 +104,9 @@ class tx4_events_section : public QWidget {
 		void on_navLeftClick();
 		void on_navRightClick();
 		void on_returnClick();
+		void on_selectDeselectAll();
+		void on_selectAll();
+		void on_deselectAll();
 
 };
 

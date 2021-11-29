@@ -14,7 +14,7 @@ tx4_event::tx4_event(QDir &pass_dir, QWidget *parent)
 	//	i_eventFolder_TotalClipLength += dur;
 	//	emit durationValueUpdated();
 	//});
-
+	selectIndex = -1;
 	s_Name = d_eventDir.dirName();
 	s_Date = "";
 	i_Size = 0;
@@ -43,6 +43,10 @@ tx4_event::tx4_event(QDir &pass_dir, QWidget *parent)
 
 tx4_event::~tx4_event() {}
 
+
+void tx4_event::setSelectIdx(int idx) {
+	selectIndex = idx;
+}
 
 void tx4_event::splitBaseName(QString basename) {
 	if (basename[20] == ("l")) { i_LeftClipCount += 1; i_ClipCount += 1; }

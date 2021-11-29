@@ -6,6 +6,7 @@
 #include "tx4_util.h"
 #include "tx4_toolbar_button.h"
 #include "tx4_event_preview.h"
+#include "tx4_queue_entry.h"
 
 #define TOOLBAR_H 50
 #define SCROLL_DIFF 35
@@ -17,7 +18,7 @@ class tx4_toolbar : public QWidget {
 		explicit tx4_toolbar(const bool &loaded, const bool &auto_load, QWidget* parent = nullptr);
 		~tx4_toolbar();
 
-		void updateEventQueue(QList<tx4_event_preview*> eventQueue);
+		void updateEventQueue(QList<tx4_event*> &eventQueue, QList<tx4_event_preview*> &previewQueue);
 		void toggleEventsLoaded(bool loaded);
 
 	signals:
@@ -31,7 +32,8 @@ class tx4_toolbar : public QWidget {
 		tx4_toolbar_button *b_openButton;
 		tx4_toolbar_button *b_loadEventsButton;
 		tx4_label *l_selectedEventsTitle;
-		tx4_label *l_queueTitle;
+		QWidget *w_queueContainer;
+		//tx4_label *l_queueTitle;
 		tx4_key_value_label *l_eventsLoadedTitle;
 		//tx4_label *l_eventsLoadedValue;
 		tx4_key_value_label *l_autoLoadTitle;
@@ -39,7 +41,7 @@ class tx4_toolbar : public QWidget {
 		QScrollArea *queueScrollarea;
 		int scrollValue;
 		int eventQueueCount;
-		int eventQueueClipsCount;
+		//int eventQueueClipsCount;
 		bool eventsLoaded;
 		bool autoLoad;
 

@@ -31,14 +31,14 @@ void tx4_meta_info::init() {
 	QHBoxLayout *h_bracket1Layout = new QHBoxLayout(bracket1);
 	Util::setLayoutZeroMargins(h_bracket1Layout, 7,0,7,0);
 	bracket1->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Fixed);
-	h_bracket1Layout->addWidget(new tx4_label("{", 8, whiteStyle, QFont::Medium, Qt::AlignLeft, "Anonymous Pro"));
+	h_bracket1Layout->addWidget(new tx4_label("{", 8, whiteStyle, QFont::Medium, Qt::AlignLeft));
 	h_bracket1Layout->addStretch();
 
 	QWidget *bracket2 = new QWidget;
 	QHBoxLayout *h_bracket2Layout = new QHBoxLayout(bracket2);
 	Util::setLayoutZeroMargins(h_bracket2Layout, 7,0,7,0);
 	bracket2->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Fixed);
-	h_bracket2Layout->addWidget(new tx4_label("}", 8, whiteStyle, QFont::Medium, Qt::AlignLeft, "Anonymous Pro"));
+	h_bracket2Layout->addWidget(new tx4_label("}", 8, whiteStyle, QFont::Medium, Qt::AlignLeft));
 	h_bracket2Layout->addStretch();
 
 	v_bothLayout->addWidget(metaInfoBar);
@@ -52,8 +52,8 @@ void tx4_meta_info::init() {
 		Util::setLayoutZeroMargins(h_lineLayout, 7,0,7,0);
 		_line->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Fixed);
 		h_lineLayout->addSpacerItem(new QSpacerItem(12, 0, QSizePolicy::Fixed, QSizePolicy::Expanding));
-		addWidgetSep(h_lineLayout, new tx4_label(pre[i], 8, blueStyle, QFont::Medium, Qt::AlignLeft, "Anonymous Pro"), ":");
-		addWidgetSep(h_lineLayout, new tx4_label(pos[i], 8, orangeStyle, QFont::Medium, Qt::AlignLeft, "Anonymous Pro"), ",");
+		addWidgetSep(h_lineLayout, new tx4_label(pre[i], 8, blueStyle, QFont::Medium, Qt::AlignLeft), ":");
+		addWidgetSep(h_lineLayout, new tx4_label(pos[i], 8, orangeStyle, QFont::Medium, Qt::AlignLeft), ",");
 		h_lineLayout->addStretch();
 		v_bothLayout->addWidget(_line);
 	}
@@ -64,7 +64,7 @@ void tx4_meta_info::init() {
 }
 
 void tx4_meta_info::addWidgetSep(QHBoxLayout *layout, tx4_label *label, QString sep) {
-	label->setTextInteractionFlags(Qt::TextSelectableByMouse);
+	//label->setTextInteractionFlags(Qt::TextSelectableByMouse);
 	layout->addWidget(label);
-	layout->addWidget(new tx4_label(sep, 8, whiteStyle, QFont::Medium, Qt::AlignLeft, "Anonymous Pro"));
+	layout->addWidget(new tx4_label(sep, 8, whiteStyle, QFont::Medium, Qt::AlignLeft));
 }

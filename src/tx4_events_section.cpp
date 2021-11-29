@@ -6,16 +6,21 @@
 tx4_events_section::tx4_events_section(const QString &title, QWidget *parent)
 	: QWidget(parent)
 	, previews(QList<tx4_event_preview*> ())
+	, events(QList<tx4_event*> ())
 	, selectedPreviews(QList<tx4_event_preview*> ())
+	, selectedEvents(QList<tx4_event*> ())
 	, sectionTitle(title) {
 
-	scrollValue = 0;
+	i_scrollValue = 0;
 	selectModeActive = false;
+	selectAllClicked = false;
 	eventsLoaded = false;
-	selectedCount = 0;
-	totalEvents = 4; // TODO: bug related to widgets not being visible in hor scroll: amount of events that need to be present in layout before adding new ones needs to be >= the amount of new ones, less and they overlap and dont work right, more and theyre all removed and new ones are added ffine, DONT KNOW WHY. maybe? remove scoll container from scroll area and readd it? or update the widget in scroll area after updating hor layout with new widgets?
-	totalSize = "2.11 GB";
-	totalLength = "0:15:39";
+	i_selectedCount = 0;
+	i_selectedSize = 0;
+	i_selectedLength = 0;
+	i_totalEvents = 4; // TODO: bug related to widgets not being visible in hor scroll: amount of events that need to be present in layout before adding new ones needs to be >= the amount of new ones, less and they overlap and dont work right, more and theyre all removed and new ones are added ffine, DONT KNOW WHY. maybe? remove scoll container from scroll area and readd it? or update the widget in scroll area after updating hor layout with new widgets?
+	s_totalSize = "2.11 GB";
+	s_totalLength = "0:15:39";
 
 	this->setAttribute(Qt::WA_StyledBackground); // <--- this attribute solves issue of background color not being drawn on custom widget, no need for reimplementing paintEvent, yet.
 	//this->setFixedHeight(RECENTS_H);
@@ -143,24 +148,30 @@ void tx4_events_section::initContents() {
 	QHBoxLayout *h_rightContainerLayout = new QHBoxLayout(w_rightContainer);
 	Util::setLayoutZero(h_rightContainerLayout);
 	//h_titleContainerLayout->setSpacing(15);
-	l_sectionTitle = new tx4_label(sectionTitle, 10, titleLabelStyle, QFont::Medium, Qt::AlignLeft, "Anonymous Pro");
+	l_sectionTitle = new tx4_label(sectionTitle, 10, titleLabelStyle, QFont::Medium, Qt::AlignLeft);
 	b_returnButton = new tx4_toolbar_button(tx4_events_section::tr("RETURN"), false, "");
+	b_selectDeselectAllButton = new tx4_toolbar_button(tx4_events_section::tr("SELECT ALL"), false, "");
+	
 	connect(b_returnButton, &tx4_toolbar_button::clicked, this, &tx4_events_section::on_returnClick);
-	l_countSubitle = new tx4_label(QString::number(totalEvents) + tx4_events_section::tr(" EVENTS"), 10, subLabelStyle, QFont::Medium, Qt::AlignLeft, "Anonymous Pro");
-	l_sizeSubitle = new tx4_label(totalSize, 10, subLabelStyle, QFont::Medium, Qt::AlignLeft, "Anonymous Pro");
-	l_lengthSubitle = new tx4_label(totalLength, 10, subLabelStyle, QFont::Medium, Qt::AlignLeft, "Anonymous Pro");
+	connect(b_selectDeselectAllButton, &tx4_toolbar_button::clicked, this, &tx4_events_section::on_selectDeselectAll);
+
+	l_countSubitle = new tx4_label(QString::number(i_totalEvents) + tx4_events_section::tr(" EVENTS"), 10, subLabelStyle, QFont::Medium, Qt::AlignLeft);
+	l_sizeSubitle = new tx4_label(s_totalSize, 10, subLabelStyle, QFont::Medium, Qt::AlignLeft);
+	l_lengthSubitle = new tx4_label(s_totalLength, 10, subLabelStyle, QFont::Medium, Qt::AlignLeft);
 	h_rightContainerLayout->addWidget(l_countSubitle);
 	h_rightContainerLayout->addSpacerItem(new QSpacerItem(10, 0, QSizePolicy::Fixed, QSizePolicy::Expanding));
-	h_rightContainerLayout->addWidget(new tx4_label("[", 10, subLabelBraceStyle, QFont::Medium, Qt::AlignCenter, "Anonymous Pro"));
+	h_rightContainerLayout->addWidget(new tx4_label("[", 10, subLabelBraceStyle, QFont::Medium, Qt::AlignCenter));
 	h_rightContainerLayout->addWidget(l_sizeSubitle);
-	h_rightContainerLayout->addWidget(new tx4_label("]", 10, subLabelBraceStyle, QFont::Medium, Qt::AlignCenter, "Anonymous Pro"));
+	h_rightContainerLayout->addWidget(new tx4_label("]", 10, subLabelBraceStyle, QFont::Medium, Qt::AlignCenter));
 	h_rightContainerLayout->addSpacerItem(new QSpacerItem(5, 0, QSizePolicy::Fixed, QSizePolicy::Expanding));
-	h_rightContainerLayout->addWidget(new tx4_label("[", 10, subLabelBraceStyle, QFont::Medium, Qt::AlignCenter, "Anonymous Pro"));
+	h_rightContainerLayout->addWidget(new tx4_label("[", 10, subLabelBraceStyle, QFont::Medium, Qt::AlignCenter));
 	h_rightContainerLayout->addWidget(l_lengthSubitle);
-	h_rightContainerLayout->addWidget(new tx4_label("]", 10, subLabelBraceStyle, QFont::Medium, Qt::AlignCenter, "Anonymous Pro"));
+	h_rightContainerLayout->addWidget(new tx4_label("]", 10, subLabelBraceStyle, QFont::Medium, Qt::AlignCenter));
 
 	h_titleContainerLayout->addWidget(l_sectionTitle);
 	h_titleContainerLayout->addSpacerItem(new QSpacerItem(40, 0, QSizePolicy::Fixed, QSizePolicy::Expanding));
+	h_titleContainerLayout->addWidget(b_selectDeselectAllButton);
+	h_titleContainerLayout->addSpacerItem(new QSpacerItem(20, 0, QSizePolicy::Fixed, QSizePolicy::Expanding));
 	h_titleContainerLayout->addWidget(b_returnButton);
 	h_titleContainerLayout->addStretch();
 	h_titleContainerLayout->addWidget(w_rightContainer);
@@ -174,12 +185,12 @@ void tx4_events_section::initContents() {
 	h_recentsScrollLayout->setSpacing(10);
 
 	// TODO:
-	for (int i = 0; i < totalEvents; i++) {
+	for (int i = 0; i < i_totalEvents; i++) {
 		tx4_event_preview *preview = new tx4_event_preview("", "", "", "", "", "", "","", "", "", titleLabelStyle, i);
 		h_recentsScrollLayout->addWidget(preview);
 		previews.append(preview);
-		connect(preview, &tx4_event_preview::select, this, &tx4_events_section::on_updateSelect);
-		connect(preview, &tx4_event_preview::deselect, this, &tx4_events_section::on_updateDeselect);
+		//connect(preview, &tx4_event_preview::select, this, &tx4_events_section::on_updateSelect);
+		//connect(preview, &tx4_event_preview::deselect, this, &tx4_events_section::on_updateDeselect);
     }
 	h_recentsScrollLayout->addStretch();
 
@@ -218,7 +229,7 @@ void tx4_events_section::initContents() {
 	QHBoxLayout *h_emptyStateLayout = new QHBoxLayout(w_emptyState);
 	Util::setLayoutZero(h_emptyStateLayout);
 	h_emptyStateLayout->setContentsMargins(20, 0, 20, 0);
-	l_emptyState = new tx4_label(tx4_events_section::tr("NO EVENTS LOADED"), 10, subLabelStyleOff, QFont::Medium, Qt::AlignLeft, "Anonymous Pro");
+	l_emptyState = new tx4_label(tx4_events_section::tr("NO EVENTS LOADED"), 10, subLabelStyleOff, QFont::Medium, Qt::AlignLeft);
 	h_emptyStateLayout->addSpacerItem(new QSpacerItem(20, 0, QSizePolicy::Fixed, QSizePolicy::Expanding));
 	h_emptyStateLayout->addStretch();
 	h_emptyStateLayout->addWidget(l_emptyState);
@@ -270,6 +281,38 @@ void tx4_events_section::setNavButtonStates(bool style_left, bool style_right, b
 	b_navButtonRight->setVisible(enable_right);
 }
 
+void tx4_events_section::setSelectDeselectButtonState(bool state, bool visible) {
+	b_selectDeselectAllButton->setButtonState(state);
+	b_selectDeselectAllButton->setVisible(visible);
+}
+
+
+// TODO: public select/deselect for all
+void tx4_events_section::selectAll() {
+	deselectAll();
+
+	if (eventsLoaded && !previews.isEmpty()) {
+		for (int i = 0; i < previews.count(); i++) {
+			if (!previews[i]->previewSelected) {
+				previews[i]->selectPreview();
+			}
+		}
+
+		if (b_selectDeselectAllButton->s_enabled) { b_selectDeselectAllButton->setButtonText(tx4_events_section::tr("DESELECT ALL")); }
+	}
+}
+void tx4_events_section::deselectAll() {
+	if (eventsLoaded && !previews.isEmpty()) {
+		for (int i = 0; i < previews.count(); i++) {
+			if (previews[i]->previewSelected) {
+				previews[i]->deselectPreview();
+			}
+		}
+
+		if (b_selectDeselectAllButton->s_enabled) { b_selectDeselectAllButton->setButtonText(tx4_events_section::tr("SELECT ALL")); }
+	}
+}
+
 
 // SCROLLWHEEL EVENTS: {
 	void tx4_events_section::wheelEvent(QWheelEvent* event) {
@@ -296,87 +339,94 @@ void tx4_events_section::setNavButtonStates(bool style_left, bool style_right, b
 		goRight(CLICK_SCROLL_DIFF);
 	}
 	void tx4_events_section::goLeft(const int &amount) {
-		if (scrollValue > scrollarea->horizontalScrollBar()->minimum()) {
-			scrollValue = scrollValue-amount;
-			scrollarea->horizontalScrollBar()->setValue(scrollValue);
+		if (i_scrollValue > scrollarea->horizontalScrollBar()->minimum()) {
+			i_scrollValue = i_scrollValue-amount;
+			scrollarea->horizontalScrollBar()->setValue(i_scrollValue);
 		} else {
 			b_returnButton->setButtonState(false);
 			b_returnButton->setVisible(false);
 		}
 	}
 	void tx4_events_section::goRight(const int &amount) {
-		if (scrollValue < scrollarea->horizontalScrollBar()->maximum()) {
-			scrollValue = scrollValue+amount;
-			scrollarea->horizontalScrollBar()->setValue(scrollValue);
+		if (i_scrollValue < scrollarea->horizontalScrollBar()->maximum()) {
+			i_scrollValue = i_scrollValue+amount;
+			scrollarea->horizontalScrollBar()->setValue(i_scrollValue);
 			b_returnButton->setButtonState(true);
 			b_returnButton->setVisible(true);
 		}
 	}
 	void tx4_events_section::on_returnClick() {
-		scrollValue = 0;
-		scrollarea->horizontalScrollBar()->setValue(scrollValue);
+		i_scrollValue = 0;
+		scrollarea->horizontalScrollBar()->setValue(i_scrollValue);
 		b_returnButton->setButtonState(false);
 		b_returnButton->setVisible(false);
 	}
+	void tx4_events_section::on_selectDeselectAll() {
+		if (!selectAllClicked) {
+			selectAllClicked = true;
+			on_selectAll();
+		} else {
+			selectAllClicked = false;
+			on_deselectAll();
+		}
+	}
+	void tx4_events_section::on_selectAll() {
+		selectAll();
+	}
+	void tx4_events_section::on_deselectAll() {
+		deselectAll();
+	}
 // }
 
-void tx4_events_section::clearLayout(QLayout *layout) {
-    if (layout == NULL)
-        return;
-    QLayoutItem *item;
-    while((item = layout->takeAt(0))) {
-        if (item->layout()) {
-            clearLayout(item->layout());
-            delete item->layout();
-        }
-        if (item->widget()) {
-           delete item->widget();
-        }
-        delete item;
-    }
-}
-void tx4_events_section::populateEvents(QList<tx4_event*> events) {
+
+void tx4_events_section::populateEvents(QList<tx4_event*> pop_events) {
 	auto *hbox = qobject_cast<QHBoxLayout*>(w_sectionScroll->layout());
-	clearLayout(hbox);
+	Util::clearLayout(hbox);
 	//delete w_sectionScroll->layout();//delete the first layout
 	previews.clear();
-	int count = events.count();
-	totalEvents = count;
+	events.clear();
+	int count = pop_events.count();
+	i_totalEvents = count;
 	qint64 sizeCount = 0;
 	qint64 timeCount = 0;
 	//QHBoxLayout *h_recentsScrollLayout = new QHBoxLayout(w_sectionScroll);
 	//Util::setLayoutZero(h_recentsScrollLayout);
 	//h_recentsScrollLayout->setSpacing(10);
 
-	for (int i = 0; i < totalEvents; i++) {
-		tx4_event_preview *preview = new tx4_event_preview(events[i]->s_dateDisplay, events[i]->s_countDisplay, events[i]->s_sizeDisplay, events[i]->s_lengthDisplay, events[i]->s_metaDataTimestampString, events[i]->s_metaDataCityString, events[i]->s_metaDataLatString, events[i]->s_metaDataLonString, events[i]->s_metaDataReasonString, events[i]->s_metaDataCameraString, titleLabelStyle, i);
+	for (int i = 0; i < i_totalEvents; i++) {
+		tx4_event_preview *preview = new tx4_event_preview(pop_events[i]->s_dateDisplay, pop_events[i]->s_countDisplay, pop_events[i]->s_sizeDisplay, pop_events[i]->s_lengthDisplay, pop_events[i]->s_metaDataTimestampString, pop_events[i]->s_metaDataCityString, pop_events[i]->s_metaDataLatString, pop_events[i]->s_metaDataLonString, pop_events[i]->s_metaDataReasonString, pop_events[i]->s_metaDataCameraString, titleLabelStyle, i);
 		//tx4_event_preview *preview = new tx4_event_preview("2021_08_22", "12x4", "21.75MB", "09:13", titleLabelStyle, i);
 		//preview->setParent(w_sectionScroll);
 		hbox->addWidget(preview);
 		//h_recentsScrollLayout->addWidget(preview);
 		preview->show();
 		previews.append(preview);
+		events.append(pop_events[i]);
 		connect(preview, &tx4_event_preview::select, this, &tx4_events_section::on_updateSelect);
 		connect(preview, &tx4_event_preview::deselect, this, &tx4_events_section::on_updateDeselect);
 
-		sizeCount += events[i]->i_Size;
-		timeCount += events[i]->i_TotalClipLength;
+		sizeCount += pop_events[i]->i_Size;
+		timeCount += pop_events[i]->i_TotalClipLength;
     }
 	hbox->addStretch();
 	w_sectionScroll->setLayout(hbox);
-	qDebug() << "hbox::EMPTY?? " << hbox->isEmpty();
+	//qDebug() << "hbox::EMPTY?? " << hbox->isEmpty();
 
-	QString titleEventsString = QString::number(totalEvents) + tx4_events_section::tr(" EVENTS");
+	QString titleEventsString = QString::number(i_totalEvents) + tx4_events_section::tr(" EVENTS");
 	QString titleSizeString = Util::humanSize(sizeCount);
 	QString titleTimeString = Util::format_duration(timeCount);
+	s_totalSize = titleSizeString;
+	s_totalLength = titleTimeString;
 	l_countSubitle->setLabelText(titleEventsString);
-	l_sizeSubitle->setLabelText(titleSizeString);
-	l_lengthSubitle->setLabelText(titleTimeString);
+	l_sizeSubitle->setLabelText(s_totalSize);
+	l_lengthSubitle->setLabelText(s_totalLength);
 }
 void tx4_events_section::resetSubtitle() {
 	selectModeActive = false;
-	QString formDeselect = QString::number(totalEvents) + tx4_events_section::tr(" EVENTS");
+	QString formDeselect = QString::number(i_totalEvents) + tx4_events_section::tr(" EVENTS");
 	l_countSubitle->setText(formDeselect);
+	l_sizeSubitle->setText(s_totalSize);
+	l_lengthSubitle->setText(s_totalLength);
 	l_sizeSubitle->setStyleSheet(subLabelStyle);
 	l_lengthSubitle->setStyleSheet(subLabelStyle);
 }
@@ -386,36 +436,51 @@ void tx4_events_section::resetSubtitle() {
 	void tx4_events_section::on_updateSelect(int idx) {
 		if (!selectModeActive) {
 			selectModeActive = true;
-			selectedCount += 1;
-			QString formSelect = QString::number(selectedCount) + QString("/") + QString::number(totalEvents) + tx4_events_section::tr(" SELECTED");
+			i_selectedCount += 1;
+			i_selectedSize += events[idx]->i_Size;
+			i_selectedLength += events[idx]->i_TotalClipLength;
+			QString formSelect = QString::number(i_selectedCount) + QString("/") + QString::number(i_totalEvents) + tx4_events_section::tr(" SELECTED");
 			l_countSubitle->setText(formSelect);
+			l_sizeSubitle->setLabelText(Util::humanSize(i_selectedSize));
+			l_lengthSubitle->setLabelText(Util::format_duration(i_selectedLength));
 			l_sizeSubitle->setStyleSheet(subLabelStyleOff);
 			l_lengthSubitle->setStyleSheet(subLabelStyleOff);
 
 			selectedPreviews.append(previews[idx]);
-			emit eventSelect(previews[idx]);
+			selectedEvents.append(events[idx]);
+			emit eventSelect(events[idx], previews[idx]);
 			return;
 		}
 
-		selectedCount += 1;
-		QString formSelect = QString::number(selectedCount) + QString("/") + QString::number(totalEvents) + tx4_events_section::tr(" SELECTED");
+		i_selectedCount += 1;
+		i_selectedSize += events[idx]->i_Size;
+		i_selectedLength += events[idx]->i_TotalClipLength;
+		QString formSelect = QString::number(i_selectedCount) + QString("/") + QString::number(i_totalEvents) + tx4_events_section::tr(" SELECTED");
 		l_countSubitle->setText(formSelect);
+		l_sizeSubitle->setLabelText(Util::humanSize(i_selectedSize));
+		l_lengthSubitle->setLabelText(Util::format_duration(i_selectedLength));
 
 		selectedPreviews.append(previews[idx]);
-		emit eventSelect(previews[idx]);
+		selectedEvents.append(events[idx]);
+		emit eventSelect(events[idx], previews[idx]);
 	}
 	void tx4_events_section::on_updateDeselect(int idx) {
-		selectedCount -= 1;
-		QString formDeselect = QString::number(selectedCount) + QString("/") + QString::number(totalEvents) + tx4_events_section::tr(" SELECTED");
+		i_selectedCount -= 1;
+		i_selectedSize -= events[idx]->i_Size;
+		i_selectedLength -= events[idx]->i_TotalClipLength;
+		QString formDeselect = QString::number(i_selectedCount) + QString("/") + QString::number(i_totalEvents) + tx4_events_section::tr(" SELECTED");
 		l_countSubitle->setText(formDeselect);
+		l_sizeSubitle->setLabelText(Util::humanSize(i_selectedSize));
+		l_lengthSubitle->setLabelText(Util::format_duration(i_selectedLength));
 
-		if (selectedCount <= 0) {
+		if (i_selectedCount <= 0) {
 			resetSubtitle();
 		}
 
-		if (selectedCount >= 0) {
-			selectedPreviews.removeAt(selectedCount);
-			emit eventDeselect(previews[idx]);
+		if (i_selectedCount >= 0) {
+			selectedPreviews.removeAt(i_selectedCount);
+			selectedEvents.removeAt(i_selectedCount);
+			emit eventDeselect(events[idx], previews[idx]);
 		}
 	}
 // }

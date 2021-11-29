@@ -6,7 +6,7 @@ tx4_toolbar::tx4_toolbar(const bool &loaded, const bool &auto_load, QWidget *par
 
 	scrollValue = 0;
 	eventQueueCount = 0;
-	eventQueueClipsCount = 0;
+	//eventQueueClipsCount = 0;
 	eventsLoaded = loaded;
 	autoLoad = auto_load;
 
@@ -26,8 +26,8 @@ void tx4_toolbar::initContents() {
 	//h_mainLayout->setSpacing(20);
 	//h_mainLayout->setContentsMargins(0,0,0,0);
 
-	b_openButton = new tx4_toolbar_button(tx4_toolbar::tr("VIEW EVENTS"), false, "");
-	b_loadEventsButton = new tx4_toolbar_button(tx4_toolbar::tr("LOAD DIR"), !eventsLoaded, "");
+	b_openButton = new tx4_toolbar_button(tx4_toolbar::tr("VIEW EVENTS") + QString(" (O)"), false, "");
+	b_loadEventsButton = new tx4_toolbar_button(tx4_toolbar::tr("LOAD DIR") + QString(" (L)"), !eventsLoaded, "");
 	connect(b_openButton, &tx4_toolbar_button::clicked, this, [=]{ emit eventsOpen(); });
 	connect(b_loadEventsButton, &tx4_toolbar_button::clicked, this, [=]{ emit eventsLoad(); });
 	//QWidget *infoContainer = new QWidget;
@@ -43,18 +43,19 @@ void tx4_toolbar::initContents() {
 	Util::setLayoutZero(h_eventQueueContainerLayout);
 	h_eventQueueContainerLayout->setContentsMargins(20,0,20,0);
 	//h_eventQueueContainerLayout->setSpacing(5);
-	l_selectedEventsTitle = new tx4_label(tx4_toolbar::tr("EVENT QUEUE: "), 9, titleLabelStyleZeroDisabled, QFont::DemiBold, Qt::AlignLeft, "Anonymous Pro");
+	l_selectedEventsTitle = new tx4_label(tx4_toolbar::tr("EVENT QUEUE: "), 9, titleLabelStyleZeroDisabled, QFont::DemiBold, Qt::AlignLeft);
 	l_selectedEventsTitle->setSizePolicy(QSizePolicy::Fixed, QSizePolicy::Expanding);
 
-	QWidget *queueContainer = new QWidget;
-	queueContainer->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
-	QHBoxLayout *h_queueContainerLayout = new QHBoxLayout(queueContainer);
+	w_queueContainer = new QWidget;
+	w_queueContainer->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
+	QHBoxLayout *h_queueContainerLayout = new QHBoxLayout(w_queueContainer);
 	Util::setLayoutZero(h_queueContainerLayout);
-	l_queueTitle = new tx4_label("--", 10, queueLabelStyleDisabled, QFont::Medium, Qt::AlignLeft, "Anonymous Pro");
-	l_queueTitle->setSizePolicy(QSizePolicy::Fixed, QSizePolicy::Expanding);
-	l_queueTitle->setContentsMargins(10,0,10,0);
-	h_queueContainerLayout->addWidget(l_queueTitle);
-	h_queueContainerLayout->addStretch();
+	h_queueContainerLayout->setContentsMargins(10,0,10,0);
+	//l_queueTitle = new tx4_label("--", 10, queueLabelStyleDisabled, QFont::Medium, Qt::AlignLeft);
+	//l_queueTitle->setSizePolicy(QSizePolicy::Fixed, QSizePolicy::Expanding);
+	//l_queueTitle->setContentsMargins(10,0,10,0);
+	//h_queueContainerLayout->addWidget(l_queueTitle);
+	//h_queueContainerLayout->addStretch();
 
 	QWidget *scrollContainer = new QWidget;
 	scrollContainer->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
@@ -66,7 +67,7 @@ void tx4_toolbar::initContents() {
 	queueScrollarea->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
 	queueScrollarea->setWidgetResizable(true);
 	queueScrollarea->setStyleSheet(scrollAreaStyle);
-	queueScrollarea->setWidget(queueContainer);
+	queueScrollarea->setWidget(w_queueContainer);
 	h_scrollContainerLayout->addWidget(queueScrollarea);
 
 	QWidget *loadedContainer = new QWidget;
@@ -75,9 +76,9 @@ void tx4_toolbar::initContents() {
 	QHBoxLayout *h_loadedContainerLayout = new QHBoxLayout(loadedContainer);
 	Util::setLayoutZero(h_loadedContainerLayout);
 
-	l_eventsLoadedTitle = new tx4_key_value_label(tx4_toolbar::tr("DIR LOADED"), eventsLoaded ? tx4_toolbar::tr("true") : tx4_toolbar::tr("false"), 9, titleLabelStyle, eventsLoaded ? loadedTrueLabelStyle : loadedFalseLabelStyle, QFont::Medium, Qt::AlignLeft, "Anonymous Pro");
+	l_eventsLoadedTitle = new tx4_key_value_label(tx4_toolbar::tr("DIR LOADED"), eventsLoaded ? tx4_toolbar::tr("true") : tx4_toolbar::tr("false"), 9, titleLabelStyle, eventsLoaded ? loadedTrueLabelStyle : loadedFalseLabelStyle, QFont::Medium, Qt::AlignLeft);
 	l_eventsLoadedTitle->setSizePolicy(QSizePolicy::Fixed, QSizePolicy::Expanding);
-	l_autoLoadTitle = new tx4_key_value_label(tx4_toolbar::tr("AUTO LOAD"), autoLoad ? tx4_toolbar::tr("true") : tx4_toolbar::tr("false"), 9, titleLabelStyle, autoLoad ? loadedTrueLabelStyle : loadedFalseLabelStyle, QFont::Medium, Qt::AlignLeft, "Anonymous Pro");
+	l_autoLoadTitle = new tx4_key_value_label(tx4_toolbar::tr("AUTO LOAD"), autoLoad ? tx4_toolbar::tr("true") : tx4_toolbar::tr("false"), 9, titleLabelStyle, autoLoad ? loadedTrueLabelStyle : loadedFalseLabelStyle, QFont::Medium, Qt::AlignLeft);
 	l_autoLoadTitle->setSizePolicy(QSizePolicy::Fixed, QSizePolicy::Expanding);
 
 	h_loadedContainerLayout->addWidget(l_eventsLoadedTitle);
@@ -95,7 +96,7 @@ void tx4_toolbar::initContents() {
 
 	h_mainLayout->addSpacerItem(new QSpacerItem(20, 0, QSizePolicy::Fixed, QSizePolicy::Expanding));
 	h_mainLayout->addWidget(b_openButton);
-	h_mainLayout->addSpacerItem(new QSpacerItem(1, 0, QSizePolicy::Fixed, QSizePolicy::Expanding));
+	h_mainLayout->addSpacerItem(new QSpacerItem(2, 0, QSizePolicy::Fixed, QSizePolicy::Expanding));
 	h_mainLayout->addWidget(b_loadEventsButton);
 	h_mainLayout->addSpacerItem(new QSpacerItem(20, 0, QSizePolicy::Fixed, QSizePolicy::Expanding));
 	//h_mainLayout->addSpacerItem(new QSpacerItem(20, 0, QSizePolicy::Fixed, QSizePolicy::Expanding));
@@ -132,35 +133,47 @@ void tx4_toolbar::initContents() {
 	}
 // }
 
-void tx4_toolbar::updateEventQueue(QList<tx4_event_preview*> eventQueue) {
+void tx4_toolbar::updateEventQueue(QList<tx4_event*> &eventQueue, QList<tx4_event_preview*> &previewQueue) {
+	auto *queue_hbox = qobject_cast<QHBoxLayout*>(w_queueContainer->layout());
 	eventQueueCount = eventQueue.count();
-	QString formQueue;
+	//QString formQueue;
 
 	if (eventQueueCount <= 0) {
 		b_openButton->setButtonState(false);
 		//l_selectedEventsTitle->setLabelText(tx4_toolbar::tr("EVENT QUEUE: "));
-		l_queueTitle->setLabelText("--");
+		Util::clearLayout(queue_hbox);
+		//l_queueTitle->setLabelText("--");
 		l_selectedEventsTitle->setStyleSheet(titleLabelStyleZeroDisabled);
-		l_queueTitle->setStyleSheet(queueLabelStyleDisabled);
+		//l_queueTitle->setStyleSheet(queueLabelStyleDisabled);
 	} else {
 		b_openButton->setButtonState(true);
+		Util::clearLayout(queue_hbox);
 
-		formQueue = "";
+		//formQueue = "";
 		int count = 0;
-		eventQueueClipsCount = 0;
-		tx4_event_preview *ep;
-		foreach (ep, eventQueue) {
-			count += 1;
-			eventQueueClipsCount += ep->clipCount;
-			QString newE = QString::number(ep->selectIndex) + QString(":") + QString("\"") + QString(ep->s_dateString) + QString("\"");
+		//eventQueueClipsCount = 0;
+		tx4_event *e;
+		foreach (e, eventQueue) {
+			//eventQueueClipsCount += e->clipCount;
+			QString formQueue = "";
+			QString newE = QString::number(e->selectIndex) + QString(":") + QString("\"") + QString(e->s_dateDisplay) + QString("\"");
 			formQueue += newE;
-			if (count != eventQueueCount) { formQueue += QString(", "); }
+			//if (count != eventQueueCount) { formQueue += QString(", "); }
+
+			tx4_queue_entry *w_newEntry = new tx4_queue_entry(formQueue, *previewQueue[count]);
+			queue_hbox->addWidget(w_newEntry);
+			if (count != eventQueueCount) {
+				queue_hbox->addWidget(new tx4_label(", ", 10, queueLabelStyle, QFont::Medium, Qt::AlignCenter));
+			}
+			count += 1;
 		}
-		l_queueTitle->setLabelText(formQueue);
+		queue_hbox->addStretch();
+		w_queueContainer->setLayout(queue_hbox);
+		//l_queueTitle->setLabelText(formQueue);
 
 		//formCount = tx4_toolbar::tr("EVENT QUEUE: ");
 		l_selectedEventsTitle->setStyleSheet(titleLabelStyle);
-		l_queueTitle->setStyleSheet(queueLabelStyle);
+		//l_queueTitle->setStyleSheet(queueLabelStyle);
 	}
 	
 	//l_selectedEventsTitle->setLabelText(formCount);

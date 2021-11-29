@@ -18,7 +18,9 @@ class tx4_shortcuts : public QWidget {
 
 	signals:
 		void signal_esc();
-		void signal_selectMode();
+		//void signal_selectMode();
+		void signal_open();
+		void signal_load();
 
 };
 

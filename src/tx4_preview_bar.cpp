@@ -12,41 +12,41 @@ tx4_preview_bar::tx4_preview_bar(const QString &date, const QString &loc, const 
 	this->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Fixed);
 	this->setStyleSheet(barStyleNormal);
 
-	dateText = new tx4_label(date, 10, barTextStyle, QFont::Medium, Qt::AlignCenter, "Anonymous Pro");
-	locText = new tx4_label(loc, 10, barTextStyle, QFont::Medium, Qt::AlignCenter, "Anonymous Pro");
-	sizeText = new tx4_label(size, 10, barTextStyle, QFont::Medium, Qt::AlignCenter, "Anonymous Pro");
-	lengthText = new tx4_label(length, 10, barTextStyle, QFont::Medium, Qt::AlignCenter, "Anonymous Pro");
-	topText = new tx4_label(meta, 10, barTextStyle, QFont::Medium, Qt::AlignCenter, "Anonymous Pro");
+	dateText = new tx4_label(date, 10, barTextStyle, QFont::Medium, Qt::AlignCenter);
+	locText = new tx4_label(loc, 10, barTextStyle, QFont::Medium, Qt::AlignCenter);
+	sizeText = new tx4_label(size, 10, barTextStyle, QFont::Medium, Qt::AlignCenter);
+	lengthText = new tx4_label(length, 10, barTextStyle, QFont::Medium, Qt::AlignCenter);
+	topText = new tx4_label(meta, 10, barTextStyle, QFont::Medium, Qt::AlignCenter);
 
 	if (top) {
 		h_barLayout->addStretch();
-		h_barLayout->addWidget(new tx4_label("[", 10, braceStyle, QFont::Medium, Qt::AlignCenter, "Anonymous Pro"));
+		h_barLayout->addWidget(new tx4_label("[", 10, braceStyle, QFont::Medium, Qt::AlignCenter));
 		h_barLayout->addWidget(topText);
-		h_barLayout->addWidget(new tx4_label("]", 10, braceStyle, QFont::Medium, Qt::AlignCenter, "Anonymous Pro"));
+		h_barLayout->addWidget(new tx4_label("]", 10, braceStyle, QFont::Medium, Qt::AlignCenter));
 		h_barLayout->addStretch();
 	} else {
 		h_barLayout->addStretch();
-		//h_barLayout->addWidget(new tx4_label("[", 10, braceStyle, QFont::Medium, Qt::AlignCenter, "Anonymous Pro"));
+		//h_barLayout->addWidget(new tx4_label("[", 10, braceStyle, QFont::Medium, Qt::AlignCenter));
 		h_barLayout->addWidget(locText);
 		h_barLayout->addStretch();
-		h_barLayout->addWidget(new tx4_label("|", 10, braceStyle, QFont::Medium, Qt::AlignCenter, "Anonymous Pro"));
-		//h_barLayout->addWidget(new tx4_label("]", 10, braceStyle, QFont::Medium, Qt::AlignCenter, "Anonymous Pro"));
+		h_barLayout->addWidget(new tx4_label("|", 10, braceStyle, QFont::Medium, Qt::AlignCenter));
+		//h_barLayout->addWidget(new tx4_label("]", 10, braceStyle, QFont::Medium, Qt::AlignCenter));
 		h_barLayout->addStretch();
-		//h_barLayout->addWidget(new tx4_label("[", 10, braceStyle, QFont::Medium, Qt::AlignCenter, "Anonymous Pro"));
+		//h_barLayout->addWidget(new tx4_label("[", 10, braceStyle, QFont::Medium, Qt::AlignCenter));
 		h_barLayout->addWidget(dateText);
 		h_barLayout->addStretch();
-		h_barLayout->addWidget(new tx4_label("|", 10, braceStyle, QFont::Medium, Qt::AlignCenter, "Anonymous Pro"));
-		//h_barLayout->addWidget(new tx4_label("]", 10, braceStyle, QFont::Medium, Qt::AlignCenter, "Anonymous Pro"));
+		h_barLayout->addWidget(new tx4_label("|", 10, braceStyle, QFont::Medium, Qt::AlignCenter));
+		//h_barLayout->addWidget(new tx4_label("]", 10, braceStyle, QFont::Medium, Qt::AlignCenter));
 		h_barLayout->addStretch();
-		//h_barLayout->addWidget(new tx4_label("[", 10, braceStyle, QFont::Medium, Qt::AlignCenter, "Anonymous Pro"));
+		//h_barLayout->addWidget(new tx4_label("[", 10, braceStyle, QFont::Medium, Qt::AlignCenter));
 		h_barLayout->addWidget(sizeText);
 		h_barLayout->addStretch();
-		h_barLayout->addWidget(new tx4_label("|", 10, braceStyle, QFont::Medium, Qt::AlignCenter, "Anonymous Pro"));
-		//h_barLayout->addWidget(new tx4_label("]", 10, braceStyle, QFont::Medium, Qt::AlignCenter, "Anonymous Pro"));
+		h_barLayout->addWidget(new tx4_label("|", 10, braceStyle, QFont::Medium, Qt::AlignCenter));
+		//h_barLayout->addWidget(new tx4_label("]", 10, braceStyle, QFont::Medium, Qt::AlignCenter));
 		h_barLayout->addStretch();
-		//h_barLayout->addWidget(new tx4_label("[", 10, braceStyle, QFont::Medium, Qt::AlignCenter, "Anonymous Pro"));
+		//h_barLayout->addWidget(new tx4_label("[", 10, braceStyle, QFont::Medium, Qt::AlignCenter));
 		h_barLayout->addWidget(lengthText);
-		//h_barLayout->addWidget(new tx4_label("]", 10, braceStyle, QFont::Medium, Qt::AlignCenter, "Anonymous Pro"));
+		//h_barLayout->addWidget(new tx4_label("]", 10, braceStyle, QFont::Medium, Qt::AlignCenter));
 		h_barLayout->addStretch();
 	}
 
@@ -55,9 +55,9 @@ tx4_preview_bar::tx4_preview_bar(const QString &date, const QString &loc, const 
 
 tx4_preview_bar::~tx4_preview_bar() {}
 
-void tx4_preview_bar::setHoverStyle(bool top) {
+void tx4_preview_bar::setHoverStyle(bool top, QString topStyle) {
 	if (top) {
-		this->setStyleSheet(barStyleHoverTop);
+		this->setStyleSheet(topStyle);
 	} else {
 		this->setStyleSheet(barStyleNormal);
 	}
@@ -68,4 +68,11 @@ void tx4_preview_bar::setSelectedStyle(bool top) {
 	} else {
 		this->setStyleSheet(barStyleHover_SelectMode);
 	}
+}
+void tx4_preview_bar::setTextStylesheet(QString setStyle) {
+	dateText->setStyleSheet(setStyle);
+	locText->setStyleSheet(setStyle);
+	sizeText->setStyleSheet(setStyle);
+	lengthText->setStyleSheet(setStyle);
+	topText->setStyleSheet(setStyle);
 }

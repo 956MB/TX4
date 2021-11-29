@@ -19,6 +19,7 @@ class tx4_event : public QWidget {
 	public:
 		QMediaPlayer *m_tempPlayer;
 
+		int selectIndex;
 		QDir d_eventDir;
 		QString s_Name;
 		QString s_Date; // needs to be date formetted
@@ -42,6 +43,8 @@ class tx4_event : public QWidget {
 		QString s_metaDataLonString;
 		QString s_metaDataReasonString;
 		QString s_metaDataCameraString;
+
+		void setSelectIdx(int idx);
 
 	private:
 		QString eventJsonFile = "/event.json";

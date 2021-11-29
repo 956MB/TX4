@@ -9,6 +9,7 @@
 #include "tx4_shortcuts.h"
 #include "tx4_toolbar.h"
 #include "tx4_dir.h"
+#include "tx4_viewer.h"
 
 #define START_W 1200
 #define START_H 775
@@ -56,14 +57,16 @@ class tx4 : public QGoodWindow {
 		virtual bool event(QEvent *event);
 
 	private:
-		QWidget *w_screensContainer;
-		QWidget *w_mainContainer;
+		QStackedWidget *w_screensContainer;
+		QWidget *w_mainScreen;
+		tx4_viewer *w_viewerScreen;
 		QFrame *outerFrame;
 		QFrame *innerFrame;
 		tx4_shortcuts *o_shortcutManager;
 
 		tx4_dir* o_tx4Dir;
-		QList<tx4_event_preview*> selectedEvents;
+		QList<tx4_event*> selectedEvents;
+		QList<tx4_event_preview*> selectedPreviews;
 		tx4_toolbar *w_toolbar;
 		tx4_events_section *w_recentSection;
 		tx4_events_section *w_savedSection;
@@ -72,6 +75,7 @@ class tx4 : public QGoodWindow {
 		//tx4_events *w_eventsSection;
 		bool m_selectMode;
 		bool m_eventsLoaded;
+		bool m_eventViewerOpen;
 
 		//bool workerstarted;
 		//tx4_worker *worker;
@@ -81,25 +85,32 @@ class tx4 : public QGoodWindow {
 		bool m_dark;
 		QString m_color_str;
 		QString m_frame_style;
+		QString stackedWidgetStyle = "background-color: none; border: none; outline: none;";
 
 	#ifdef QGOODWINDOW
 		TitleBar *title_bar;
 	#endif
 
 		void initWindowConfig();
-		void initMainContainer();
+		void initMainScreen();
+		void initViewerScreen();
 		void initToolbar();
 		void initShortcuts();
 
 	private slots:
 		void on_selectModeSignal();
-		void on_eventSelectChange(tx4_event_preview *pselect);
-		void on_eventDeselectChange(tx4_event_preview *pdeselect);
+		void on_eventSelectChange(tx4_event *eselect, tx4_event_preview *epselect);
+		void on_eventDeselectChange(tx4_event *edeselect, tx4_event_preview *epdeselect);
+		void on_eventsOpenSignal();
 		void on_eventsLoadSignal();
 
 		void on_teslaCamFolderError();
 		void on_savedClipsFolderError();
 		void on_sentryClipsFolderError();
+		void on_savedClipsFolderEmptyError();
+		void on_sentryClipsFolderEmptyError();
+
+		void on_handleCloseEvents();
 
 };
 
