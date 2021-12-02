@@ -1,5 +1,4 @@
 
-
 #include "tx4.h"
 #include <QApplication>
 #include <iostream>
@@ -12,7 +11,7 @@ int main(int argc, char *argv[]) {
     
     QTranslator translator;
     //translator.load(":/locale/tx4_ko.ts");
-    if (translator.load(":/locale/tx4_ko")) {
+    if (translator.load(":/locale/tx4_en")) {
         a.installTranslator(&translator);
     }
     //if (translator.load(QLocale(), QLatin1String("tx4"), QLatin1String("_"), QLatin1String(":/locale"))) {

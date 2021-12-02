@@ -9,14 +9,14 @@
 #define CONTROL_BAR_H 50
 #define SCROLL_DIFF 35
 #define TIMELINE_MIN 0
-#define TIMELINE_MAX 2
+#define TIMELINE_MAX 3
 #define STEPS 59
 
 class tx4_control_bar : public QWidget {
 	Q_OBJECT
 
 	public:
-		explicit tx4_control_bar(QWidget* parent = nullptr);
+		explicit tx4_control_bar(const int &left_padding = 20, const bool &master = false, QWidget* parent = nullptr);
 		~tx4_control_bar();
 
 	private:
@@ -24,18 +24,22 @@ class tx4_control_bar : public QWidget {
 		QWidget *w_buttonContainer;
 		tx4_toolbar_button *b_syncViewsButton;
 		tx4_toolbar_button *b_playPauseButton;
-		tx4_toolbar_button *b_backButton;
-		tx4_toolbar_button *b_forwardButton;
+		//tx4_toolbar_button *b_backButton;
+		//tx4_toolbar_button *b_forwardButton;
 		tx4_label *l_timeCurrentLabel;
-		tx4_label *l_timeDividerLabel;
 		tx4_label *l_timeTotalLabel;
 		QSlider *w_timelineSlider;
 
 		QString s_playText;
 		QString s_pauseText;
+		bool m_masterBar;
+		int i_barSteps;
+		int i_leftPadding;
 
 		QString controlBarBodyStyle = "background-color: #0f0f0f; border: none; outline: none;";
+		QString controlBarBodyStyleTransparent = "background-color: none; border: none; outline: none;";
 		QString buttonContainerBodyStyle = "background-color: #181818; border: none; outline: none;";
+		QString buttonContainerBodyStyleTransparent = "background-color: rgba(0,0,0,100); border: none; outline: none;";
 		QString timelineContainerStyle = "background-color: #181818; border: none; outline: none;";
 		QString timelineBodyStyle = "background-color: black; border: none; outline: none;";
 		QString timeContainerStyle = "background-color: #262626; border: none; outline: none;";

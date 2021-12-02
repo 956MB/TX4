@@ -220,22 +220,13 @@ void tx4_event_preview::leftClick() {
 			selectPreview();
 		}
 	}
-	//else if (previewActive && !selectModeActive) {
-	//	//metaDataActive = !metaDataActive;
-	//	//if (metaDataActive) {
-	//	//	addCreateMetaInfo();
-	//	//} else {
-	//	//	removeMetaInfo();
-	//	//}
-	//	//w_metaDataScreen->setVisible(metaDataActive);
-	//	//w_contentContainer->setVisible(!metaDataActive);
-	//}
 }
 void tx4_event_preview::rightClick() {
 	if (previewActive) {
 		metaDataActive = !metaDataActive;
 		if (metaDataActive) {
 			addCreateMetaInfo();
+			if (metaInfo != NULL && !previewSelected) { metaInfo->metaInfoBar->setHoverStyle(metaDataActive, previewInfoBar->barStyleHoverTop); }
 			if (metaInfo != NULL && previewSelected) { metaInfo->metaInfoBar->setSelectedStyle(metaDataActive); }
 			w_selectIdxScreen->setVisible(false);
 		} else {

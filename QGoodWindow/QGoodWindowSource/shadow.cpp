@@ -51,7 +51,7 @@ Shadow::Shadow(qreal pixel_ratio, HWND hwnd) : QWidget()
     setAttribute(Qt::WA_TransparentForMouseEvents);
 
     m_timer = new QTimer(this);
-    connect(m_timer, &QTimer::timeout, this, &Shadow::show);
+    QObject::connect(m_timer, &QTimer::timeout, this, &Shadow::show);
     m_timer->setInterval(500/*Time to wait before showing shadow when showLater() is callled.*/);
     m_timer->setSingleShot(true);
 }

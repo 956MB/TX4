@@ -26,10 +26,10 @@ void tx4_toolbar::initContents() {
 	//h_mainLayout->setSpacing(20);
 	//h_mainLayout->setContentsMargins(0,0,0,0);
 
-	b_openButton = new tx4_toolbar_button(tx4_toolbar::tr("VIEW EVENTS") + QString(" (O)"), false, "");
-	b_loadEventsButton = new tx4_toolbar_button(tx4_toolbar::tr("LOAD DIR") + QString(" (L)"), !eventsLoaded, "");
-	connect(b_openButton, &tx4_toolbar_button::clicked, this, [=]{ emit eventsOpen(); });
-	connect(b_loadEventsButton, &tx4_toolbar_button::clicked, this, [=]{ emit eventsLoad(); });
+	b_openButton = new tx4_toolbar_button(tx4_toolbar::tr("VIEW EVENTS"), false, "");
+	b_loadEventsButton = new tx4_toolbar_button(tx4_toolbar::tr("LOAD DIR"), !eventsLoaded, "");
+	QObject::connect(b_openButton, &tx4_toolbar_button::clicked, this, [=]{ emit eventsOpen(); });
+	QObject::connect(b_loadEventsButton, &tx4_toolbar_button::clicked, this, [=]{ emit eventsLoad(); });
 	//QWidget *infoContainer = new QWidget;
 	//infoContainer->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Fixed);
 	//QHBoxLayout *h_infoContainerLayout = new QHBoxLayout(infoContainer);
@@ -82,7 +82,7 @@ void tx4_toolbar::initContents() {
 	l_autoLoadTitle->setSizePolicy(QSizePolicy::Fixed, QSizePolicy::Expanding);
 
 	h_loadedContainerLayout->addWidget(l_eventsLoadedTitle);
-	h_loadedContainerLayout->addSpacerItem(new QSpacerItem(5, 0, QSizePolicy::Fixed, QSizePolicy::Expanding));
+	h_loadedContainerLayout->addSpacerItem(new QSpacerItem(10, 0, QSizePolicy::Fixed, QSizePolicy::Expanding));
 	h_loadedContainerLayout->addWidget(l_autoLoadTitle);
 
 	h_eventQueueContainerLayout->addWidget(l_selectedEventsTitle);
@@ -96,7 +96,7 @@ void tx4_toolbar::initContents() {
 
 	h_mainLayout->addSpacerItem(new QSpacerItem(20, 0, QSizePolicy::Fixed, QSizePolicy::Expanding));
 	h_mainLayout->addWidget(b_openButton);
-	h_mainLayout->addSpacerItem(new QSpacerItem(2, 0, QSizePolicy::Fixed, QSizePolicy::Expanding));
+	h_mainLayout->addSpacerItem(new QSpacerItem(1, 0, QSizePolicy::Fixed, QSizePolicy::Expanding));
 	h_mainLayout->addWidget(b_loadEventsButton);
 	h_mainLayout->addSpacerItem(new QSpacerItem(20, 0, QSizePolicy::Fixed, QSizePolicy::Expanding));
 	//h_mainLayout->addSpacerItem(new QSpacerItem(20, 0, QSizePolicy::Fixed, QSizePolicy::Expanding));
@@ -139,6 +139,7 @@ void tx4_toolbar::updateEventQueue(QList<tx4_event*> &eventQueue, QList<tx4_even
 	//QString formQueue;
 
 	if (eventQueueCount <= 0) {
+		b_openButton->setButtonText(tx4_toolbar::tr("VIEW EVENTS"));
 		b_openButton->setButtonState(false);
 		//l_selectedEventsTitle->setLabelText(tx4_toolbar::tr("EVENT QUEUE: "));
 		Util::clearLayout(queue_hbox);
@@ -147,6 +148,7 @@ void tx4_toolbar::updateEventQueue(QList<tx4_event*> &eventQueue, QList<tx4_even
 		//l_queueTitle->setStyleSheet(queueLabelStyleDisabled);
 	} else {
 		b_openButton->setButtonState(true);
+		b_openButton->setButtonText(tx4_toolbar::tr("VIEW EVENTS") + QString(" (O)"));
 		Util::clearLayout(queue_hbox);
 
 		//formQueue = "";
@@ -162,7 +164,7 @@ void tx4_toolbar::updateEventQueue(QList<tx4_event*> &eventQueue, QList<tx4_even
 
 			tx4_queue_entry *w_newEntry = new tx4_queue_entry(formQueue, *previewQueue[count]);
 			queue_hbox->addWidget(w_newEntry);
-			if (count != eventQueueCount) {
+			if (count != eventQueueCount-1) {
 				queue_hbox->addWidget(new tx4_label(", ", 10, queueLabelStyle, QFont::Medium, Qt::AlignCenter));
 			}
 			count += 1;
@@ -184,4 +186,5 @@ void tx4_toolbar::toggleEventsLoaded(bool loaded) {
 	l_eventsLoadedTitle->l_valueLabel->setText(eventsLoaded ? tx4_toolbar::tr("true") : tx4_toolbar::tr("false"));
 	l_eventsLoadedTitle->l_valueLabel->setStyleSheet(eventsLoaded ? loadedTrueLabelStyle : loadedFalseLabelStyle);
 	b_loadEventsButton->setButtonState(!eventsLoaded);
+	b_loadEventsButton->setButtonText(eventsLoaded ? tx4_toolbar::tr("LOAD DIR") + QString(" (L)") : tx4_toolbar::tr("LOAD DIR"));
 }

@@ -1,7 +1,7 @@
 
 #include "tx4_label.h"
 
-tx4_label::tx4_label(const QString &text, const int &size, const QString &style, const QFont::Weight &weight, const Qt::AlignmentFlag &align, const QString &font, QWidget *parent) : QLabel(text, parent) {
+tx4_label::tx4_label(const QString &text, const int &size, const QString &style, const QFont::Weight &weight, const Qt::AlignmentFlag &alignH, const Qt::AlignmentFlag &alignV, const QString &font, QWidget *parent) : QLabel(text, parent) {
 	//QFont lFont("Gotham Medium", size, weight); // <- not using the tesla font yet, doesnt look as good
 	//QFont lFont("iNoto Sans CJK KR Medium", size, weight);
 	//QFont lFont("iNioto Sagns CJK KR Medium", size, weight);
@@ -17,7 +17,7 @@ tx4_label::tx4_label(const QString &text, const int &size, const QString &style,
 	//this->setText(labelText);
 	this->setFont(lFont);
 	this->setStyleSheet(style);
-	this->setAlignment(align | Qt::AlignVCenter);
+	this->setAlignment(alignH | alignV);
 	this->setAutoFillBackground(true);
 
 	//QPalette palette = this->palette();
@@ -38,7 +38,9 @@ void tx4_label::setLabelText(QString newText) {
 void tx4_label::setLabelColor(QString newStyle) {
 	this->setStyleSheet(newStyle);
 }
-
+void tx4_label::setLabelAlignment(Qt::AlignmentFlag alignH, Qt::AlignmentFlag alignV) {
+	this->setAlignment(alignH | alignV);
+}
 
 
 tx4_key_value_label::tx4_key_value_label(const QString &key, const QString &value, const int &size, const QString &key_style, const QString &value_style, const QFont::Weight &weight, const Qt::AlignmentFlag &align, const QString &font, QWidget *parent) : QWidget(parent) {
@@ -46,8 +48,8 @@ tx4_key_value_label::tx4_key_value_label(const QString &key, const QString &valu
 	valueText = value;
 	keyStyle = key_style;
 	valueStyle = value_style;
-	l_keyLabel = new tx4_label(key, size, key_style, weight, align, font);
-	l_valueLabel = new tx4_label(value, size, value_style, weight, align, font);
+	l_keyLabel = new tx4_label(key, size, key_style, weight, align, Qt::AlignVCenter, font);
+	l_valueLabel = new tx4_label(value, size, value_style, weight, align, Qt::AlignVCenter, font);
 
 	initLayout();
 }
@@ -59,11 +61,11 @@ void tx4_key_value_label::initLayout() {
 	Util::setLayoutZero(h_keyValueLayout);
 
 	h_keyValueLayout->addWidget(l_keyLabel);
-	h_keyValueLayout->addWidget(new tx4_label(":", 10, labelStyle, QFont::Medium, Qt::AlignCenter, "Anonymous Pro"));
+	h_keyValueLayout->addWidget(new tx4_label(":", 10, labelStyle, QFont::Medium, Qt::AlignHCenter, Qt::AlignVCenter, "Anonymous Pro"));
 	h_keyValueLayout->addSpacerItem(new QSpacerItem(5, 0, QSizePolicy::Fixed, QSizePolicy::Expanding));
-	h_keyValueLayout->addWidget(new tx4_label("[", 10, braceStyle, QFont::Medium, Qt::AlignCenter, "Anonymous Pro"));
+	h_keyValueLayout->addWidget(new tx4_label("[", 10, braceStyle, QFont::Medium, Qt::AlignHCenter, Qt::AlignVCenter, "Anonymous Pro"));
 	h_keyValueLayout->addWidget(l_valueLabel);
-	h_keyValueLayout->addWidget(new tx4_label("]", 10, braceStyle, QFont::Medium, Qt::AlignCenter, "Anonymous Pro"));
+	h_keyValueLayout->addWidget(new tx4_label("]", 10, braceStyle, QFont::Medium, Qt::AlignHCenter, Qt::AlignVCenter, "Anonymous Pro"));
 }
 void tx4_key_value_label::setKeyLabelText(QString newText) {
 	keyText = newText;

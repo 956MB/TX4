@@ -9,13 +9,14 @@ class tx4_label : public QLabel {
 	Q_OBJECT
 
 	public:
-		explicit tx4_label(const QString &text, const int &size, const QString &style, const QFont::Weight &weight, const Qt::AlignmentFlag &align, const QString &font = "Anonymous Pro", QWidget *parent = nullptr);
+		explicit tx4_label(const QString &text, const int &size, const QString &style, const QFont::Weight &weight, const Qt::AlignmentFlag &alignH = Qt::AlignHCenter, const Qt::AlignmentFlag &alignV = Qt::AlignVCenter, const QString &font = "Anonymous Pro", QWidget *parent = nullptr);
 		~tx4_label();
 
 	public:
 		QString labelText;
 		void setLabelText(QString newText);
 		void setLabelColor(QString newStyle);
+		void setLabelAlignment(Qt::AlignmentFlag alignH, Qt::AlignmentFlag alignV);
 
 };
 

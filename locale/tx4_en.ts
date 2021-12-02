@@ -27,7 +27,7 @@
     <name>tx4_event_preview</name>
     <message>
         <source>THUMB UNAVAILABLE</source>
-        <translation>THUMB UNAVAILABLE</translation>
+        <translation>THUMBNAIL UNAVAILABLE</translation>
     </message>
 </context>
 <context>
@@ -119,7 +119,7 @@
     <name>tx4_toolbar</name>
     <message>
         <source>VIEW EVENTS</source>
-        <translation>VIEW EVENTS</translation>
+        <translation>OPEN EVENTS</translation>
     </message>
     <message>
         <source>LOAD DIR</source>

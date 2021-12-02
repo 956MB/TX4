@@ -287,6 +287,318 @@
     <ClInclude Include="src\tx4_worker.h">
       <Filter>Generated Files</Filter>
     </ClInclude>
+    <ClInclude Include="libs\taglib\include\taglib\aifffile.h">
+      <Filter>Generated Files</Filter>
+    </ClInclude>
+    <ClInclude Include="libs\taglib\include\taglib\aiffproperties.h">
+      <Filter>Generated Files</Filter>
+    </ClInclude>
+    <ClInclude Include="libs\taglib\include\taglib\apefile.h">
+      <Filter>Generated Files</Filter>
+    </ClInclude>
+    <ClInclude Include="libs\taglib\include\taglib\apefooter.h">
+      <Filter>Generated Files</Filter>
+    </ClInclude>
+    <ClInclude Include="libs\taglib\include\taglib\apeitem.h">
+      <Filter>Generated Files</Filter>
+    </ClInclude>
+    <ClInclude Include="libs\taglib\include\taglib\apeproperties.h">
+      <Filter>Generated Files</Filter>
+    </ClInclude>
+    <ClInclude Include="libs\taglib\include\taglib\apetag.h">
+      <Filter>Generated Files</Filter>
+    </ClInclude>
+    <ClInclude Include="libs\taglib\include\taglib\asfattribute.h">
+      <Filter>Generated Files</Filter>
+    </ClInclude>
+    <ClInclude Include="libs\taglib\include\taglib\asffile.h">
+      <Filter>Generated Files</Filter>
+    </ClInclude>
+    <ClInclude Include="libs\taglib\include\taglib\asfpicture.h">
+      <Filter>Generated Files</Filter>
+    </ClInclude>
+    <ClInclude Include="libs\taglib\include\taglib\asfproperties.h">
+      <Filter>Generated Files</Filter>
+    </ClInclude>
+    <ClInclude Include="libs\taglib\include\taglib\asftag.h">
+      <Filter>Generated Files</Filter>
+    </ClInclude>
+    <ClInclude Include="libs\taglib\include\taglib\attachedpictureframe.h">
+      <Filter>Generated Files</Filter>
+    </ClInclude>
+    <ClInclude Include="libs\taglib\include\taglib\audioproperties.h">
+      <Filter>Generated Files</Filter>
+    </ClInclude>
+    <ClInclude Include="libs\taglib\include\taglib\chapterframe.h">
+      <Filter>Generated Files</Filter>
+    </ClInclude>
+    <ClInclude Include="libs\taglib\include\taglib\commentsframe.h">
+      <Filter>Generated Files</Filter>
+    </ClInclude>
+    <ClInclude Include="libs\taglib\include\taglib\eventtimingcodesframe.h">
+      <Filter>Generated Files</Filter>
+    </ClInclude>
+    <ClInclude Include="libs\taglib\include\taglib\fileref.h">
+      <Filter>Generated Files</Filter>
+    </ClInclude>
+    <ClInclude Include="libs\taglib\include\taglib\flacfile.h">
+      <Filter>Generated Files</Filter>
+    </ClInclude>
+    <ClInclude Include="libs\taglib\include\taglib\flacmetadatablock.h">
+      <Filter>Generated Files</Filter>
+    </ClInclude>
+    <ClInclude Include="libs\taglib\include\taglib\flacpicture.h">
+      <Filter>Generated Files</Filter>
+    </ClInclude>
+    <ClInclude Include="libs\taglib\include\taglib\flacproperties.h">
+      <Filter>Generated Files</Filter>
+    </ClInclude>
+    <ClInclude Include="libs\taglib\include\taglib\generalencapsulatedobjectframe.h">
+      <Filter>Generated Files</Filter>
+    </ClInclude>
+    <ClInclude Include="libs\taglib\include\taglib\id3v1genres.h">
+      <Filter>Generated Files</Filter>
+    </ClInclude>
+    <ClInclude Include="libs\taglib\include\taglib\id3v1tag.h">
+      <Filter>Generated Files</Filter>
+    </ClInclude>
+    <ClInclude Include="libs\taglib\include\taglib\id3v2.h">
+      <Filter>Generated Files</Filter>
+    </ClInclude>
+    <ClInclude Include="libs\taglib\include\taglib\id3v2extendedheader.h">
+      <Filter>Generated Files</Filter>
+    </ClInclude>
+    <ClInclude Include="libs\taglib\include\taglib\id3v2footer.h">
+      <Filter>Generated Files</Filter>
+    </ClInclude>
+    <ClInclude Include="libs\taglib\include\taglib\id3v2frame.h">
+      <Filter>Generated Files</Filter>
+    </ClInclude>
+    <ClInclude Include="libs\taglib\include\taglib\id3v2framefactory.h">
+      <Filter>Generated Files</Filter>
+    </ClInclude>
+    <ClInclude Include="libs\taglib\include\taglib\id3v2header.h">
+      <Filter>Generated Files</Filter>
+    </ClInclude>
+    <ClInclude Include="libs\taglib\include\taglib\id3v2synchdata.h">
+      <Filter>Generated Files</Filter>
+    </ClInclude>
+    <ClInclude Include="libs\taglib\include\taglib\id3v2tag.h">
+      <Filter>Generated Files</Filter>
+    </ClInclude>
+    <ClInclude Include="libs\taglib\include\taglib\infotag.h">
+      <Filter>Generated Files</Filter>
+    </ClInclude>
+    <ClInclude Include="libs\taglib\include\taglib\itfile.h">
+      <Filter>Generated Files</Filter>
+    </ClInclude>
+    <ClInclude Include="libs\taglib\include\taglib\itproperties.h">
+      <Filter>Generated Files</Filter>
+    </ClInclude>
+    <ClInclude Include="libs\taglib\include\taglib\modfile.h">
+      <Filter>Generated Files</Filter>
+    </ClInclude>
+    <ClInclude Include="libs\taglib\include\taglib\modfilebase.h">
+      <Filter>Generated Files</Filter>
+    </ClInclude>
+    <ClInclude Include="libs\taglib\include\taglib\modproperties.h">
+      <Filter>Generated Files</Filter>
+    </ClInclude>
+    <ClInclude Include="libs\taglib\include\taglib\modtag.h">
+      <Filter>Generated Files</Filter>
+    </ClInclude>
+    <ClInclude Include="libs\taglib\include\taglib\mp4atom.h">
+      <Filter>Generated Files</Filter>
+    </ClInclude>
+    <ClInclude Include="libs\taglib\include\taglib\mp4coverart.h">
+      <Filter>Generated Files</Filter>
+    </ClInclude>
+    <ClInclude Include="libs\taglib\include\taglib\mp4file.h">
+      <Filter>Generated Files</Filter>
+    </ClInclude>
+    <ClInclude Include="libs\taglib\include\taglib\mp4item.h">
+      <Filter>Generated Files</Filter>
+    </ClInclude>
+    <ClInclude Include="libs\taglib\include\taglib\mp4properties.h">
+      <Filter>Generated Files</Filter>
+    </ClInclude>
+    <ClInclude Include="libs\taglib\include\taglib\mp4tag.h">
+      <Filter>Generated Files</Filter>
+    </ClInclude>
+    <ClInclude Include="libs\taglib\include\taglib\mpcfile.h">
+      <Filter>Generated Files</Filter>
+    </ClInclude>
+    <ClInclude Include="libs\taglib\include\taglib\mpcproperties.h">
+      <Filter>Generated Files</Filter>
+    </ClInclude>
+    <ClInclude Include="libs\taglib\include\taglib\mpegfile.h">
+      <Filter>Generated Files</Filter>
+    </ClInclude>
+    <ClInclude Include="libs\taglib\include\taglib\mpegheader.h">
+      <Filter>Generated Files</Filter>
+    </ClInclude>
+    <ClInclude Include="libs\taglib\include\taglib\mpegproperties.h">
+      <Filter>Generated Files</Filter>
+    </ClInclude>
+    <ClInclude Include="libs\taglib\include\taglib\oggfile.h">
+      <Filter>Generated Files</Filter>
+    </ClInclude>
+    <ClInclude Include="libs\taglib\include\taglib\oggflacfile.h">
+      <Filter>Generated Files</Filter>
+    </ClInclude>
+    <ClInclude Include="libs\taglib\include\taglib\oggpage.h">
+      <Filter>Generated Files</Filter>
+    </ClInclude>
+    <ClInclude Include="libs\taglib\include\taglib\oggpageheader.h">
+      <Filter>Generated Files</Filter>
+    </ClInclude>
+    <ClInclude Include="libs\taglib\include\taglib\opusfile.h">
+      <Filter>Generated Files</Filter>
+    </ClInclude>
+    <ClInclude Include="libs\taglib\include\taglib\opusproperties.h">
+      <Filter>Generated Files</Filter>
+    </ClInclude>
+    <ClInclude Include="libs\taglib\include\taglib\ownershipframe.h">
+      <Filter>Generated Files</Filter>
+    </ClInclude>
+    <ClInclude Include="libs\taglib\include\taglib\podcastframe.h">
+      <Filter>Generated Files</Filter>
+    </ClInclude>
+    <ClInclude Include="libs\taglib\include\taglib\popularimeterframe.h">
+      <Filter>Generated Files</Filter>
+    </ClInclude>
+    <ClInclude Include="libs\taglib\include\taglib\privateframe.h">
+      <Filter>Generated Files</Filter>
+    </ClInclude>
+    <ClInclude Include="libs\taglib\include\taglib\relativevolumeframe.h">
+      <Filter>Generated Files</Filter>
+    </ClInclude>
+    <ClInclude Include="libs\taglib\include\taglib\rifffile.h">
+      <Filter>Generated Files</Filter>
+    </ClInclude>
+    <ClInclude Include="libs\taglib\include\taglib\s3mfile.h">
+      <Filter>Generated Files</Filter>
+    </ClInclude>
+    <ClInclude Include="libs\taglib\include\taglib\s3mproperties.h">
+      <Filter>Generated Files</Filter>
+    </ClInclude>
+    <ClInclude Include="libs\taglib\include\taglib\speexfile.h">
+      <Filter>Generated Files</Filter>
+    </ClInclude>
+    <ClInclude Include="libs\taglib\include\taglib\speexproperties.h">
+      <Filter>Generated Files</Filter>
+    </ClInclude>
+    <ClInclude Include="libs\taglib\include\taglib\synchronizedlyricsframe.h">
+      <Filter>Generated Files</Filter>
+    </ClInclude>
+    <ClInclude Include="libs\taglib\include\taglib\tableofcontentsframe.h">
+      <Filter>Generated Files</Filter>
+    </ClInclude>
+    <ClInclude Include="libs\taglib\include\taglib\tag.h">
+      <Filter>Generated Files</Filter>
+    </ClInclude>
+    <ClInclude Include="libs\taglib\include\taglib\tag_c.h">
+      <Filter>Generated Files</Filter>
+    </ClInclude>
+    <ClInclude Include="libs\taglib\include\taglib\taglib.h">
+      <Filter>Generated Files</Filter>
+    </ClInclude>
+    <ClInclude Include="libs\taglib\include\taglib\taglib_config.h">
+      <Filter>Generated Files</Filter>
+    </ClInclude>
+    <ClInclude Include="libs\taglib\include\taglib\taglib_export.h">
+      <Filter>Generated Files</Filter>
+    </ClInclude>
+    <ClInclude Include="libs\taglib\include\taglib\tbytevector.h">
+      <Filter>Generated Files</Filter>
+    </ClInclude>
+    <ClInclude Include="libs\taglib\include\taglib\tbytevectorlist.h">
+      <Filter>Generated Files</Filter>
+    </ClInclude>
+    <ClInclude Include="libs\taglib\include\taglib\tbytevectorstream.h">
+      <Filter>Generated Files</Filter>
+    </ClInclude>
+    <ClInclude Include="libs\taglib\include\taglib\tdebuglistener.h">
+      <Filter>Generated Files</Filter>
+    </ClInclude>
+    <ClInclude Include="libs\taglib\include\taglib\textidentificationframe.h">
+      <Filter>Generated Files</Filter>
+    </ClInclude>
+    <ClInclude Include="libs\taglib\include\taglib\tfile.h">
+      <Filter>Generated Files</Filter>
+    </ClInclude>
+    <ClInclude Include="libs\taglib\include\taglib\tfilestream.h">
+      <Filter>Generated Files</Filter>
+    </ClInclude>
+    <ClInclude Include="libs\taglib\include\taglib\tiostream.h">
+      <Filter>Generated Files</Filter>
+    </ClInclude>
+    <ClInclude Include="libs\taglib\include\taglib\tlist.h">
+      <Filter>Generated Files</Filter>
+    </ClInclude>
+    <ClInclude Include="libs\taglib\include\taglib\tmap.h">
+      <Filter>Generated Files</Filter>
+    </ClInclude>
+    <ClInclude Include="libs\taglib\include\taglib\tpropertymap.h">
+      <Filter>Generated Files</Filter>
+    </ClInclude>
+    <ClInclude Include="libs\taglib\include\taglib\trefcounter.h">
+      <Filter>Generated Files</Filter>
+    </ClInclude>
+    <ClInclude Include="libs\taglib\include\taglib\trueaudiofile.h">
+      <Filter>Generated Files</Filter>
+    </ClInclude>
+    <ClInclude Include="libs\taglib\include\taglib\trueaudioproperties.h">
+      <Filter>Generated Files</Filter>
+    </ClInclude>
+    <ClInclude Include="libs\taglib\include\taglib\tstring.h">
+      <Filter>Generated Files</Filter>
+    </ClInclude>
+    <ClInclude Include="libs\taglib\include\taglib\tstringlist.h">
+      <Filter>Generated Files</Filter>
+    </ClInclude>
+    <ClInclude Include="libs\taglib\include\taglib\uniquefileidentifierframe.h">
+      <Filter>Generated Files</Filter>
+    </ClInclude>
+    <ClInclude Include="libs\taglib\include\taglib\unknownframe.h">
+      <Filter>Generated Files</Filter>
+    </ClInclude>
+    <ClInclude Include="libs\taglib\include\taglib\unsynchronizedlyricsframe.h">
+      <Filter>Generated Files</Filter>
+    </ClInclude>
+    <ClInclude Include="libs\taglib\include\taglib\urllinkframe.h">
+      <Filter>Generated Files</Filter>
+    </ClInclude>
+    <ClInclude Include="libs\taglib\include\taglib\vorbisfile.h">
+      <Filter>Generated Files</Filter>
+    </ClInclude>
+    <ClInclude Include="libs\taglib\include\taglib\vorbisproperties.h">
+      <Filter>Generated Files</Filter>
+    </ClInclude>
+    <ClInclude Include="libs\taglib\include\taglib\wavfile.h">
+      <Filter>Generated Files</Filter>
+    </ClInclude>
+    <ClInclude Include="libs\taglib\include\taglib\wavpackfile.h">
+      <Filter>Generated Files</Filter>
+    </ClInclude>
+    <ClInclude Include="libs\taglib\include\taglib\wavpackproperties.h">
+      <Filter>Generated Files</Filter>
+    </ClInclude>
+    <ClInclude Include="libs\taglib\include\taglib\wavproperties.h">
+      <Filter>Generated Files</Filter>
+    </ClInclude>
+    <ClInclude Include="libs\taglib\include\taglib\xingheader.h">
+      <Filter>Generated Files</Filter>
+    </ClInclude>
+    <ClInclude Include="libs\taglib\include\taglib\xiphcomment.h">
+      <Filter>Generated Files</Filter>
+    </ClInclude>
+    <ClInclude Include="libs\taglib\include\taglib\xmfile.h">
+      <Filter>Generated Files</Filter>
+    </ClInclude>
+    <ClInclude Include="libs\taglib\include\taglib\xmproperties.h">
+      <Filter>Generated Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <QtTranslation Include="locale\tx4_en.ts">

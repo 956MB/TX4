@@ -223,7 +223,7 @@ QGoodWindow::QGoodWindow(QWidget *parent, const QColor &clear_color) :
 
     SetWindowLongPtrW(m_hwnd, GWLP_USERDATA, reinterpret_cast<LONG_PTR>(this));
 
-    connect(qApp, &QApplication::aboutToQuit, this, [=]{
+    QObject::connect(qApp, &QApplication::aboutToQuit, this, [=]{
         //Fix QApplication::exit() crash.
         SetWindowLongPtrW(m_hwnd, GWLP_USERDATA, reinterpret_cast<LONG_PTR>(nullptr));
     });

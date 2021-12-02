@@ -7,13 +7,6 @@ tx4_event::tx4_event(QDir &pass_dir, QWidget *parent)
 	: QWidget(parent)
 	, d_eventDir(pass_dir) {
 
-	m_tempPlayer = new QMediaPlayer;
-	connect(m_tempPlayer, &QMediaPlayer::mediaStatusChanged, this, &tx4_event::onMediaStatusChanged);
-	//connect(m_tempPlayer, &QMediaPlayer::durationChanged, this, &tx4_event::GetMetaData);
-	//connect(m_tempPlayer, &QMediaPlayer::durationChanged, this, [&](qint64 dur) {
-	//	i_eventFolder_TotalClipLength += dur;
-	//	emit durationValueUpdated();
-	//});
 	selectIndex = -1;
 	s_Name = d_eventDir.dirName();
 	s_Date = "";
@@ -36,6 +29,22 @@ tx4_event::tx4_event(QDir &pass_dir, QWidget *parent)
 	s_metaDataLonString = "";
 	s_metaDataReasonString = "";
 	s_metaDataCameraString = "";
+	
+	//m_tempPlayer = new QMediaPlayer;
+	////QObject::connect(m_tempPlayer, &QMediaPlayer::mediaStatusChanged, this, &tx4_event::onMediaStatusChanged);
+	//QObject::connect(m_tempPlayer, &QMediaPlayer::metaDataAvailableChanged,
+	//	[=](bool avaliable) {
+	//		if (avaliable) {
+	//			for (auto key : m_tempPlayer->availableMetaData()) {
+	//				if (key == "Duration") {
+	//					i_TotalClipLength += m_tempPlayer->metaData(key).toInt();
+	//					//emit durationValueUpdated();
+	//					return;
+	//				}
+	//			}
+	//		}
+	//	}
+	//);
 
 	calculateClips();
 	parseEventJson();
@@ -64,12 +73,13 @@ void tx4_event::calculateClips() {
 
 		foreach (file, eventDirContents) {
 			if (file.isFile()) {
-				m_tempPlayer->setMedia(QUrl::fromLocalFile(file.absoluteFilePath()));
+				//m_tempPlayer->setMedia(QUrl::fromLocalFile(file.absoluteFilePath()));
 				// TODO: waiting for every duration change connection is SLOW, also throwing many null reference pointer stub errors. need to find another way of getting media meta data SYNCHRONOUSLY and quick
-				QEventLoop loop;
-				loop.connect(this, SIGNAL(durationValueUpdated()), &loop, SLOT(quit()));
-				loop.exec();
+				//QEventLoop loop;
+				//loop.QObject::connect(this, SIGNAL(durationValueUpdated()), &loop, SLOT(quit()));
+				//loop.exec();
 				
+				i_TotalClipLength += CLIP_LEN;
 				splitBaseName(file.baseName());
 				sizeCount += file.size();
 			}
@@ -111,32 +121,32 @@ void tx4_event::parseEventJson() {
 
 
 // SLOTS: {
-	void tx4_event::onMediaStatusChanged(QMediaPlayer::MediaStatus status) {
-		if (status == QMediaPlayer::LoadedMedia) {
-			GetMetaData();
-		}
-	}
+	//void tx4_event::onMediaStatusChanged(QMediaPlayer::MediaStatus status) {
+	//	if (status == QMediaPlayer::LoadedMedia) {
+	//		GetMetaData();
+	//	}
+	//}
 
-	void tx4_event::GetMetaData() {
-		QStringList metadatalist = m_tempPlayer->availableMetaData();
-		int list_size = metadatalist.size();
-		//qDebug() << player->isMetaDataAvailable() << list_size;
+	//void tx4_event::GetMetaData() {
+	//	QStringList metadatalist = m_tempPlayer->availableMetaData();
+	//	int list_size = metadatalist.size();
+	//	//qDebug() << player->isMetaDataAvailable() << list_size;
 
-		//QString metadata_key = metadatalist.at(1);
-		//QVariant var_data = player->metaData(metadata_key);
-		QString metadata_key;
-		QVariant var_data;
-		//i_eventFolder_TotalClipLength += var_data.toInt();
+	//	//QString metadata_key = metadatalist.at(1);
+	//	//QVariant var_data = player->metaData(metadata_key);
+	//	QString metadata_key;
+	//	QVariant var_data;
+	//	//i_eventFolder_TotalClipLength += var_data.toInt();
 
-		for (int indx = 0; indx < list_size; indx++) {
-			metadata_key = metadatalist.at(indx);
-			var_data = m_tempPlayer->metaData(metadata_key);
+	//	for (int indx = 0; indx < list_size; indx++) {
+	//		metadata_key = metadatalist.at(indx);
+	//		var_data = m_tempPlayer->metaData(metadata_key);
 
-			if (metadata_key == "Duration") {
-				i_TotalClipLength += var_data.toInt();
-				emit durationValueUpdated();
-				return;
-			}
-		}
-	}
+	//		if (metadata_key == "Duration") {
+	//			i_TotalClipLength += var_data.toInt();
+	//			emit durationValueUpdated();
+	//			return;
+	//		}
+	//	}
+	//}
 // }

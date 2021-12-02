@@ -15,8 +15,8 @@ tx4_queue_entry::tx4_queue_entry(const QString &text, tx4_event_preview &preview
 	selectIdxCurrentStylesheet = eventPreview->l_selectIdxLabel->styleSheet();
 	selectIdxHoverStylesheet = eventPreview->queue_selectIdxLabelStyle;
 
-	//connect(eventPreview, &tx4_event_preview::selectedEnter, this, &tx4_queue_entry::on_selectedEnter);
-	//connect(eventPreview, &tx4_event_preview::selectedLeave, this, &tx4_queue_entry::on_selectedLeave);
+	//QObject::connect(eventPreview, &tx4_event_preview::selectedEnter, this, &tx4_queue_entry::on_selectedEnter);
+	//QObject::connect(eventPreview, &tx4_event_preview::selectedLeave, this, &tx4_queue_entry::on_selectedLeave);
 
 	this->setAttribute(Qt::WA_StyledBackground); // <--- this attribute solves issue of background color not being drawn on custom widget, no need for reimplementing paintEvent, yet.
 	this->setSizePolicy(QSizePolicy::Fixed, QSizePolicy::Expanding);

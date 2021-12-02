@@ -1,6 +1,54 @@
 
 #include "tx4_view.h"
 
+tx4_view::tx4_view(QWidget *parent)
+	: QWidget(parent) {
+
+	this->setAttribute(Qt::WA_StyledBackground); // <--- this attribute solves issue of background color not being drawn on custom widget, no need for reimplementing paintEvent, yet.
+	//this->setMinimumSize(VIEW_MIN_W, VIEW_MIN_H);
+	//QSizePolicy qsp(QSizePolicy::Preferred, QSizePolicy::Preferred);
+	//qsp.setHeightForWidth(true);
+	this->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
+	this->setStyleSheet(viewerScreenStyle);
+
+    initContents();
+}
+
+tx4_view::~tx4_view() {}
+
+void tx4_view::initContents() {
+    QStackedLayout *outerlayout = new QStackedLayout(this);
+	outerlayout->setStackingMode(QStackedLayout::StackAll);
+	Util::setLayoutZero(outerlayout);
+
+    w_clipWidget = new QWidget;
+    w_clipWidget->setStyleSheet(blankStyle);
+	w_clipWidget->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
+
+    w_controlsWidget = new QWidget;
+    w_controlsWidget->setStyleSheet(blankStyle);
+	w_controlsWidget->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
+    QVBoxLayout *h_controlsLayout = new QVBoxLayout(w_controlsWidget);
+	Util::setLayoutZero(h_controlsLayout);
+    w_controlBar = new tx4_control_bar(0, false);
+    h_controlsLayout->addStretch();
+    h_controlsLayout->addWidget(w_controlBar);
+
+    outerlayout->addWidget(w_controlsWidget);
+    outerlayout->addWidget(w_clipWidget);
+}
+//void tx4_view::resizeEvent(QResizeEvent *event) {
+//    event->accept();
+//
+//	QWidget::resize(event->size().width()*9/16, event->size().width()*9/16);
+//    //if(event->size().width() > event->size().height()){
+//    //    QWidget::resize(event->size().height(),event->size().height());
+//    //}else{
+//    //    QWidget::resize(event->size().width(),event->size().width());
+//    //}
+//}
+
+
 AspectRatioWidget::AspectRatioWidget(QWidget *widget, float width, float height, QWidget *parent) :
     QWidget(parent), arWidth(width), arHeight(height)
 {
@@ -44,27 +92,3 @@ void AspectRatioWidget::resizeEvent(QResizeEvent *event)
     //layout->setStretch(2, widgetStretch);
     layout->setStretch(2, outerStretch);
 }
-
-//tx4_view::tx4_view(QWidget *parent)
-//	: QWidget(parent) {
-//
-//	this->setAttribute(Qt::WA_StyledBackground); // <--- this attribute solves issue of background color not being drawn on custom widget, no need for reimplementing paintEvent, yet.
-//	this->setMinimumSize(VIEW_MIN_W, VIEW_MIN_H);
-//	QSizePolicy qsp(QSizePolicy::Preferred, QSizePolicy::Preferred);
-//	qsp.setHeightForWidth(true);
-//	this->setSizePolicy(qsp);
-//	this->setStyleSheet(blueStyle);
-//}
-//
-//tx4_view::~tx4_view() {}
-//
-//void tx4_view::resizeEvent(QResizeEvent *event) {
-//    event->accept();
-//
-//	QWidget::resize(event->size().width()*9/16, event->size().width()*9/16);
-//    //if(event->size().width() > event->size().height()){
-//    //    QWidget::resize(event->size().height(),event->size().height());
-//    //}else{
-//    //    QWidget::resize(event->size().width(),event->size().width());
-//    //}
-//}

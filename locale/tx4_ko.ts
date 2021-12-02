@@ -4,17 +4,17 @@
 <context>
     <name>tx4_control_bar</name>
     <message>
-        <location filename="../src/tx4_control_bar.cpp" line="7"/>
+        <location filename="../src/tx4_control_bar.cpp" line="10"/>
         <source>PLAY</source>
         <translation>플레이</translation>
     </message>
     <message>
-        <location filename="../src/tx4_control_bar.cpp" line="8"/>
+        <location filename="../src/tx4_control_bar.cpp" line="11"/>
         <source>PAUSE</source>
         <translation>정지시키다</translation>
     </message>
     <message>
-        <location filename="../src/tx4_control_bar.cpp" line="112"/>
+        <location filename="../src/tx4_control_bar.cpp" line="129"/>
         <source>SYNC CLIPS</source>
         <translation>동조</translation>
     </message>
@@ -68,37 +68,37 @@
         <translation>보초</translation>
     </message>
     <message>
-        <location filename="../src/tx4_events_section.cpp" line="152"/>
+        <location filename="../src/tx4_events_section.cpp" line="65"/>
         <source>RETURN</source>
         <translation>반품</translation>
     </message>
     <message>
-        <location filename="../src/tx4_events_section.cpp" line="153"/>
-        <location filename="../src/tx4_events_section.cpp" line="312"/>
+        <location filename="../src/tx4_events_section.cpp" line="66"/>
+        <location filename="../src/tx4_events_section.cpp" line="230"/>
         <source>SELECT ALL</source>
         <translation>모두 선택</translation>
     </message>
     <message>
-        <location filename="../src/tx4_events_section.cpp" line="158"/>
-        <location filename="../src/tx4_events_section.cpp" line="415"/>
-        <location filename="../src/tx4_events_section.cpp" line="426"/>
+        <location filename="../src/tx4_events_section.cpp" line="71"/>
+        <location filename="../src/tx4_events_section.cpp" line="330"/>
+        <location filename="../src/tx4_events_section.cpp" line="342"/>
         <source> EVENTS</source>
         <translation> 이벤트</translation>
     </message>
     <message>
-        <location filename="../src/tx4_events_section.cpp" line="232"/>
+        <location filename="../src/tx4_events_section.cpp" line="147"/>
         <source>NO EVENTS LOADED</source>
         <translation>로드된 이벤트 없음</translation>
     </message>
     <message>
-        <location filename="../src/tx4_events_section.cpp" line="301"/>
+        <location filename="../src/tx4_events_section.cpp" line="219"/>
         <source>DESELECT ALL</source>
         <translation>모두 선택 취소</translation>
     </message>
     <message>
-        <location filename="../src/tx4_events_section.cpp" line="442"/>
-        <location filename="../src/tx4_events_section.cpp" line="458"/>
-        <location filename="../src/tx4_events_section.cpp" line="471"/>
+        <location filename="../src/tx4_events_section.cpp" line="359"/>
+        <location filename="../src/tx4_events_section.cpp" line="377"/>
+        <location filename="../src/tx4_events_section.cpp" line="392"/>
         <source> SELECTED</source>
         <translation> 선택된</translation>
     </message>
@@ -138,11 +138,14 @@
     <name>tx4_toolbar</name>
     <message>
         <location filename="../src/tx4_toolbar.cpp" line="29"/>
+        <location filename="../src/tx4_toolbar.cpp" line="142"/>
+        <location filename="../src/tx4_toolbar.cpp" line="151"/>
         <source>VIEW EVENTS</source>
         <translation>이벤트 보기</translation>
     </message>
     <message>
         <location filename="../src/tx4_toolbar.cpp" line="30"/>
+        <location filename="../src/tx4_toolbar.cpp" line="189"/>
         <source>LOAD DIR</source>
         <translation>로드 디렉토리</translation>
     </message>
@@ -167,14 +170,14 @@
     <message>
         <location filename="../src/tx4_toolbar.cpp" line="79"/>
         <location filename="../src/tx4_toolbar.cpp" line="81"/>
-        <location filename="../src/tx4_toolbar.cpp" line="184"/>
+        <location filename="../src/tx4_toolbar.cpp" line="186"/>
         <source>true</source>
         <translation>진실</translation>
     </message>
     <message>
         <location filename="../src/tx4_toolbar.cpp" line="79"/>
         <location filename="../src/tx4_toolbar.cpp" line="81"/>
-        <location filename="../src/tx4_toolbar.cpp" line="184"/>
+        <location filename="../src/tx4_toolbar.cpp" line="186"/>
         <source>false</source>
         <translation>거짓</translation>
     </message>

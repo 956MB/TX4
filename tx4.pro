@@ -3,9 +3,11 @@ QT += core gui widgets multimedia
 
 win32:QT += winextras
 
+TARGET = tx4
+
 include($$PWD/QGoodWindow/QGoodWindow.pri)
 
-CONFIG += c++11
+CONFIG += c++17
 
 SOURCES += \
     /src/main.cpp \

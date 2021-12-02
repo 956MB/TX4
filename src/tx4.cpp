@@ -13,7 +13,7 @@ tx4::tx4(QWidget *parent)
 	initWindowConfig();
 	initShortcuts();
 
-	//on_eventsLoadSignal();
+	on_eventsLoadSignal();
 }
 
 tx4::~tx4() {}
@@ -60,22 +60,22 @@ void tx4::initWindowConfig() {
 
 	setCentralWidget(outerFrame);
 
-	connect(title_bar, &TitleBar::showMinimized, this, &tx4::showMinimized);
-	connect(title_bar, &TitleBar::showNormal, this, &tx4::showNormal);
-	connect(title_bar, &TitleBar::showMaximized, this, &tx4::showMaximized);
-	connect(title_bar, &TitleBar::closeWindow, this, &tx4::close);
-	connect(this, &tx4::windowTitleChanged, this, [=](const QString &title) {
+	QObject::connect(title_bar, &TitleBar::showMinimized, this, &tx4::showMinimized);
+	QObject::connect(title_bar, &TitleBar::showNormal, this, &tx4::showNormal);
+	QObject::connect(title_bar, &TitleBar::showMaximized, this, &tx4::showMaximized);
+	QObject::connect(title_bar, &TitleBar::closeWindow, this, &tx4::close);
+	QObject::connect(this, &tx4::windowTitleChanged, this, [=](const QString &title) {
 		title_bar->setTitle(title);
 	});
-	//connect(this, &tx4::windowIconChanged, this, [=](const QIcon &icon) {
+	//QObject::connect(this, &tx4::windowIconChanged, this, [=](const QIcon &icon) {
 	//	if (!icon.isNull()) {
 	//		const int pix_size = qCeil(16 * pixelRatio());
 	//		title_bar->setIcon(icon.pixmap(pix_size , pix_size));
 	//	}
 	//});
 
-	//connect(w_deleteDialog, &PHOT_Dialog::dialog_confirm, this, &PHOT::on_dialogConfirm);
-	//connect(w_deleteDialog, &PHOT_Dialog::dialog_cancel, this, &PHOT::on_dialogCancel);
+	//QObject::connect(w_deleteDialog, &PHOT_Dialog::dialog_confirm, this, &PHOT::on_dialogConfirm);
+	//QObject::connect(w_deleteDialog, &PHOT_Dialog::dialog_cancel, this, &PHOT::on_dialogCancel);
 
 #ifndef Q_OS_MAC
 	if (windowState().testFlag(Qt::WindowNoState))
@@ -91,7 +91,7 @@ void tx4::initWindowConfig() {
 	//frame->setStyleSheet(m_frame_style.arg(border_str));
     title_bar->setDarkMode(m_dark);
     title_bar->setBackBtn(false);
-	connect(title_bar, &TitleBar::goBack, this, &tx4::on_handleCloseEvents);
+	QObject::connect(title_bar, &TitleBar::goBack, this, &tx4::on_handleCloseEvents);
 
 	this->setWindowTitle(m_title);
 	this->resize(qRound(START_W * pixelRatio()) , qRound(START_H * pixelRatio()));
@@ -119,12 +119,12 @@ void tx4::initMainScreen() {
 	w_recentSection->setSelectDeselectButtonState(false, false);
 	w_savedSection->setSelectDeselectButtonState(false, true);
 	w_sentrySection->setSelectDeselectButtonState(false, true);
-	connect(w_recentSection, &tx4_events_section::eventSelect, this, &tx4::on_eventSelectChange);
-	connect(w_recentSection, &tx4_events_section::eventDeselect, this, &tx4::on_eventDeselectChange);
-	connect(w_savedSection, &tx4_events_section::eventSelect, this, &tx4::on_eventSelectChange);
-	connect(w_savedSection, &tx4_events_section::eventDeselect, this, &tx4::on_eventDeselectChange);
-	connect(w_sentrySection, &tx4_events_section::eventSelect, this, &tx4::on_eventSelectChange);
-	connect(w_sentrySection, &tx4_events_section::eventDeselect, this, &tx4::on_eventDeselectChange);
+	QObject::connect(w_recentSection, &tx4_events_section::eventSelect, this, &tx4::on_eventSelectChange);
+	QObject::connect(w_recentSection, &tx4_events_section::eventDeselect, this, &tx4::on_eventDeselectChange);
+	QObject::connect(w_savedSection, &tx4_events_section::eventSelect, this, &tx4::on_eventSelectChange);
+	QObject::connect(w_savedSection, &tx4_events_section::eventDeselect, this, &tx4::on_eventDeselectChange);
+	QObject::connect(w_sentrySection, &tx4_events_section::eventSelect, this, &tx4::on_eventSelectChange);
+	QObject::connect(w_sentrySection, &tx4_events_section::eventDeselect, this, &tx4::on_eventDeselectChange);
 
 	v_mainLayout->addWidget(w_toolbar);
 	//v_mainLayout->addStretch();
@@ -143,31 +143,31 @@ void tx4::initToolbar() {
 	w_toolbar = new tx4_toolbar(false, false);
 	o_tx4Dir = new tx4_dir(false, true, "C:/Users/infga/Downloads/TeslaCam");
 
-	connect(w_toolbar, &tx4_toolbar::eventsOpen, this, &tx4::on_eventsOpenSignal);
-	connect(w_toolbar, &tx4_toolbar::eventsLoad, this, &tx4::on_eventsLoadSignal);
-	connect(o_tx4Dir, &tx4_dir::err_teslaCamFolder, this, &tx4::on_teslaCamFolderError);
-	connect(o_tx4Dir, &tx4_dir::err_savedClipsFolder, this, &tx4::on_savedClipsFolderError);
-	connect(o_tx4Dir, &tx4_dir::err_sentryClipsFolder, this, &tx4::on_sentryClipsFolderError);
-	connect(o_tx4Dir, &tx4_dir::err_savedClipsFolderEmpty, this, &tx4::on_savedClipsFolderEmptyError);
-	connect(o_tx4Dir, &tx4_dir::err_sentryClipsFolderEmpty, this, &tx4::on_sentryClipsFolderEmptyError);
+	QObject::connect(w_toolbar, &tx4_toolbar::eventsOpen, this, &tx4::on_eventsOpenSignal);
+	QObject::connect(w_toolbar, &tx4_toolbar::eventsLoad, this, &tx4::on_eventsLoadSignal);
+	QObject::connect(o_tx4Dir, &tx4_dir::err_teslaCamFolder, this, &tx4::on_teslaCamFolderError);
+	QObject::connect(o_tx4Dir, &tx4_dir::err_savedClipsFolder, this, &tx4::on_savedClipsFolderError);
+	QObject::connect(o_tx4Dir, &tx4_dir::err_sentryClipsFolder, this, &tx4::on_sentryClipsFolderError);
+	QObject::connect(o_tx4Dir, &tx4_dir::err_savedClipsFolderEmpty, this, &tx4::on_savedClipsFolderEmptyError);
+	QObject::connect(o_tx4Dir, &tx4_dir::err_sentryClipsFolderEmpty, this, &tx4::on_sentryClipsFolderEmptyError);
 }
 
 void tx4::initShortcuts() {
 	o_shortcutManager = new tx4_shortcuts(this);
 
-	connect(o_shortcutManager, &tx4_shortcuts::signal_esc, this, &tx4::on_handleCloseEvents);
-	connect(o_shortcutManager, &tx4_shortcuts::signal_open, this, &tx4::on_eventsOpenSignal);
-	connect(o_shortcutManager, &tx4_shortcuts::signal_load, this, &tx4::on_eventsLoadSignal);
+	QObject::connect(o_shortcutManager, &tx4_shortcuts::signal_esc, this, &tx4::on_handleCloseEvents);
+	QObject::connect(o_shortcutManager, &tx4_shortcuts::signal_open, this, &tx4::on_eventsOpenSignal);
+	QObject::connect(o_shortcutManager, &tx4_shortcuts::signal_load, this, &tx4::on_eventsLoadSignal);
 	//workerstarted = false;
 	//tx4_worker *worker = new tx4_worker(800);
 	//WorkerThread = new QThread;
 	//myWorker->moveToThread(WorkerThread);
-	//connect( this, SIGNAL(startWork()), myWorker, SLOT(StartWork()) );
-	//connect( this, SIGNAL(stopWork()), myWorker, SLOT(StopWork()) );
-	//connect( this, SIGNAL(startWork()), myWorker, SLOT(StartWork()) );
-	//connect( this, SIGNAL(stopWork()), myWorker, SLOT(StopWork()) );
-	//connect(worker, &tx4_worker::oneLoop, this, [=]{ qDebug() << "print::here"; });
-	//connect(o_shortcutManager, &tx4_shortcuts::signal_selectMode, this, [=]{
+	//QObject::connect( this, SIGNAL(startWork()), myWorker, SLOT(StartWork()) );
+	//QObject::connect( this, SIGNAL(stopWork()), myWorker, SLOT(StopWork()) );
+	//QObject::connect( this, SIGNAL(startWork()), myWorker, SLOT(StartWork()) );
+	//QObject::connect( this, SIGNAL(stopWork()), myWorker, SLOT(StopWork()) );
+	//QObject::connect(worker, &tx4_worker::oneLoop, this, [=]{ qDebug() << "print::here"; });
+	//QObject::connect(o_shortcutManager, &tx4_shortcuts::signal_selectMode, this, [=]{
 	//	qDebug() << "signal_selectMode::here";
 	//	if (workerstarted) {
 	//		workerstarted = false;
@@ -325,21 +325,24 @@ bool tx4::event(QEvent *event) {
 			bool load_success = o_tx4Dir->loadTeslaDrive();
 
 			if (load_success) {
-				qDebug() << "exit:: " << true;
-
 				w_savedSection->populateEvents(o_tx4Dir->savedEvents);
 				w_sentrySection->populateEvents(o_tx4Dir->sentryEvents);
+				
 				w_toolbar->toggleEventsLoaded(true);
-				w_savedSection->toggleEventsLoaded(true);
-				w_sentrySection->toggleEventsLoaded(true);
 				w_recentSection->setNavButtonStates(false, false, false, false);
-				w_savedSection->setNavButtonStates(true, true, true, true);
-				w_sentrySection->setNavButtonStates(true, true, true, true);
 				w_recentSection->setSelectDeselectButtonState(false, false);
+				w_recentSection->setReturnButtonState(false, false);
+
+				w_savedSection->toggleEventsLoaded(true);
+				w_savedSection->setNavButtonStates(true, true, true, true);
 				w_savedSection->setSelectDeselectButtonState(true, true);
+				w_savedSection->setReturnButtonState(false, false);
+
+				w_sentrySection->toggleEventsLoaded(true);
+				w_sentrySection->setNavButtonStates(true, true, true, true);
 				w_sentrySection->setSelectDeselectButtonState(true, true);
+				w_sentrySection->setReturnButtonState(false, false);
 			} else {
-				qDebug() << "exit:: " << false;
 			}
 		}
 	}

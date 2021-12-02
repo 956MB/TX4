@@ -21,11 +21,11 @@ void tx4_viewer::initContents() {
 	initViews();
 	initControlBar();
 
-	v_contentsLayout->addSpacerItem(new QSpacerItem(0, 30, QSizePolicy::Expanding, QSizePolicy::Fixed));
+	v_contentsLayout->addSpacerItem(new QSpacerItem(0, 20, QSizePolicy::Expanding, QSizePolicy::Fixed));
 	v_contentsLayout->addWidget(w_viewsContainer);
 	v_contentsLayout->addSpacerItem(new QSpacerItem(0, 20, QSizePolicy::Expanding, QSizePolicy::Fixed));
 	v_contentsLayout->addWidget(w_controlBar);
-	v_contentsLayout->addSpacerItem(new QSpacerItem(0, 30, QSizePolicy::Expanding, QSizePolicy::Fixed));
+	v_contentsLayout->addSpacerItem(new QSpacerItem(0, 20, QSizePolicy::Expanding, QSizePolicy::Fixed));
 
 	this->setLayout(v_contentsLayout);
 }
@@ -39,21 +39,17 @@ void tx4_viewer::initViews() {
 	v_viewsParentLayout->setSpacing(10);
 	v_viewsParentLayout->setContentsMargins(0,20,0,20);
 
-	QWidget *w_viewOne = new QWidget;
-	QWidget *w_viewTwo = new QWidget;
-	w_viewOne->setStyleSheet(viewStyle);
-	w_viewTwo->setStyleSheet(viewStyle);
-	AspectRatioWidget *w_viewOneContainer = new AspectRatioWidget(w_viewOne, 16, 9);
-	AspectRatioWidget *w_viewTwoContainer = new AspectRatioWidget(w_viewTwo, 16, 9);
+	tx4_view *w_viewOne = new tx4_view;
+	tx4_view *w_viewTwo = new tx4_view;
+	AspectRatioWidget *w_viewOneContainer = new AspectRatioWidget(w_viewOne, 4, 3);
+	AspectRatioWidget *w_viewTwoContainer = new AspectRatioWidget(w_viewTwo, 4, 3);
 	w_viewOneContainer->setStyleSheet(greenStyle);
 	w_viewTwoContainer->setStyleSheet(greenStyle);
 
-	QWidget *w_viewThree = new QWidget;
-	QWidget *w_viewFour = new QWidget;
-	w_viewThree->setStyleSheet(viewStyle);
-	w_viewFour->setStyleSheet(viewStyle);
-	AspectRatioWidget *w_viewThreeContainer = new AspectRatioWidget(w_viewThree, 16, 9);
-	AspectRatioWidget *w_viewFourContainer = new AspectRatioWidget(w_viewFour, 16, 9);
+	tx4_view *w_viewThree = new tx4_view;
+	tx4_view *w_viewFour = new tx4_view;
+	AspectRatioWidget *w_viewThreeContainer = new AspectRatioWidget(w_viewThree, 4, 3);
+	AspectRatioWidget *w_viewFourContainer = new AspectRatioWidget(w_viewFour, 4, 3);
 	w_viewThreeContainer->setStyleSheet(greenStyle);
 	w_viewFourContainer->setStyleSheet(greenStyle);
 
@@ -85,6 +81,6 @@ void tx4_viewer::initViews() {
 }
 
 void tx4_viewer::initControlBar() {
-	w_controlBar = new tx4_control_bar;
+	w_controlBar = new tx4_control_bar(20, true);
 
 }

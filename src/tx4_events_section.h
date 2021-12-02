@@ -32,6 +32,7 @@ class tx4_events_section : public QWidget {
 		void populateEvents(QList<tx4_event*> events);
 		void setNavButtonStates(bool style_left, bool style_right, bool enable_left, bool enable_right);
 		void setSelectDeselectButtonState(bool state = false, bool visible = true);
+		void setReturnButtonState(bool state = false, bool visible = true);
 
 		// TODO: public select/deselect for all
 		void selectAll();

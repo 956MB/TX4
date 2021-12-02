@@ -4,17 +4,17 @@
 <context>
     <name>tx4_control_bar</name>
     <message>
-        <location filename="../src/tx4_control_bar.cpp" line="7"/>
+        <location filename="../src/tx4_control_bar.cpp" line="10"/>
         <source>PLAY</source>
         <translation>PELATA</translation>
     </message>
     <message>
-        <location filename="../src/tx4_control_bar.cpp" line="8"/>
+        <location filename="../src/tx4_control_bar.cpp" line="11"/>
         <source>PAUSE</source>
         <translation>TAUKO</translation>
     </message>
     <message>
-        <location filename="../src/tx4_control_bar.cpp" line="112"/>
+        <location filename="../src/tx4_control_bar.cpp" line="129"/>
         <source>SYNC CLIPS</source>
         <translation>SYNC</translation>
     </message>
@@ -68,37 +68,37 @@
         <translation>VARTIOMIES</translation>
     </message>
     <message>
-        <location filename="../src/tx4_events_section.cpp" line="152"/>
+        <location filename="../src/tx4_events_section.cpp" line="65"/>
         <source>RETURN</source>
         <translation>PALATA</translation>
     </message>
     <message>
-        <location filename="../src/tx4_events_section.cpp" line="153"/>
-        <location filename="../src/tx4_events_section.cpp" line="312"/>
+        <location filename="../src/tx4_events_section.cpp" line="66"/>
+        <location filename="../src/tx4_events_section.cpp" line="230"/>
         <source>SELECT ALL</source>
         <translation>VALITSE KAIKKI</translation>
     </message>
     <message>
-        <location filename="../src/tx4_events_section.cpp" line="158"/>
-        <location filename="../src/tx4_events_section.cpp" line="415"/>
-        <location filename="../src/tx4_events_section.cpp" line="426"/>
+        <location filename="../src/tx4_events_section.cpp" line="71"/>
+        <location filename="../src/tx4_events_section.cpp" line="330"/>
+        <location filename="../src/tx4_events_section.cpp" line="342"/>
         <source> EVENTS</source>
         <translation> TAPAHTUMAT</translation>
     </message>
     <message>
-        <location filename="../src/tx4_events_section.cpp" line="232"/>
+        <location filename="../src/tx4_events_section.cpp" line="147"/>
         <source>NO EVENTS LOADED</source>
         <translation>TAPAHTUMAT EI LAADUT</translation>
     </message>
     <message>
-        <location filename="../src/tx4_events_section.cpp" line="301"/>
+        <location filename="../src/tx4_events_section.cpp" line="219"/>
         <source>DESELECT ALL</source>
         <translation>POISTA KAIKKI</translation>
     </message>
     <message>
-        <location filename="../src/tx4_events_section.cpp" line="442"/>
-        <location filename="../src/tx4_events_section.cpp" line="458"/>
-        <location filename="../src/tx4_events_section.cpp" line="471"/>
+        <location filename="../src/tx4_events_section.cpp" line="359"/>
+        <location filename="../src/tx4_events_section.cpp" line="377"/>
+        <location filename="../src/tx4_events_section.cpp" line="392"/>
         <source> SELECTED</source>
         <translation> VALITTU</translation>
     </message>
@@ -134,11 +134,14 @@
     <name>tx4_toolbar</name>
     <message>
         <location filename="../src/tx4_toolbar.cpp" line="29"/>
+        <location filename="../src/tx4_toolbar.cpp" line="142"/>
+        <location filename="../src/tx4_toolbar.cpp" line="151"/>
         <source>VIEW EVENTS</source>
         <translation>NÄKYMÄ</translation>
     </message>
     <message>
         <location filename="../src/tx4_toolbar.cpp" line="30"/>
+        <location filename="../src/tx4_toolbar.cpp" line="189"/>
         <source>LOAD DIR</source>
         <translation>LADATA</translation>
     </message>
@@ -164,14 +167,14 @@
     <message>
         <location filename="../src/tx4_toolbar.cpp" line="79"/>
         <location filename="../src/tx4_toolbar.cpp" line="81"/>
-        <location filename="../src/tx4_toolbar.cpp" line="184"/>
+        <location filename="../src/tx4_toolbar.cpp" line="186"/>
         <source>true</source>
         <translation>totta</translation>
     </message>
     <message>
         <location filename="../src/tx4_toolbar.cpp" line="79"/>
         <location filename="../src/tx4_toolbar.cpp" line="81"/>
-        <location filename="../src/tx4_toolbar.cpp" line="184"/>
+        <location filename="../src/tx4_toolbar.cpp" line="186"/>
         <source>false</source>
         <translation>väärä</translation>
     </message>

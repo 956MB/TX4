@@ -36,101 +36,6 @@ tx4_events_section::~tx4_events_section() {}
 
 
 void tx4_events_section::initContents() {
-	//QVBoxLayout *v_contentsLayout = new QVBoxLayout(this);
-	//v_contentsLayout->setSpacing(16);
-	//v_contentsLayout->setContentsMargins(0,16,0,16);
-
-	////QWidget *titleContainer = new QWidget;
-	////titleContainer->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Fixed);
-	////QHBoxLayout *h_titleContainerLayout = new QHBoxLayout(titleContainer);
-	////h_titleContainerLayout->setContentsMargins(20,3,20,3);
-	////w_rightContainer = new QWidget;
-	////w_rightContainer->setSizePolicy(QSizePolicy::Fixed, QSizePolicy::Fixed);
-	////QHBoxLayout *h_rightContainerLayout = new QHBoxLayout(w_rightContainer);
-	////l_sectionTitle = new tx4_label(sectionTitle, 10, titleLabelStyle, QFont::Medium, Qt::AlignLeft, "Anonymous Pro");
-	////l_countSubitle = new tx4_label(QString::number(totalEvents) + tx4_events_section::tr(" EVENTS"), 10, subLabelStyle, QFont::Medium, Qt::AlignLeft, "Anonymous Pro");
-	////l_sizeSubitle = new tx4_label(totalSize, 10, subLabelStyle, QFont::Medium, Qt::AlignLeft, "Anonymous Pro");
-	////l_lengthSubitle = new tx4_label(totalLength, 10, subLabelStyle, QFont::Medium, Qt::AlignLeft, "Anonymous Pro");
-	////h_rightContainerLayout->addWidget(l_countSubitle);
-	////h_rightContainerLayout->addSpacerItem(new QSpacerItem(15, 0, QSizePolicy::Fixed, QSizePolicy::Expanding));
-	////h_rightContainerLayout->addWidget(new tx4_label("[", 10, subLabelBraceStyle, QFont::Medium, Qt::AlignCenter, "Anonymous Pro"));
-	////h_rightContainerLayout->addWidget(l_sizeSubitle);
-	////h_rightContainerLayout->addWidget(new tx4_label("]", 10, subLabelBraceStyle, QFont::Medium, Qt::AlignCenter, "Anonymous Pro"));
-	////h_rightContainerLayout->addSpacerItem(new QSpacerItem(15, 0, QSizePolicy::Fixed, QSizePolicy::Expanding));
-	////h_rightContainerLayout->addWidget(new tx4_label("[", 10, subLabelBraceStyle, QFont::Medium, Qt::AlignCenter, "Anonymous Pro"));
-	////h_rightContainerLayout->addWidget(l_lengthSubitle);
-	////h_rightContainerLayout->addWidget(new tx4_label("]", 10, subLabelBraceStyle, QFont::Medium, Qt::AlignCenter, "Anonymous Pro"));
-
-	////h_titleContainerLayout->addWidget(l_sectionTitle);
-	////h_titleContainerLayout->addStretch();
-	////h_titleContainerLayout->addWidget(w_rightContainer);
-
-	//w_sectionScroll = new QWidget;
-	//w_sectionScroll->setStyleSheet(scrollAreaStyle);
-	//w_sectionScroll->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Fixed);
-	//QHBoxLayout *h_recentsScrollLayout = new QHBoxLayout(w_sectionScroll);
-	//Util::setLayoutZero(h_recentsScrollLayout);
-	//h_recentsScrollLayout->setSpacing(10);
-
-	//// TODO:
-	//for (int i = 0; i < totalEvents; i++) {
-	//	tx4_event_preview *preview = new tx4_event_preview("2021_08_22", "12x4", "21.75MB", "09:13", titleLabelStyle, i, this);
-	//	h_recentsScrollLayout->addWidget(preview);
-	//	previews.append(preview);
-	//	connect(preview, &tx4_event_preview::select, this, &tx4_events_section::on_updateSelect);
-	//	connect(preview, &tx4_event_preview::deselect, this, &tx4_events_section::on_updateDeselect);
- //   }
-	////h_recentsScrollLayout->addSpacerItem(new QSpacerItem(20, 0, QSizePolicy::Fixed, QSizePolicy::Expanding));
-	//h_recentsScrollLayout->addStretch();
-
-	//w_scrollContainer = new QWidget;
-	//w_scrollContainer->setFixedHeight(PREVIEW_H);
-	//w_scrollContainer->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Fixed);
-	//w_scrollContainer->setStyleSheet(titleBarStyle);
-	//QHBoxLayout *h_scrollContainerLayout = new QHBoxLayout(w_scrollContainer);
-	//Util::setLayoutZero(h_scrollContainerLayout);
-	//h_scrollContainerLayout->setContentsMargins(20, 0, 20, 0);
-	//scrollarea = new QScrollArea();
-	//scrollarea->verticalScrollBar()->setEnabled(false);
-	//scrollarea->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
-	//scrollarea->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
-	//scrollarea->setStyleSheet(scrollAreaStyle);
-	//scrollarea->setWidget(w_sectionScroll);
-
-	//h_scrollContainerLayout->addWidget(scrollarea);
-	////v_contentsLayout->addWidget(titleContainer);
-	//v_contentsLayout->addWidget(w_scrollContainer);
-
-	//this->setLayout(v_contentsLayout);
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 	QVBoxLayout *v_contentsLayout = new QVBoxLayout(this);
 	Util::setLayoutZero(v_contentsLayout);
 	v_contentsLayout->setSpacing(16);
@@ -142,39 +47,49 @@ void tx4_events_section::initContents() {
 	titleContainer->setStyleSheet(titleBarStyle);
 	QHBoxLayout *h_titleContainerLayout = new QHBoxLayout(titleContainer);
 	Util::setLayoutZero(h_titleContainerLayout);
-	h_titleContainerLayout->setContentsMargins(20,0,20,0);
+	h_titleContainerLayout->setContentsMargins(24,0,24,0);
 	w_rightContainer = new QWidget;
 	w_rightContainer->setSizePolicy(QSizePolicy::Fixed, QSizePolicy::Fixed);
 	QHBoxLayout *h_rightContainerLayout = new QHBoxLayout(w_rightContainer);
 	Util::setLayoutZero(h_rightContainerLayout);
 	//h_titleContainerLayout->setSpacing(15);
+	//QWidget *w_titlew = new QWidget;
+	//w_titlew->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
+	//w_titlew->setFixedWidth(120);
+	//QHBoxLayout *h_titleWLayout = new QHBoxLayout(w_titlew);
+	//Util::setLayoutZero(h_titleWLayout);
 	l_sectionTitle = new tx4_label(sectionTitle, 10, titleLabelStyle, QFont::Medium, Qt::AlignLeft);
-	b_returnButton = new tx4_toolbar_button(tx4_events_section::tr("RETURN"), false, "");
-	b_selectDeselectAllButton = new tx4_toolbar_button(tx4_events_section::tr("SELECT ALL"), false, "");
+	//h_titleWLayout->addWidget(l_sectionTitle);
+	//h_titleWLayout->addStretch();
+
+	b_returnButton = new tx4_toolbar_button(tx4_events_section::tr("RETURN") + QString(" (R)"), false, "");
+	b_selectDeselectAllButton = new tx4_toolbar_button(tx4_events_section::tr("SELECT ALL") + QString(" (S)"), false, "");
 	
-	connect(b_returnButton, &tx4_toolbar_button::clicked, this, &tx4_events_section::on_returnClick);
-	connect(b_selectDeselectAllButton, &tx4_toolbar_button::clicked, this, &tx4_events_section::on_selectDeselectAll);
+	QObject::connect(b_returnButton, &tx4_toolbar_button::clicked, this, &tx4_events_section::on_returnClick);
+	QObject::connect(b_selectDeselectAllButton, &tx4_toolbar_button::clicked, this, &tx4_events_section::on_selectDeselectAll);
 
 	l_countSubitle = new tx4_label(QString::number(i_totalEvents) + tx4_events_section::tr(" EVENTS"), 10, subLabelStyle, QFont::Medium, Qt::AlignLeft);
-	l_sizeSubitle = new tx4_label(s_totalSize, 10, subLabelStyle, QFont::Medium, Qt::AlignLeft);
+	l_sizeSubitle = new tx4_label(s_totalSize, 10, subLabelStyle, QFont::Medium, Qt::AlignLeft, Qt::AlignTop);
 	l_lengthSubitle = new tx4_label(s_totalLength, 10, subLabelStyle, QFont::Medium, Qt::AlignLeft);
 	h_rightContainerLayout->addWidget(l_countSubitle);
-	h_rightContainerLayout->addSpacerItem(new QSpacerItem(10, 0, QSizePolicy::Fixed, QSizePolicy::Expanding));
-	h_rightContainerLayout->addWidget(new tx4_label("[", 10, subLabelBraceStyle, QFont::Medium, Qt::AlignCenter));
+	h_rightContainerLayout->addSpacerItem(new QSpacerItem(20, 0, QSizePolicy::Fixed, QSizePolicy::Expanding));
+	//h_rightContainerLayout->addWidget(new tx4_label("[", 10, subLabelBraceStyle, QFont::Medium, Qt::AlignCenter));
 	h_rightContainerLayout->addWidget(l_sizeSubitle);
-	h_rightContainerLayout->addWidget(new tx4_label("]", 10, subLabelBraceStyle, QFont::Medium, Qt::AlignCenter));
-	h_rightContainerLayout->addSpacerItem(new QSpacerItem(5, 0, QSizePolicy::Fixed, QSizePolicy::Expanding));
-	h_rightContainerLayout->addWidget(new tx4_label("[", 10, subLabelBraceStyle, QFont::Medium, Qt::AlignCenter));
+	h_rightContainerLayout->addSpacerItem(new QSpacerItem(20, 0, QSizePolicy::Fixed, QSizePolicy::Expanding));
+	//h_rightContainerLayout->addWidget(new tx4_label("]", 10, subLabelBraceStyle, QFont::Medium, Qt::AlignCenter));
+	//h_rightContainerLayout->addSpacerItem(new QSpacerItem(5, 0, QSizePolicy::Fixed, QSizePolicy::Expanding));
+	//h_rightContainerLayout->addWidget(new tx4_label("[", 10, subLabelBraceStyle, QFont::Medium, Qt::AlignCenter));
 	h_rightContainerLayout->addWidget(l_lengthSubitle);
-	h_rightContainerLayout->addWidget(new tx4_label("]", 10, subLabelBraceStyle, QFont::Medium, Qt::AlignCenter));
+	//h_rightContainerLayout->addWidget(new tx4_label("]", 10, subLabelBraceStyle, QFont::Medium, Qt::AlignCenter));
 
 	h_titleContainerLayout->addWidget(l_sectionTitle);
-	h_titleContainerLayout->addSpacerItem(new QSpacerItem(40, 0, QSizePolicy::Fixed, QSizePolicy::Expanding));
-	h_titleContainerLayout->addWidget(b_selectDeselectAllButton);
-	h_titleContainerLayout->addSpacerItem(new QSpacerItem(20, 0, QSizePolicy::Fixed, QSizePolicy::Expanding));
-	h_titleContainerLayout->addWidget(b_returnButton);
-	h_titleContainerLayout->addStretch();
+	h_titleContainerLayout->addSpacerItem(new QSpacerItem(24, 0, QSizePolicy::Fixed, QSizePolicy::Expanding));
 	h_titleContainerLayout->addWidget(w_rightContainer);
+	h_titleContainerLayout->addStretch();
+	h_titleContainerLayout->addWidget(b_selectDeselectAllButton);
+	h_titleContainerLayout->addSpacerItem(new QSpacerItem(1, 0, QSizePolicy::Fixed, QSizePolicy::Expanding));
+	h_titleContainerLayout->addWidget(b_returnButton);
+	b_selectDeselectAllButton->setVisible(false);
 	b_returnButton->setVisible(false);
 
 	w_sectionScroll = new QWidget;
@@ -189,8 +104,8 @@ void tx4_events_section::initContents() {
 		tx4_event_preview *preview = new tx4_event_preview("", "", "", "", "", "", "","", "", "", titleLabelStyle, i);
 		h_recentsScrollLayout->addWidget(preview);
 		previews.append(preview);
-		//connect(preview, &tx4_event_preview::select, this, &tx4_events_section::on_updateSelect);
-		//connect(preview, &tx4_event_preview::deselect, this, &tx4_events_section::on_updateDeselect);
+		//QObject::connect(preview, &tx4_event_preview::select, this, &tx4_events_section::on_updateSelect);
+		//QObject::connect(preview, &tx4_event_preview::deselect, this, &tx4_events_section::on_updateDeselect);
     }
 	h_recentsScrollLayout->addStretch();
 
@@ -211,8 +126,8 @@ void tx4_events_section::initContents() {
 	//h_buttonholderLayout->setContentsMargins(20, 0, 20, 0);
 	b_navButtonLeft = new tx4_nav_button("", true, "", true);
 	b_navButtonRight = new tx4_nav_button("", true, "", false);
-	connect(b_navButtonLeft, &tx4_nav_button::buttonClicked, this, &tx4_events_section::on_navLeftClick);
-	connect(b_navButtonRight, &tx4_nav_button::buttonClicked, this, &tx4_events_section::on_navRightClick);
+	QObject::connect(b_navButtonLeft, &tx4_nav_button::buttonClicked, this, &tx4_events_section::on_navLeftClick);
+	QObject::connect(b_navButtonRight, &tx4_nav_button::buttonClicked, this, &tx4_events_section::on_navRightClick);
 
 	scrollarea = new QScrollArea();
 	scrollarea->verticalScrollBar()->setEnabled(false);
@@ -280,10 +195,13 @@ void tx4_events_section::setNavButtonStates(bool style_left, bool style_right, b
 	b_navButtonLeft->setVisible(enable_left);
 	b_navButtonRight->setVisible(enable_right);
 }
-
 void tx4_events_section::setSelectDeselectButtonState(bool state, bool visible) {
 	b_selectDeselectAllButton->setButtonState(state);
 	b_selectDeselectAllButton->setVisible(visible);
+}
+void tx4_events_section::setReturnButtonState(bool state, bool visible) {
+	b_returnButton->setButtonState(state);
+	b_returnButton->setVisible(visible);
 }
 
 
@@ -298,7 +216,7 @@ void tx4_events_section::selectAll() {
 			}
 		}
 
-		if (b_selectDeselectAllButton->s_enabled) { b_selectDeselectAllButton->setButtonText(tx4_events_section::tr("DESELECT ALL")); }
+		if (b_selectDeselectAllButton->s_enabled) { b_selectDeselectAllButton->setButtonText(tx4_events_section::tr("DESELECT ALL") + QString(" (D)")); }
 	}
 }
 void tx4_events_section::deselectAll() {
@@ -309,7 +227,7 @@ void tx4_events_section::deselectAll() {
 			}
 		}
 
-		if (b_selectDeselectAllButton->s_enabled) { b_selectDeselectAllButton->setButtonText(tx4_events_section::tr("SELECT ALL")); }
+		if (b_selectDeselectAllButton->s_enabled) { b_selectDeselectAllButton->setButtonText(tx4_events_section::tr("SELECT ALL") + QString(" (S)")); }
 	}
 }
 
@@ -343,23 +261,20 @@ void tx4_events_section::deselectAll() {
 			i_scrollValue = i_scrollValue-amount;
 			scrollarea->horizontalScrollBar()->setValue(i_scrollValue);
 		} else {
-			b_returnButton->setButtonState(false);
-			b_returnButton->setVisible(false);
+			setReturnButtonState(false, true);
 		}
 	}
 	void tx4_events_section::goRight(const int &amount) {
 		if (i_scrollValue < scrollarea->horizontalScrollBar()->maximum()) {
 			i_scrollValue = i_scrollValue+amount;
 			scrollarea->horizontalScrollBar()->setValue(i_scrollValue);
-			b_returnButton->setButtonState(true);
-			b_returnButton->setVisible(true);
+			setReturnButtonState(true, true);
 		}
 	}
 	void tx4_events_section::on_returnClick() {
 		i_scrollValue = 0;
 		scrollarea->horizontalScrollBar()->setValue(i_scrollValue);
-		b_returnButton->setButtonState(false);
-		b_returnButton->setVisible(false);
+		setReturnButtonState(false, true);
 	}
 	void tx4_events_section::on_selectDeselectAll() {
 		if (!selectAllClicked) {
@@ -402,8 +317,8 @@ void tx4_events_section::populateEvents(QList<tx4_event*> pop_events) {
 		preview->show();
 		previews.append(preview);
 		events.append(pop_events[i]);
-		connect(preview, &tx4_event_preview::select, this, &tx4_events_section::on_updateSelect);
-		connect(preview, &tx4_event_preview::deselect, this, &tx4_events_section::on_updateDeselect);
+		QObject::connect(preview, &tx4_event_preview::select, this, &tx4_events_section::on_updateSelect);
+		QObject::connect(preview, &tx4_event_preview::deselect, this, &tx4_events_section::on_updateDeselect);
 
 		sizeCount += pop_events[i]->i_Size;
 		timeCount += pop_events[i]->i_TotalClipLength;
@@ -418,6 +333,7 @@ void tx4_events_section::populateEvents(QList<tx4_event*> pop_events) {
 	s_totalSize = titleSizeString;
 	s_totalLength = titleTimeString;
 	l_countSubitle->setLabelText(titleEventsString);
+	l_sizeSubitle->setLabelAlignment(Qt::AlignLeft, Qt::AlignTop);
 	l_sizeSubitle->setLabelText(s_totalSize);
 	l_lengthSubitle->setLabelText(s_totalLength);
 }
@@ -425,9 +341,10 @@ void tx4_events_section::resetSubtitle() {
 	selectModeActive = false;
 	QString formDeselect = QString::number(i_totalEvents) + tx4_events_section::tr(" EVENTS");
 	l_countSubitle->setText(formDeselect);
+	l_sizeSubitle->setLabelAlignment(Qt::AlignLeft, Qt::AlignVCenter);
 	l_sizeSubitle->setText(s_totalSize);
-	l_lengthSubitle->setText(s_totalLength);
 	l_sizeSubitle->setStyleSheet(subLabelStyle);
+	l_lengthSubitle->setText(s_totalLength);
 	l_lengthSubitle->setStyleSheet(subLabelStyle);
 }
 
@@ -441,9 +358,11 @@ void tx4_events_section::resetSubtitle() {
 			i_selectedLength += events[idx]->i_TotalClipLength;
 			QString formSelect = QString::number(i_selectedCount) + QString("/") + QString::number(i_totalEvents) + tx4_events_section::tr(" SELECTED");
 			l_countSubitle->setText(formSelect);
-			l_sizeSubitle->setLabelText(Util::humanSize(i_selectedSize));
-			l_lengthSubitle->setLabelText(Util::format_duration(i_selectedLength));
+			l_sizeSubitle->setLabelAlignment(Qt::AlignLeft, Qt::AlignTop);
+			l_sizeSubitle->setLabelText(Util::humanSize(i_selectedSize) + "*");
 			l_sizeSubitle->setStyleSheet(subLabelStyleOff);
+			l_lengthSubitle->setLabelAlignment(Qt::AlignLeft, Qt::AlignTop);
+			l_lengthSubitle->setLabelText(Util::format_duration(i_selectedLength) + "*");
 			l_lengthSubitle->setStyleSheet(subLabelStyleOff);
 
 			selectedPreviews.append(previews[idx]);
@@ -457,8 +376,10 @@ void tx4_events_section::resetSubtitle() {
 		i_selectedLength += events[idx]->i_TotalClipLength;
 		QString formSelect = QString::number(i_selectedCount) + QString("/") + QString::number(i_totalEvents) + tx4_events_section::tr(" SELECTED");
 		l_countSubitle->setText(formSelect);
-		l_sizeSubitle->setLabelText(Util::humanSize(i_selectedSize));
-		l_lengthSubitle->setLabelText(Util::format_duration(i_selectedLength));
+		l_sizeSubitle->setLabelAlignment(Qt::AlignLeft, Qt::AlignTop);
+		l_sizeSubitle->setLabelText(Util::humanSize(i_selectedSize) + "*");
+		l_lengthSubitle->setLabelAlignment(Qt::AlignLeft, Qt::AlignTop);
+		l_lengthSubitle->setLabelText(Util::format_duration(i_selectedLength) + "*");
 
 		selectedPreviews.append(previews[idx]);
 		selectedEvents.append(events[idx]);
@@ -470,8 +391,10 @@ void tx4_events_section::resetSubtitle() {
 		i_selectedLength -= events[idx]->i_TotalClipLength;
 		QString formDeselect = QString::number(i_selectedCount) + QString("/") + QString::number(i_totalEvents) + tx4_events_section::tr(" SELECTED");
 		l_countSubitle->setText(formDeselect);
-		l_sizeSubitle->setLabelText(Util::humanSize(i_selectedSize));
-		l_lengthSubitle->setLabelText(Util::format_duration(i_selectedLength));
+		l_sizeSubitle->setLabelAlignment(Qt::AlignLeft, Qt::AlignTop);
+		l_sizeSubitle->setLabelText(Util::humanSize(i_selectedSize) + "*");
+		l_lengthSubitle->setLabelAlignment(Qt::AlignLeft, Qt::AlignTop);
+		l_lengthSubitle->setLabelText(Util::format_duration(i_selectedLength) + "*");
 
 		if (i_selectedCount <= 0) {
 			resetSubtitle();

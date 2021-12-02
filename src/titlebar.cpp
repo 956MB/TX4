@@ -50,11 +50,11 @@ TitleBar::TitleBar(qreal pixel_ratio, bool left, QWidget *parent) : QFrame(paren
     clsbtn = new CaptionButton(CaptionButton::IconType::Close, pixel_ratio, this);
     clsbtn->setFixedSize(qRound(46 * pixel_ratio), qRound(32 * pixel_ratio));
 
-    connect(backbtn, &CaptionButton::clicked, this, &TitleBar::goBack);
-    connect(minbtn, &CaptionButton::clicked, this, &TitleBar::showMinimized);
-    connect(restorebtn, &CaptionButton::clicked, this, &TitleBar::showNormal);
-    connect(maxbtn, &CaptionButton::clicked, this, &TitleBar::showMaximized);
-    connect(clsbtn, &CaptionButton::clicked, this, &TitleBar::closeWindow);
+    QObject::connect(backbtn, &CaptionButton::clicked, this, &TitleBar::goBack);
+    QObject::connect(minbtn, &CaptionButton::clicked, this, &TitleBar::showMinimized);
+    QObject::connect(restorebtn, &CaptionButton::clicked, this, &TitleBar::showNormal);
+    QObject::connect(maxbtn, &CaptionButton::clicked, this, &TitleBar::showMaximized);
+    QObject::connect(clsbtn, &CaptionButton::clicked, this, &TitleBar::closeWindow);
 
     QHBoxLayout *hlayout = new QHBoxLayout(this);
     hlayout->setSpacing(0);

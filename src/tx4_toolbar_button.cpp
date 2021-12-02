@@ -60,7 +60,6 @@ void tx4_toolbar_button::setButtonText(QString text) {
 void tx4_toolbar_button::enterEvent(QEvent *e) {
     if (s_enabled) {
         this->setStyleSheet(toolbarButtonStyleHover);
-
         QWidget::enterEvent(e);
     }
 }
@@ -68,7 +67,6 @@ void tx4_toolbar_button::enterEvent(QEvent *e) {
 void tx4_toolbar_button::leaveEvent(QEvent *e) {
     if (s_enabled) {
         this->setStyleSheet(toolbarButtonStyleNormal);
-
         QWidget::leaveEvent(e);
     }
 }
@@ -83,9 +81,14 @@ void tx4_toolbar_button::mousePressEvent(QMouseEvent *e) {
 }
 void tx4_toolbar_button::mouseReleaseEvent(QMouseEvent *e) {
     if (s_enabled) {
-        m_pressed = false;
-        this->setStyleSheet(toolbarButtonStyleHover);
-        emit clicked();
+		if (this->rect().contains(this->mapFromGlobal(QCursor::pos()))) {
+            m_pressed = false;
+            this->setStyleSheet(toolbarButtonStyleHover);
+            emit clicked();
+        } else {
+            m_pressed = false;
+            this->setStyleSheet(toolbarButtonStyleNormal);
+        }
         QWidget::mouseReleaseEvent(e);
     }
 }

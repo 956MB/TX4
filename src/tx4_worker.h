@@ -92,10 +92,10 @@
 //        tx4_worker() {
 //            worker *_worker = new worker(false);
 //            _worker->moveToThread(&workerThread);
-//            connect(&workerThread, &QThread::finished, _worker, &QObject::deleteLater);
-//            connect(this, &tx4_worker::operate, _worker, &worker::loop);
-//            //connect(_worker, &worker::oneLoop, this, &tx4_worker::handleResults);
-//            connect(_worker, &worker::oneLoop, this, [=]{ emit waitDone(); });
+//            QObject::connect(&workerThread, &QThread::finished, _worker, &QObject::deleteLater);
+//            QObject::connect(this, &tx4_worker::operate, _worker, &worker::loop);
+//            //QObject::connect(_worker, &worker::oneLoop, this, &tx4_worker::handleResults);
+//            QObject::connect(_worker, &worker::oneLoop, this, [=]{ emit waitDone(); });
 //            workerThread.start();
 //        }
 //        ~tx4_worker() {

@@ -6,6 +6,8 @@
 #include "tx4_util.h"
 #include "tx4_event_preview.h"
 
+#define CLIP_LEN 59000 // TODO: temp duration value for all clips, because of qmediaplkayer metadata problem, 59000ms = 59s
+
 class tx4_event : public QWidget {
 	Q_OBJECT
 
@@ -13,11 +15,11 @@ class tx4_event : public QWidget {
 		explicit tx4_event(QDir &pass_dir, QWidget* parent = nullptr);
 		~tx4_event();
 
-	signals:
-		void durationValueUpdated();
+	//signals:
+	//	void durationValueUpdated();
 
 	public:
-		QMediaPlayer *m_tempPlayer;
+		//QMediaPlayer *m_tempPlayer;
 
 		int selectIndex;
 		QDir d_eventDir;
@@ -54,8 +56,8 @@ class tx4_event : public QWidget {
 		void parseEventJson();
 		void GetMetaData();
 
-	private slots:
-		void onMediaStatusChanged(QMediaPlayer::MediaStatus status);
+	//private slots:
+	//	void onMediaStatusChanged(QMediaPlayer::MediaStatus status);
 		
 };
 

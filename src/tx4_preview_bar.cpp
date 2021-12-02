@@ -27,13 +27,13 @@ tx4_preview_bar::tx4_preview_bar(const QString &date, const QString &loc, const 
 	} else {
 		h_barLayout->addStretch();
 		//h_barLayout->addWidget(new tx4_label("[", 10, braceStyle, QFont::Medium, Qt::AlignCenter));
-		h_barLayout->addWidget(locText);
+		h_barLayout->addWidget(dateText);
 		h_barLayout->addStretch();
 		h_barLayout->addWidget(new tx4_label("|", 10, braceStyle, QFont::Medium, Qt::AlignCenter));
 		//h_barLayout->addWidget(new tx4_label("]", 10, braceStyle, QFont::Medium, Qt::AlignCenter));
 		h_barLayout->addStretch();
 		//h_barLayout->addWidget(new tx4_label("[", 10, braceStyle, QFont::Medium, Qt::AlignCenter));
-		h_barLayout->addWidget(dateText);
+		h_barLayout->addWidget(locText);
 		h_barLayout->addStretch();
 		h_barLayout->addWidget(new tx4_label("|", 10, braceStyle, QFont::Medium, Qt::AlignCenter));
 		//h_barLayout->addWidget(new tx4_label("]", 10, braceStyle, QFont::Medium, Qt::AlignCenter));
@@ -73,6 +73,6 @@ void tx4_preview_bar::setTextStylesheet(QString setStyle) {
 	dateText->setStyleSheet(setStyle);
 	locText->setStyleSheet(setStyle);
 	sizeText->setStyleSheet(setStyle);
-	lengthText->setStyleSheet(setStyle);
+	//lengthText->setStyleSheet(setStyle);
 	topText->setStyleSheet(setStyle);
 }
