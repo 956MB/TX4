@@ -1,4 +1,4 @@
-<img src="https://github.com/956MB/tx4/blob/master/screenshots/tx4.PNG" width="900">
-
-# tx4
-Tesla dashcam and sentry clips viewer. Made with Qt. Ross owes me one.
+<img src="./screenshots/list.png" width="900">
+<img src="./screenshots/1x3.png" width="900">
+<img src="./screenshots/2x2.png" width="900">
+<img src="./screenshots/4.png" width="900">
