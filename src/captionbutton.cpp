@@ -56,13 +56,13 @@ void CaptionButton::drawIcons()
     {
         if (m_icon_dark)
         {
-            m_active_icon = QIcon(":/icons/minimize-active-dark.ico").pixmap(w, 1);
-            m_inactive_icon = QIcon(":/icons/minimize-inactive-dark.ico").pixmap(w, 1);
+            m_active_icon = QIcon(":/icons/min-10.ico").pixmap(w, 2); // 1, minimize-active-dark
+            m_inactive_icon = QIcon(":/icons/min-10.ico").pixmap(w, 2); // 1, minimize-inactive-dark
         }
         else
         {
-            m_active_icon = QIcon(":/icons/minimize-active-light.ico").pixmap(w, 1);
-            m_inactive_icon = QIcon(":/icons/minimize-inactive-light.ico").pixmap(w, 1);
+            m_active_icon = QIcon(":/icons/min-10.ico").pixmap(w, 2); // 1, minimize-active-light
+            m_inactive_icon = QIcon(":/icons/min-10.ico").pixmap(w, 2); // 1, minimize-inactive-light
         }
 
         break;
@@ -83,17 +83,31 @@ void CaptionButton::drawIcons()
         break;
     }
     case IconType::Back:
+    {
+    if (m_icon_dark)
+    {
+        m_active_icon = QIcon(":/icons/back_arrow_3.png").pixmap(13, 12);
+        m_inactive_icon = QIcon(":/icons/back_arrow_3.png").pixmap(13, 12);
+    }
+    else
+    {
+        m_active_icon = QIcon(":/icons/back_arrow_3.png").pixmap(13, 12);
+        m_inactive_icon = QIcon(":/icons/back_arrow_3.png").pixmap(13, 12);
+    }
+
+    break;
+    }
     case IconType::Maximize:
     {
         if (m_icon_dark)
         {
-            m_active_icon = QIcon(":/icons/maximize-active-dark.ico").pixmap(w, w);
-            m_inactive_icon = QIcon(":/icons/maximize-inactive-dark.ico").pixmap(w, w);
+            m_active_icon = QIcon(":/icons/max-10.ico").pixmap(w, w); // w, maximize-active-dark
+            m_inactive_icon = QIcon(":/icons/max-10.ico").pixmap(w, w); // w, maximize-inactive-dark
         }
         else
         {
-            m_active_icon = QIcon(":/icons/maximize-active-light.ico").pixmap(w, w);
-            m_inactive_icon = QIcon(":/icons/maximize-inactive-light.ico").pixmap(w, w);
+            m_active_icon = QIcon(":/icons/max-10.ico").pixmap(w, w); // w, maximize-active-light
+            m_inactive_icon = QIcon(":/icons/max-10.ico").pixmap(w, w); // w, maximize-inactive-light
         }
 
         break;
@@ -102,14 +116,14 @@ void CaptionButton::drawIcons()
     {
         if (m_icon_dark)
         {
-            m_active_icon = QIcon(":/icons/close-active-dark.ico").pixmap(w, w);
-            m_inactive_icon = QIcon(":/icons/close-inactive-dark.ico").pixmap(w, w);
-            m_close_icon_hover = QIcon(":/icons/close-active-light.ico").pixmap(w, w);
+            m_active_icon = QIcon(":/icons/close-10.ico").pixmap(w, w);  // w, close-active-dark
+            m_inactive_icon = QIcon(":/icons/close-10.ico").pixmap(w, w);  // w, close-inactive-dark
+            m_close_icon_hover = QIcon(":/icons/close-10.ico").pixmap(w, w);  // w, close-active-light
         }
         else
         {
-            m_active_icon = QIcon(":/icons/close-active-light.ico").pixmap(w, w);
-            m_inactive_icon = QIcon(":/icons/close-inactive-light.ico").pixmap(w, w);
+            m_active_icon = QIcon(":/icons/close-10.ico").pixmap(w, w);  // w, close-active-light
+            m_inactive_icon = QIcon(":/icons/close-10.ico").pixmap(w, w);  // w, close-inactive-light
         }
 
         break;
@@ -127,13 +141,6 @@ void CaptionButton::setColors()
             m_hover = QColor("#F00000");
             m_pressed = QColor("#F1707A");
         }
-        else if (m_type == IconType::Back)
-        {
-            //qDebug() << "backfefefef BACKKKKK";
-            m_normal = QColor("#4C4A48");
-            m_hover = QColor("#5E5C5A");
-            m_pressed = QColor("#706E6D");
-        }
         else
         {
             m_normal = QColor("transparent");
@@ -148,12 +155,6 @@ void CaptionButton::setColors()
             m_normal = QColor("transparent");
             m_hover = QColor("#F00000");
             m_pressed = QColor("#F1707A");
-        }
-        else if (m_type == IconType::Back)
-        {
-            m_normal = QColor("#4C4A48");
-            m_hover = QColor("#5E5C5A");
-            m_pressed = QColor("#706E6D");
         }
         else
         {
@@ -310,7 +311,9 @@ void CaptionButton::paintEvent(QPaintEvent *event)
     else
         w = 15;
 
-    int h = (m_type != IconType::Minimize) ? w : 1;
+    int h = (m_type != IconType::Minimize) ? w : 2; // 1
+    w = (m_type == IconType::Back) ? 13 : w;
+    h = (m_type == IconType::Back) ? 12 : h;
 
     QRect target_rect;
     target_rect = current_icon.rect();

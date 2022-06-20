@@ -121,7 +121,7 @@ public slots:
     /** Set fixed size for *QGoodWindow* to \e size. */
     void setFixedSize(const QSize &size);
 
-    /** Returns the geometry for *QGoodWindow* including extended frame and excluding shadow. */
+    /** Returns the geometry for *QGoodWindow* including extended mat_thumbFrame and excluding shadow. */
     QRect frameGeometry() const;
 
     /** Same as *frameGeometry()*. */

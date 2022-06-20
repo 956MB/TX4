@@ -23,15 +23,16 @@ SOFTWARE.
 */
 
 #include "titlebar.h"
+#include "./tx4_defines.h"
 
-TitleBar::TitleBar(qreal pixel_ratio, bool left, QWidget *parent) : QFrame(parent)
+TitleBar::TitleBar(qreal pixel_ratio, QWidget *parent) : QFrame(parent)
 {
     style = QString("TitleBar {background-color: %0; border: none;}");
 
     setFixedHeight(qRound(32 * pixel_ratio));
 
-    backbtn = new CaptionButton(CaptionButton::IconType::Back, pixel_ratio, this);
-    backbtn->setFixedSize(qRound(46 * pixel_ratio), qRound(32 * pixel_ratio));
+    //backbtn = new CaptionButton(CaptionButton::IconType::Back, pixel_ratio, this);
+    //backbtn->setFixedSize(qRound(46 * pixel_ratio), qRound(32 * pixel_ratio));
 
     iconwidget = new IconWidget(pixel_ratio, this);
     iconwidget->setFixedWidth(qRound(20 * pixel_ratio));
@@ -39,44 +40,35 @@ TitleBar::TitleBar(qreal pixel_ratio, bool left, QWidget *parent) : QFrame(paren
     titlewidget = new TitleWidget(pixel_ratio, this);
 
     minbtn = new CaptionButton(CaptionButton::IconType::Minimize, pixel_ratio, this);
-    minbtn->setFixedSize(qRound(46 * pixel_ratio), qRound(32 * pixel_ratio));
+    minbtn->setFixedSize(qRound(TITLEBAR_BUTTON_W * pixel_ratio), qRound(32 * pixel_ratio));
 
     restorebtn = new CaptionButton(CaptionButton::IconType::Restore, pixel_ratio, this);
-    restorebtn->setFixedSize(qRound(46 * pixel_ratio), qRound(32 * pixel_ratio));
+    restorebtn->setFixedSize(qRound(TITLEBAR_BUTTON_W * pixel_ratio), qRound(32 * pixel_ratio));
 
     maxbtn = new CaptionButton(CaptionButton::IconType::Maximize, pixel_ratio, this);
-    maxbtn->setFixedSize(qRound(46 * pixel_ratio), qRound(32 * pixel_ratio));
+    maxbtn->setFixedSize(qRound(TITLEBAR_BUTTON_W * pixel_ratio), qRound(32 * pixel_ratio));
 
     clsbtn = new CaptionButton(CaptionButton::IconType::Close, pixel_ratio, this);
-    clsbtn->setFixedSize(qRound(46 * pixel_ratio), qRound(32 * pixel_ratio));
+    clsbtn->setFixedSize(qRound(TITLEBAR_BUTTON_W * pixel_ratio), qRound(32 * pixel_ratio));
 
-    QObject::connect(backbtn, &CaptionButton::clicked, this, &TitleBar::goBack);
-    QObject::connect(minbtn, &CaptionButton::clicked, this, &TitleBar::showMinimized);
-    QObject::connect(restorebtn, &CaptionButton::clicked, this, &TitleBar::showNormal);
-    QObject::connect(maxbtn, &CaptionButton::clicked, this, &TitleBar::showMaximized);
-    QObject::connect(clsbtn, &CaptionButton::clicked, this, &TitleBar::closeWindow);
+    //connect(backbtn, &CaptionButton::clicked, this, &TitleBar::goBack);
+    connect(minbtn, &CaptionButton::clicked, this, &TitleBar::showMinimized);
+    connect(restorebtn, &CaptionButton::clicked, this, &TitleBar::showNormal);
+    connect(maxbtn, &CaptionButton::clicked, this, &TitleBar::showMaximized);
+    connect(clsbtn, &CaptionButton::clicked, this, &TitleBar::closeWindow);
 
     QHBoxLayout *hlayout = new QHBoxLayout(this);
     hlayout->setSpacing(0);
     hlayout->setMargin(0);
 
-    if (left) {
-        hlayout->addWidget(clsbtn);
-        hlayout->addWidget(maxbtn);
-        hlayout->addWidget(restorebtn);
-        hlayout->addWidget(minbtn);
-        //hlayout->addWidget(backbtn);
-        hlayout->addWidget(titlewidget);
-        hlayout->addWidget(iconwidget);
-    } else {
-        hlayout->addWidget(backbtn);
-        hlayout->addWidget(iconwidget);
-        hlayout->addWidget(titlewidget, Qt::AlignCenter);
-        hlayout->addWidget(minbtn);
-        hlayout->addWidget(restorebtn);
-        hlayout->addWidget(maxbtn);
-        hlayout->addWidget(clsbtn);
-    }
+    //hlayout->addWidget(backbtn);
+    hlayout->addStretch();
+    //hlayout->addWidget(iconwidget);
+    //hlayout->addWidget(titlewidget);
+    hlayout->addWidget(minbtn);
+    hlayout->addWidget(restorebtn);
+    hlayout->addWidget(maxbtn);
+    hlayout->addWidget(clsbtn);
 
     m_active = true;
     m_is_maximized = false;
@@ -84,10 +76,10 @@ TitleBar::TitleBar(qreal pixel_ratio, bool left, QWidget *parent) : QFrame(paren
     setDarkMode(false);
 }
 
-void TitleBar::setBackBtn(bool active)
-{
-    backbtn->setVisible(active);
-}
+//void TitleBar::setBackBtn(bool active)
+//{
+//    backbtn->setVisible(active);
+//}
 
 void TitleBar::setTitle(const QString &title)
 {
@@ -103,7 +95,7 @@ void TitleBar::setActive(bool active)
 {
     m_active = active;
 
-    backbtn->setActive(active);
+    //backbtn->setActive(active);
     //iconwidget->setActive(active);
     titlewidget->setActive(active);
     minbtn->setActive(active);
@@ -128,10 +120,10 @@ void TitleBar::setMaximized(bool maximized)
     }
 }
 
-void TitleBar::goBackSlot()
-{
-
-}
+//void TitleBar::goBackSlot()
+//{
+//
+//}
 
 bool TitleBar::dark()
 {
@@ -148,7 +140,7 @@ void TitleBar::setDarkMode(bool dark)
         update();
 
         //Light mode to contrast
-        backbtn->setIconMode(false);
+        //backbtn->setIconMode(false);
         minbtn->setIconMode(false);
         maxbtn->setIconMode(false);
         restorebtn->setIconMode(false);
@@ -164,7 +156,7 @@ void TitleBar::setDarkMode(bool dark)
         update();
 
         //Dark mode to contrast
-        backbtn->setIconMode(true);
+        //backbtn->setIconMode(true);
         minbtn->setIconMode(true);
         maxbtn->setIconMode(true);
         restorebtn->setIconMode(true);

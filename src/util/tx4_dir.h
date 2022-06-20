@@ -4,18 +4,19 @@
 #include <QFileDialog>
 #include <QDir>
 #include "tx4_util.h"
-#include "tx4_event.h"
+#include "../tx4_event.h"
+#include "../tx4_defines.h"
 
-class tx4_dir : public QWidget {
+class tx4_dir : public QObject {
 	Q_OBJECT
 
 	public:
-		explicit tx4_dir(const bool &load = false, const bool &force_dir = true, const QString &dir = "C:/Users/infga/Downloads/TeslaCam", QWidget* parent = nullptr);
-		~tx4_dir();
+		explicit tx4_dir(const bool &load = false, const bool &force_dir = true, const QString &dir = TESLA_DRIVE, QObject* parent = nullptr);
+		virtual ~tx4_dir();
 
 		QList<tx4_event*> savedEvents;
 		QList<tx4_event*> sentryEvents;
-		bool loadTeslaDrive(bool force_dir = true, QString dir = "C:/Users/infga/Downloads/TeslaCam");
+		bool loadTeslaDrive(bool force_dir = true, QString dir = TESLA_DRIVE);
 
 	signals:
 		void err_teslaCamFolder();
@@ -26,13 +27,8 @@ class tx4_dir : public QWidget {
 
 	private:
 		QString s_drivePathPrefix;
-		QDir d_driveRootDir;
 		QDir d_savedClipsDir;
 		QDir d_sentryClipsDir;
-
-		QString s_teslaCamFolder = "TeslaCam";
-		QString s_savedClipsFolder = "/SavedClips";
-		QString s_sentryClipsFolder = "/SentryClips";
 
 		bool loopClipsDir(QList<tx4_event*> &eventList, QDir useDir, bool saved);
 		void formDisplayStrings(tx4_event *_event);

@@ -3,14 +3,15 @@
 
 #include <qpushbutton.h>
 #include "tx4_label.h"
-#include "tx4_util.h"
+#include "./util/tx4_util.h"
+#include "./tx4_defines.h"
 
 class tx4_nav_button : public QPushButton {
 	Q_OBJECT
 
 	public:
 		tx4_nav_button(const QString &text, const bool &enabled, const QString &tooltip, const bool &left, QWidget *parent = nullptr);
-		~tx4_nav_button();
+		virtual ~tx4_nav_button();
 
 		void setButtonState(bool state);
 
@@ -32,14 +33,6 @@ class tx4_nav_button : public QPushButton {
 		QIcon *normalIcon;
 		QIcon *hoverIcon;
 		QIcon *rightIcon;
-
-		QString extraLabelStyle = "background-color: none; border: none; outline: none; color: rgba(255,255,255,70);";
-		QString buttonLabelStyle = "background-color: none; border: none; outline: none; color: white;";
-		QString buttonLabelStyleDisabled = "background-color: none; border: none; outline: none; color: rgba(255,255,255,100);";
-		QString barStyleNormal = "background-color: rgba(255,255,255,50); border: none; outline: none;";
-		QString navButtonStyleNormal = "background-color: #222222; border: none; outline: none;";
-		QString navButtonStyleHover = "background-color: #4e4e4e; border: none; outline: none;";
-		QString navButtonStyleDisabled = "background-color: #222222; border: none; outline: none;";
 		
 		void initContents();
 };

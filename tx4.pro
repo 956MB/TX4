@@ -1,5 +1,5 @@
 
-QT += core gui widgets multimedia
+QT += core gui widgets multimedia multimediawidgets
 
 win32:QT += winextras
 

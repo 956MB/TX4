@@ -4,17 +4,14 @@
 
 #include <QGoodWindow>
 #include <qdebug.h>
-#include "tx4_util.h"
-#include "tx4_events_section.h"
-#include "tx4_shortcuts.h"
-#include "tx4_toolbar.h"
-#include "tx4_dir.h"
-#include "tx4_viewer.h"
-
-#define START_W 1200
-#define START_H 775
-#define MIN_W 500
-#define MIN_H 300
+#include "./util/tx4_util.h"
+#include "./util/tx4_shortcuts.h"
+#include "./toolbar/tx4_toolbar.h"
+#include "./util/tx4_dir.h"
+#include "./viewer/tx4_viewer.h"
+#include "tx4_events_page.h"
+#include "tx4_page_actions.h"
+#include "./tx4_defines.h"
 
 #ifdef Q_OS_WIN
 #include <QtWinExtras>
@@ -45,7 +42,7 @@ class tx4 : public QGoodWindow {
 
 	public:
 		explicit tx4(QWidget *parent = nullptr);
-		~tx4();
+		virtual ~tx4();
 
 	signals:
 		void startWork();
@@ -60,19 +57,19 @@ class tx4 : public QGoodWindow {
 		QStackedWidget *w_screensContainer;
 		QWidget *w_mainScreen;
 		tx4_viewer *w_viewerScreen;
-		QFrame *outerFrame;
-		QFrame *innerFrame;
+		QFrame *f_outerFrame;
+		QFrame *f_innerFrame;
 		tx4_shortcuts *o_shortcutManager;
 
 		tx4_dir* o_tx4Dir;
-		QList<tx4_event*> selectedEvents;
-		QList<tx4_event_preview*> selectedPreviews;
+		QList<tx4_event*> l_selectedEvents;
+		QList<tx4_event_preview*> l_selectedPreviews;
 		tx4_toolbar *w_toolbar;
-		tx4_events_section *w_recentSection;
-		tx4_events_section *w_savedSection;
-		tx4_events_section *w_sentrySection;
-		//tx4_recents *w_recentsSection;
-		//tx4_events *w_eventsSection;
+		QStackedWidget *w_pagesStackWidget;
+		tx4_events_page *w_recentPage;
+		tx4_events_page *w_savedPage;
+		tx4_events_page *w_sentryPage;
+		tx4_events_page *w_favoritesPage;
 		bool m_selectMode;
 		bool m_eventsLoaded;
 		bool m_eventViewerOpen;
@@ -83,24 +80,27 @@ class tx4 : public QGoodWindow {
 		int window_w;
 		QString m_title;
 		bool m_dark;
+		bool m_groupsInitialized;
 		QString m_color_str;
 		QString m_frame_style;
-		QString stackedWidgetStyle = "background-color: none; border: none; outline: none;";
 
 	#ifdef QGOODWINDOW
+	    CaptionButton *backbtn;
 		TitleBar *title_bar;
 	#endif
 
 		void initWindowConfig();
 		void initMainScreen();
 		void initViewerScreen();
-		void initToolbar();
+		//void initToolbar();
 		void initShortcuts();
+		void resizeSectionContents(int window_w);
 
 	private slots:
-		void on_selectModeSignal();
-		void on_eventSelectChange(tx4_event *eselect, tx4_event_preview *epselect);
-		void on_eventDeselectChange(tx4_event *edeselect, tx4_event_preview *epdeselect);
+		void on_manualResizeSignal();
+		void on_pageSelectSignal(int idx);
+		void on_eventSelectChange(tx4_event *eselect);
+		void on_eventDeselectChange(tx4_event *edeselect);
 		void on_eventsOpenSignal();
 		void on_eventsLoadSignal();
 

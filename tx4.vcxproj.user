@@ -3,10 +3,14 @@
   <PropertyGroup>
     <ShowAllFiles>true</ShowAllFiles>
   </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <LocalDebuggerEnvironment>$(LocalDebuggerEnvironment)</LocalDebuggerEnvironment>
+    <DebuggerFlavor>WindowsLocalDebugger</DebuggerFlavor>
+  </PropertyGroup>
   <PropertyGroup Label="QtSettings" Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-    <QtLastBackgroundBuild>2021-12-01T20:02:39.9141246Z</QtLastBackgroundBuild>
+    <QtLastBackgroundBuild>2022-06-02T08:59:29.5450844Z</QtLastBackgroundBuild>
   </PropertyGroup>
   <PropertyGroup Label="QtSettings" Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
-    <QtLastBackgroundBuild>2021-11-29T18:42:22.2298621Z</QtLastBackgroundBuild>
+    <QtLastBackgroundBuild>2022-06-02T08:59:31.8521847Z</QtLastBackgroundBuild>
   </PropertyGroup>
 </Project>

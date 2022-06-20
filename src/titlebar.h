@@ -36,27 +36,27 @@ class TitleBar : public QFrame
 {
     Q_OBJECT
 public:
-    explicit TitleBar(qreal pixel_ratio, bool left, QWidget *parent = nullptr);
+    explicit TitleBar(qreal pixel_ratio, QWidget *parent = nullptr);
 
 signals:
-    void goBack();
+    //void goBack();
     void showMinimized();
     void showNormal();
     void showMaximized();
     void closeWindow();
 
 public slots:
-    void setBackBtn(bool active);
+    //void setBackBtn(bool active);
     void setTitle(const QString &title);
     void setIcon(const QPixmap &icon);
     void setActive(bool active);
     void setMaximized(bool maximized);
-    void goBackSlot();
+    //void goBackSlot();
     bool dark();
     void setDarkMode(bool dark);
 
 private:
-    CaptionButton *backbtn;
+    //CaptionButton *backbtn;
     IconWidget *iconwidget;
     TitleWidget *titlewidget;
     CaptionButton *minbtn;

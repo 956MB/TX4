@@ -3,23 +3,24 @@
 
 #include <QWidget>
 #include "tx4_label.h"
-#include "tx4_util.h"
+#include "./util/tx4_util.h"
 #include "tx4_preview_bar.h"
 #include "tx4_meta_info.h"
 #include "tx4_event.h"
-
-#define PREVIEW_W 240
-#define PREVIEW_H 135
+#include "./tx4_defines.h"
+#include <opencv2/core/core.hpp>
+#include <opencv2/highgui/highgui.hpp>
+#include <opencv2/imgproc.hpp>
 
 class tx4_event_preview : public QWidget {
 	Q_OBJECT
 
 	public:
-		explicit tx4_event_preview(const QString &date, const QString &loc, const QString &size, const QString &length, const QString &timestamp, const QString &city, const QString &lat, const QString &lon, const QString &reason, const QString &camera, const QString &loc_style, const int &index, QWidget* parent = nullptr);
-		~tx4_event_preview();
+		explicit tx4_event_preview(const QString &date, const QString &loc, const QString &size, const QString &length, const QString &timestamp, const QString &city, const QString &lat, const QString &lon, const QString &reason, const QString &camera, const QString &loc_style, const QString &thumbnail, const int &index, QWidget* parent = nullptr);
+		virtual ~tx4_event_preview();
 
 	public:
-		int previewIndex;
+		int i_sectionIndex;
 		int selectIndex;
 		QString s_dateString;
 		QString s_locString;
@@ -33,29 +34,22 @@ class tx4_event_preview : public QWidget {
 		QString s_reasonString;
 		QString s_cameraString;
 		int clipCount;
-		tx4_preview_bar *previewInfoBar;
-		tx4_label *l_selectIdxLabel;
+		//tx4_label *l_selectIdxLabel;
 		tx4_meta_info* metaInfo;
-		bool metaDataActive;
-		bool previewSelected;
+		bool b_metaDataActive;
+		bool b_previewHovered;
+		bool b_previewSelected;
+		bool b_previewGrayscaled;
 
-		// yellows
-		QString queueHoverStyle_SelectMode = "background-color: rgba(255,255,255,20); border: 2px solid #f6ed19; outline: none;";
-		QString queue_barStyleHover = "background-color: rgba(70,70,70,245); border-left: 2px solid #f6ed19; border-top: 0px solid #f6ed19; border-right: 2px solid #f6ed19; border-bottom: 2px solid #f6ed19; outline: none;";
-		QString queue_selectIdxLabelStyle = "background-color: none; border: none; outline: none; color: #f6ed19;";
-		
-		// whites
-		//QString queueHoverStyle_SelectMode = "background-color: rgba(255,255,255,20); border: 2px solid rgba(255,255,255,255); outline: none;";
-		//QString queue_barStyleHover = "background-color: rgba(70,70,70,245); border-left: 2px solid rgba(255,255,255,100); border-top: 0px solid rgba(255,255,255,100); border-right: 2px solid rgba(255,255,255,100); border-bottom: 2px solid rgba(255,255,255,100); outline: none;";
-		//QString queue_selectIdxLabelStyle = "background-color: none; border: none; outline: none; color: rgba(255,255,255,255);";
-
-		void setSelectModeState(bool active);
+		//void setSelectModeState(bool active);
 		void setSelectIdx(int idx);
-		void setOwnStylesheet(QString parentSS, QString barSS, QString selectIdxSS, QString metaSS = "");
+		void setOwnStylesheet(QString parentSS, QString barSS = "", QString selectIdxSS = "", QString metaSS = "");
 
 		// TODO: public select/deselect for all
 		void selectPreview();
 		void deselectPreview();
+		void resizePreview(int window_w);
+		void repaintPreview(bool grayscale, PreviewState state);
 
 	signals:
 		void select(int idx);
@@ -65,42 +59,35 @@ class tx4_event_preview : public QWidget {
 
 	protected:
 		//bool event(QEvent *e) override;
-		void paintEvent(QPaintEvent *);
+		//void paintEvent(QPaintEvent *);
 		virtual void enterEvent(QEvent *e);
 		virtual void leaveEvent(QEvent *e);
 		//virtual void mousePressEvent(QMouseEvent *e);
+		//virtual void resizeEvent(QResizeEvent *event);
 		virtual void mouseReleaseEvent(QMouseEvent *e);
 
 	private:
 		QWidget *w_contentContainer;
-		QWidget *w_contentScreen;
+		QWidget *w_contentStack;
 		QWidget *w_metaDataScreen;
-		QWidget *w_selectIdxScreen;
-		QImage *contentImage;
-		QPixmap contentPixmap;
-		QLabel *contentLabel;
+		//QWidget *w_borderOverlayOuter;
+		//QWidget *w_borderOverlayInner;
+		QPixmap p_thumbnailPixmap;
+		QLabel *w_contentLabel;
 
-		bool selectModeActive;
-		bool previewActive;
-		bool previewHovered;
-
-		QString thumbUnavailableLabelStyle = "background-color: none; border: none; outline: none; color: rgba(255,255,255,50);";
-		QString selectIdxLabelStyle = "background-color: none; border: none; outline: none; color: white;";
-		QString selectIdxScreenStyle = "background-color: none; border: none; outline: none;";
-		QString metaDataScreenStyle = "background-color: rgba(255,255,255,15); border: none; outline: none;";
-		QString normalStyle = "background-color: rgba(255,255,255,15); border: none; outline: none;";
-		QString hoverStyle = "background-color: rgba(255,255,255,20); border-left: 2px solid #8f8f8f; border-top: 2px solid #8f8f8f; border-right: 2px solid #8f8f8f; border-bottom: 2px solid #8f8f8f; outline: none;";
-		QString hoverStyle_SelectMode = "background-color: rgba(255,255,255,20); border: 2px solid #f6f6f6; outline: none;";
-		QString contentStyleNormal = "background-color: none; border: none; outline: none;";
-		QString contentStyleHover = "background-color: none; border-left: 2px solid white; border-top: 2px solid white; border-right: 2px solid white; border-bottom: 0px solid white; outline: none;";
-		QString blankStyle = "background-color: none; border: none; outline: none;";
+		bool b_selectModeActive;
+		bool b_previewActive;
+		bool b_thumbnailPixmapSet;
+		//double m_ratio;
+		int i_saveWindowW;
+		//QGraphicsDropShadowEffect *effect;
 
 		void initContents();
 		void leftClick();
 		void rightClick();
-		void addCreateMetaInfo();
+		void createMetaInfo();
 		void removeMetaInfo();
-
+		void createThumbnailPixmap(cv::Mat thumbMat);
 };
 
 #endif // TX4_CLIP_PREVIEW_H

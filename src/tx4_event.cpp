@@ -1,12 +1,24 @@
 
 #include "tx4_event.h"
-#include <qboxlayout.h>
 #include <qdebug.h>
+//#include <opencv2/core/core.hpp>
+//#include <opencv2/highgui/highgui.hpp>
+//#include <opencv2/imgproc.hpp>
+#include <iostream>
 
-tx4_event::tx4_event(QDir &pass_dir, QWidget *parent)
+tx4_event::tx4_event(const QDir &pass_dir, const QString &type, QWidget *parent)
 	: QWidget(parent)
-	, d_eventDir(pass_dir) {
+	, s_eventType(type)
+	, d_eventDir(pass_dir)
+	, l_frontClips(QList<QFileInfo> ())
+	, l_backClips(QList<QFileInfo> ())
+	, l_leftClips(QList<QFileInfo> ())
+	, l_rightClips(QList<QFileInfo> ())
+	, b_thumbnailSet(false)
+	, s_thumbnailPath("")
+{
 
+	i_inPage = (type == "Saved" ? 1 : 2);
 	selectIndex = -1;
 	s_Name = d_eventDir.dirName();
 	s_Date = "";
@@ -14,11 +26,7 @@ tx4_event::tx4_event(QDir &pass_dir, QWidget *parent)
 	i_ClipCount = 0;
 	i_ClipCountMerged = 0;
 	i_TotalClipLength = 0;
-	i_LeftClipCount = 0;
-	i_FrontClipCount = 0;
-	i_RightClipCount = 0;
-	i_BackClipCount = 0;
-	jsonPresent = false;
+	b_jsonPresent = false;
 	s_countDisplay = "";
 	s_dateDisplay = "";
 	s_sizeDisplay = "";
@@ -29,25 +37,15 @@ tx4_event::tx4_event(QDir &pass_dir, QWidget *parent)
 	s_metaDataLonString = "";
 	s_metaDataReasonString = "";
 	s_metaDataCameraString = "";
-	
-	//m_tempPlayer = new QMediaPlayer;
-	////QObject::connect(m_tempPlayer, &QMediaPlayer::mediaStatusChanged, this, &tx4_event::onMediaStatusChanged);
-	//QObject::connect(m_tempPlayer, &QMediaPlayer::metaDataAvailableChanged,
-	//	[=](bool avaliable) {
-	//		if (avaliable) {
-	//			for (auto key : m_tempPlayer->availableMetaData()) {
-	//				if (key == "Duration") {
-	//					i_TotalClipLength += m_tempPlayer->metaData(key).toInt();
-	//					//emit durationValueUpdated();
-	//					return;
-	//				}
-	//			}
-	//		}
-	//	}
-	//);
 
-	calculateClips();
+	std::random_device rd; // obtain a random number from hardware
+	std::mt19937 gen(rd()); // seed the generator
+	std::uniform_int_distribution<> distr(0, 3); // define the range
+	randomThumb = distr(gen);
+
+	setThumbnailPath();
 	parseEventJson();
+	calculateClips();
 }
 
 tx4_event::~tx4_event() {}
@@ -57,15 +55,30 @@ void tx4_event::setSelectIdx(int idx) {
 	selectIndex = idx;
 }
 
-void tx4_event::splitBaseName(QString basename) {
-	if (basename[20] == ("l")) { i_LeftClipCount += 1; i_ClipCount += 1; }
-	if (basename[20] == ("f")) { i_FrontClipCount += 1; }
-	if (basename[20] == ("r")) { i_RightClipCount += 1; }
-	if (basename[20] == ("b")) { i_BackClipCount += 1; }
+void tx4_event::splitBaseName(QFileInfo file) {
+	QString basename = file.baseName();
+
+	if (basename[20] == ("l")) {
+		l_leftClips.append(file);
+		i_ClipCount += 1;
+		//getOpenCVData(file, 0);
+	}
+	if (basename[20] == ("f")) {
+		l_frontClips.append(file);
+		//getOpenCVData(file, 1);
+	}
+	if (basename[20] == ("r")) {
+		l_rightClips.append(file);
+		//getOpenCVData(file, 2);
+	}
+	if (basename[20] == ("b")) {
+		l_backClips.append(file);
+		//getOpenCVData(file, 3);
+	}
 }
+
 void tx4_event::calculateClips() {
-	//QDirIterator eventDirIt(d_eventDir.absolutePath(), {"*.mp4", "*.wav"}, QDir::Files | QDir::NoSymLinks | QDir::NoDotAndDotDot);
-	QFileInfoList eventDirContents = d_eventDir.entryInfoList({"*.mp4"}, QDir::Files | QDir::NoSymLinks | QDir::NoDotAndDotDot, QDir::Time);
+	QFileInfoList eventDirContents = d_eventDir.entryInfoList({"*.mp4"}, QDir::Files | QDir::NoSymLinks | QDir::NoDotAndDotDot, QDir::Name);
 
 	if (!eventDirContents.isEmpty()) {
 		qint64 sizeCount = 0;
@@ -73,34 +86,27 @@ void tx4_event::calculateClips() {
 
 		foreach (file, eventDirContents) {
 			if (file.isFile()) {
-				//m_tempPlayer->setMedia(QUrl::fromLocalFile(file.absoluteFilePath()));
-				// TODO: waiting for every duration change connection is SLOW, also throwing many null reference pointer stub errors. need to find another way of getting media meta data SYNCHRONOUSLY and quick
-				//QEventLoop loop;
-				//loop.QObject::connect(this, SIGNAL(durationValueUpdated()), &loop, SLOT(quit()));
-				//loop.exec();
-				
-				i_TotalClipLength += CLIP_LEN;
-				splitBaseName(file.baseName());
+				splitBaseName(file);
 				sizeCount += file.size();
+				i_TotalClipLength += CLIP_LEN; // TODO: using default clip length of 59 seconds becuase i cant calculate lengths yet (ross's default clip length is 59 seconds for all of them it seems anyway)
 			}
 		}
 
+		i_TotalClipLength = i_TotalClipLength/4;
 		i_Size = sizeCount;
 	}
 }
 void tx4_event::parseEventJson() {
-	QFile eventJsonFile(d_eventDir.absolutePath() + eventJsonFile);
+	QFile eventJsonFile(d_eventDir.absolutePath() + EVENT_JSON);
 
 	if (eventJsonFile.exists()) {
 		if (eventJsonFile.open(QIODevice::ReadOnly)) {
 			QByteArray bytes = eventJsonFile.readAll();
 			eventJsonFile.close();
 
-			QJsonParseError jsonError;
+			QJsonParseError jsonError{};
+			if( jsonError.error != QJsonParseError::NoError ) { return; }
 			QJsonDocument document = QJsonDocument::fromJson( bytes, &jsonError );
-			if( jsonError.error != QJsonParseError::NoError ) {
-				return;
-			}
 			QJsonObject jsonObj = document.object();
 
 			auto timestamp = jsonObj.take("timestamp").toString();
@@ -119,34 +125,38 @@ void tx4_event::parseEventJson() {
 	}
 }
 
+void tx4_event::setThumbnailPath() {
+	QString thumbPath = d_eventDir.absolutePath() + "/" + THUMB_PNG;
+	QFileInfo check_file(thumbPath);
 
-// SLOTS: {
-	//void tx4_event::onMediaStatusChanged(QMediaPlayer::MediaStatus status) {
-	//	if (status == QMediaPlayer::LoadedMedia) {
-	//		GetMetaData();
-	//	}
-	//}
+	if (check_file.exists() && check_file.isFile()) {
+        s_thumbnailPath = thumbPath;
+    }
 
-	//void tx4_event::GetMetaData() {
-	//	QStringList metadatalist = m_tempPlayer->availableMetaData();
-	//	int list_size = metadatalist.size();
-	//	//qDebug() << player->isMetaDataAvailable() << list_size;
+	b_thumbnailSet = true;
+}
 
-	//	//QString metadata_key = metadatalist.at(1);
-	//	//QVariant var_data = player->metaData(metadata_key);
-	//	QString metadata_key;
-	//	QVariant var_data;
-	//	//i_eventFolder_TotalClipLength += var_data.toInt();
-
-	//	for (int indx = 0; indx < list_size; indx++) {
-	//		metadata_key = metadatalist.at(indx);
-	//		var_data = m_tempPlayer->metaData(metadata_key);
-
-	//		if (metadata_key == "Duration") {
-	//			i_TotalClipLength += var_data.toInt();
-	//			emit durationValueUpdated();
-	//			return;
-	//		}
-	//	}
-	//}
-// }
+//void tx4_event::getOpenCVData(QFileInfo file, int rand) {
+//	if (!b_thumbnailSet && rand == randomThumb) {
+//		cap = new cv::VideoCapture(file.absoluteFilePath().toStdString()); // video
+//		if (!cap->isOpened()) { std::cout << "*ERROR* Cannot open the video file" << std::endl; }
+//
+//		//double fps = cap->get(cv::CAP_PROP_FPS); // fps
+//		//double fcount = cap->get(cv::CAP_PROP_FRAME_COUNT); // mat_thumbFrame count
+//		//i_TotalClipLength = (int)(fcount/fps); // calculate clip length for every individual clip instead of default 59s len
+//
+//		//cv::Mat mat_thumbFrame;
+//		mat_thumbFrame = new cv::Mat();
+//		bool bSuccess = cap->read(*mat_thumbFrame); // first mat_thumbFrame
+//		if (!bSuccess) { std::cout << "*ERROR* Cannot read the frame from video file" << std::endl; }
+//
+//		//size_t sizeInBytes = mat_thumbFrame->step[0] * mat_thumbFrame->rows;
+//		//qDebug() << "frame size: " << sizeInBytes;
+//
+//		//s_selectedThumbnail = QPixmap::fromImage(QImage((unsigned char*) mat_thumbFrame->data, mat_thumbFrame->cols, mat_thumbFrame->rows, QImage::Format_BGR888));
+//		b_thumbnailSet = true;
+//
+//		delete cap;
+//		//delete mat_thumbFrame;
+//	}
+//}

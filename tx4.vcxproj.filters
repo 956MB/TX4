@@ -81,43 +81,70 @@
     <ClCompile Include="src\tx4_event_preview.cpp">
       <Filter>Generated Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\tx4_grid_layout.cpp">
-      <Filter>Generated Files</Filter>
-    </ClCompile>
     <ClCompile Include="src\tx4_queue_entry.cpp">
       <Filter>Generated Files</Filter>
     </ClCompile>
     <ClCompile Include="src\tx4_preview_bar.cpp">
       <Filter>Generated Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\tx4_shortcuts.cpp">
+    <ClCompile Include="src\util\tx4_shortcuts.cpp">
       <Filter>Generated Files</Filter>
     </ClCompile>
     <ClCompile Include="src\tx4_meta_info.cpp">
       <Filter>Generated Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\tx4_toolbar.cpp">
+    <ClCompile Include="src\toolbar\tx4_toolbar_button.cpp">
       <Filter>Generated Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\tx4_toolbar_button.cpp">
+    <ClCompile Include="src\util\tx4_worker.cpp">
       <Filter>Generated Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\tx4_worker.cpp">
-      <Filter>Generated Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\tx4_dir.cpp">
+    <ClCompile Include="src\util\tx4_dir.cpp">
       <Filter>Generated Files</Filter>
     </ClCompile>
     <ClCompile Include="src\tx4_nav_button.cpp">
       <Filter>Generated Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\tx4_viewer.cpp">
+    <ClCompile Include="src\viewer\tx4_viewer.cpp">
       <Filter>Generated Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\tx4_view.cpp">
+    <ClCompile Include="src\viewer\tx4_view.cpp">
       <Filter>Generated Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\tx4_control_bar.cpp">
+    <ClCompile Include="src\viewer\tx4_control_bar.cpp">
+      <Filter>Generated Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\toolbar\tx4_toolbar.cpp">
+      <Filter>Generated Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\tx4_page_actions.cpp">
+      <Filter>Generated Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\tx4_events_group.cpp">
+      <Filter>Generated Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\tx4_events_group_title.cpp">
+      <Filter>Generated Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\tx4_events_page.cpp">
+      <Filter>Generated Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\toolbar\tx4_toolbar_button_icon.cpp">
+      <Filter>Generated Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\tx4_list_button.cpp">
+      <Filter>Generated Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\tx4_list_item.cpp">
+      <Filter>Generated Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\viewer\tx4_info_bar.cpp">
+      <Filter>Generated Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\viewer\tx4_views_layout.cpp">
+      <Filter>Generated Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\viewer\tx4_control_bar_button.cpp">
       <Filter>Generated Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -161,40 +188,67 @@
     <QtMoc Include="src\tx4_event_preview.h">
       <Filter>Generated Files</Filter>
     </QtMoc>
-    <QtMoc Include="src\tx4_grid_layout.h">
-      <Filter>Generated Files</Filter>
-    </QtMoc>
     <QtMoc Include="src\tx4_queue_entry.h">
       <Filter>Generated Files</Filter>
     </QtMoc>
     <QtMoc Include="src\tx4_preview_bar.h">
       <Filter>Generated Files</Filter>
     </QtMoc>
-    <QtMoc Include="src\tx4_shortcuts.h">
+    <QtMoc Include="src\util\tx4_shortcuts.h">
       <Filter>Generated Files</Filter>
     </QtMoc>
     <QtMoc Include="src\tx4_meta_info.h">
       <Filter>Generated Files</Filter>
     </QtMoc>
-    <QtMoc Include="src\tx4_toolbar.h">
+    <QtMoc Include="src\toolbar\tx4_toolbar_button.h">
       <Filter>Generated Files</Filter>
     </QtMoc>
-    <QtMoc Include="src\tx4_toolbar_button.h">
-      <Filter>Generated Files</Filter>
-    </QtMoc>
-    <QtMoc Include="src\tx4_dir.h">
+    <QtMoc Include="src\util\tx4_dir.h">
       <Filter>Generated Files</Filter>
     </QtMoc>
     <QtMoc Include="src\tx4_nav_button.h">
       <Filter>Generated Files</Filter>
     </QtMoc>
-    <QtMoc Include="src\tx4_viewer.h">
+    <QtMoc Include="src\viewer\tx4_viewer.h">
       <Filter>Generated Files</Filter>
     </QtMoc>
-    <QtMoc Include="src\tx4_view.h">
+    <QtMoc Include="src\viewer\tx4_view.h">
       <Filter>Generated Files</Filter>
     </QtMoc>
-    <QtMoc Include="src\tx4_control_bar.h">
+    <QtMoc Include="src\viewer\tx4_control_bar.h">
+      <Filter>Generated Files</Filter>
+    </QtMoc>
+    <QtMoc Include="src\toolbar\tx4_toolbar.h">
+      <Filter>Generated Files</Filter>
+    </QtMoc>
+    <QtMoc Include="src\tx4_page_actions.h">
+      <Filter>Generated Files</Filter>
+    </QtMoc>
+    <QtMoc Include="src\tx4_events_group.h">
+      <Filter>Generated Files</Filter>
+    </QtMoc>
+    <QtMoc Include="src\tx4_events_group_title.h">
+      <Filter>Generated Files</Filter>
+    </QtMoc>
+    <QtMoc Include="src\tx4_events_page.h">
+      <Filter>Generated Files</Filter>
+    </QtMoc>
+    <QtMoc Include="src\toolbar\tx4_toolbar_button_icon.h">
+      <Filter>Generated Files</Filter>
+    </QtMoc>
+    <QtMoc Include="src\tx4_list_button.h">
+      <Filter>Generated Files</Filter>
+    </QtMoc>
+    <QtMoc Include="src\tx4_list_item.h">
+      <Filter>Generated Files</Filter>
+    </QtMoc>
+    <QtMoc Include="src\viewer\tx4_info_bar.h">
+      <Filter>Generated Files</Filter>
+    </QtMoc>
+    <QtMoc Include="src\viewer\tx4_views_layout.h">
+      <Filter>Generated Files</Filter>
+    </QtMoc>
+    <QtMoc Include="src\viewer\tx4_control_bar_button.h">
       <Filter>Generated Files</Filter>
     </QtMoc>
   </ItemGroup>
@@ -281,10 +335,10 @@
     <None Include="_workspaces.db" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="src\tx4_util.h">
+    <ClInclude Include="src\util\tx4_util.h">
       <Filter>Generated Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\tx4_worker.h">
+    <ClInclude Include="src\util\tx4_worker.h">
       <Filter>Generated Files</Filter>
     </ClInclude>
     <ClInclude Include="libs\taglib\include\taglib\aifffile.h">
@@ -597,6 +651,9 @@
       <Filter>Generated Files</Filter>
     </ClInclude>
     <ClInclude Include="libs\taglib\include\taglib\xmproperties.h">
+      <Filter>Generated Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\tx4_defines.h">
       <Filter>Generated Files</Filter>
     </ClInclude>
   </ItemGroup>

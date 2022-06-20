@@ -57,6 +57,9 @@
     <IntDir>debug\</IntDir>
     <TargetName>tx4</TargetName>
     <IgnoreImportLibrary>true</IgnoreImportLibrary>
+    <IncludePath>C:\opencv\build\include;$(IncludePath)</IncludePath>
+    <LibraryPath>C:\opencv\build\x64\vc15\lib;$(LibraryPath)</LibraryPath>
+    <ExecutablePath>C:\opencv\build\bin;$(ExecutablePath)</ExecutablePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <OutDir>release\</OutDir>
@@ -67,7 +70,7 @@
   </PropertyGroup>
   <PropertyGroup Label="QtSettings" Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <QtInstall>msvc2019_64</QtInstall>
-    <QtModules>core;gui;widgets;winextras;multimedia</QtModules>
+    <QtModules>core;gui;multimedia;widgets;winextras;multimediawidgets</QtModules>
   </PropertyGroup>
   <PropertyGroup Label="QtSettings" Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <QtInstall>msvc2019_64</QtInstall>
@@ -137,7 +140,7 @@
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
-      <AdditionalIncludeDirectories>GeneratedFiles\$(ConfigurationName);GeneratedFiles;.;QGoodWindow;debug;/include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>GeneratedFiles\$(ConfigurationName);GeneratedFiles;.;QGoodWindow;debug;/include;C:\opencv\build\include\opencv2;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <AdditionalOptions>-Zc:rvalueCast -Zc:inline -Zc:strictStrings -Zc:throwingNew -Zc:referenceBinding -Zc:__cplusplus -w34100 -w34189 -w44996 -w44456 -w44457 -w44458 %(AdditionalOptions)</AdditionalOptions>
       <AssemblerListingLocation>debug\</AssemblerListingLocation>
       <BrowseInformation>false</BrowseInformation>
@@ -156,8 +159,8 @@
       <LanguageStandard>stdcpp17</LanguageStandard>
     </ClCompile>
     <Link>
-      <AdditionalDependencies>User32.lib;Gdi32.lib;shell32.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <AdditionalLibraryDirectories>C:\openssl\lib;C:\Utils\my_sql\mysql-5.7.25-winx64\lib;C:\Utils\postgresql\pgsql\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>User32.lib;Gdi32.lib;shell32.lib;opencv_world455d.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>C:\openssl\lib;C:\Utils\my_sql\mysql-5.7.25-winx64\lib;C:\Utils\postgresql\pgsql\lib;C:\opencv\build\x64\vc15\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalOptions>"/MANIFESTDEPENDENCY:type='win32' name='Microsoft.Windows.Common-Controls' version='6.0.0.0' publicKeyToken='6595b64144ccf1df' language='*' processorArchitecture='*'" %(AdditionalOptions)</AdditionalOptions>
       <DataExecutionPrevention>true</DataExecutionPrevention>
       <GenerateDebugInformation>true</GenerateDebugInformation>
@@ -200,8 +203,15 @@
     <ClCompile Include="src\main.cpp" />
     <ClCompile Include="QGoodWindow\QGoodWindowSource\qgoodwindow.cpp" />
     <ClCompile Include="QGoodWindow\QGoodWindowSource\shadow.cpp" />
-    <ClCompile Include="src\tx4_dir.cpp" />
-    <ClCompile Include="src\tx4_worker.cpp" />
+    <ClCompile Include="src\tx4_list_button.cpp" />
+    <ClCompile Include="src\tx4_list_item.cpp" />
+    <ClCompile Include="src\toolbar\tx4_toolbar_button_icon.cpp" />
+    <ClCompile Include="src\tx4_events_page.cpp" />
+    <ClCompile Include="src\tx4_events_group_title.cpp" />
+    <ClCompile Include="src\tx4_events_group.cpp" />
+    <ClCompile Include="src\toolbar\tx4_toolbar.cpp" />
+    <ClCompile Include="src\util\tx4_dir.cpp" />
+    <ClCompile Include="src\util\tx4_worker.cpp" />
     <ClCompile Include="src\titlebar.cpp" />
     <ClCompile Include="src\titlewidget.cpp" />
     <ClCompile Include="QGoodWindow\QGoodWindowSource\winwidget.cpp" />
@@ -209,34 +219,38 @@
     <ClCompile Include="src\tx4_queue_entry.cpp" />
     <ClCompile Include="src\tx4_event.cpp" />
     <ClCompile Include="src\tx4_event_preview.cpp" />
-    <ClCompile Include="src\tx4_grid_layout.cpp" />
     <ClCompile Include="src\tx4_label.cpp" />
     <ClCompile Include="src\tx4_meta_info.cpp" />
     <ClCompile Include="src\tx4_preview_bar.cpp" />
     <ClCompile Include="src\tx4_events_section.cpp" />
-    <ClCompile Include="src\tx4_shortcuts.cpp" />
-    <ClCompile Include="src\tx4_toolbar.cpp" />
-    <ClCompile Include="src\tx4_toolbar_button.cpp" />
+    <ClCompile Include="src\util\tx4_shortcuts.cpp" />
+    <ClCompile Include="src\toolbar\tx4_toolbar_button.cpp" />
     <ClCompile Include="src\tx4_nav_button.cpp" />
-    <ClCompile Include="src\tx4_viewer.cpp" />
-    <ClCompile Include="src\tx4_view.cpp" />
-    <ClCompile Include="src\tx4_control_bar.cpp" />
+    <ClCompile Include="src\viewer\tx4_control_bar_button.cpp" />
+    <ClCompile Include="src\viewer\tx4_views_layout.cpp" />
+    <ClCompile Include="src\viewer\tx4_info_bar.cpp" />
+    <ClCompile Include="src\viewer\tx4_viewer.cpp" />
+    <ClCompile Include="src\viewer\tx4_view.cpp" />
+    <ClCompile Include="src\viewer\tx4_control_bar.cpp" />
+    <ClCompile Include="src\tx4_page_actions.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <QtMoc Include="src\tx4_control_bar.h" />
-    <QtMoc Include="src\tx4_view.h" />
-    <QtMoc Include="src\tx4_viewer.h" />
+    <QtMoc Include="src\viewer\tx4_control_bar_button.h" />
+    <QtMoc Include="src\viewer\tx4_views_layout.h" />
+    <QtMoc Include="src\viewer\tx4_info_bar.h" />
+    <QtMoc Include="src\tx4_page_actions.h" />
+    <QtMoc Include="src\viewer\tx4_control_bar.h" />
+    <QtMoc Include="src\viewer\tx4_view.h" />
+    <QtMoc Include="src\viewer\tx4_viewer.h" />
     <QtMoc Include="src\tx4_nav_button.h" />
     <QtMoc Include="src\tx4_event.h" />
     <QtMoc Include="src\tx4_event_preview.h" />
-    <QtMoc Include="src\tx4_grid_layout.h" />
     <QtMoc Include="src\tx4_queue_entry.h" />
     <QtMoc Include="src\tx4_preview_bar.h" />
-    <QtMoc Include="src\tx4_shortcuts.h" />
+    <QtMoc Include="src\util\tx4_shortcuts.h" />
     <QtMoc Include="src\tx4_meta_info.h" />
-    <QtMoc Include="src\tx4_toolbar.h" />
-    <QtMoc Include="src\tx4_toolbar_button.h" />
-    <QtMoc Include="src\tx4_dir.h" />
+    <QtMoc Include="src\toolbar\tx4_toolbar_button.h" />
+    <QtMoc Include="src\util\tx4_dir.h" />
     <ClInclude Include="libs\taglib\include\taglib\aifffile.h" />
     <ClInclude Include="libs\taglib\include\taglib\aiffproperties.h" />
     <ClInclude Include="libs\taglib\include\taglib\apefile.h" />
@@ -341,8 +355,16 @@
     <ClInclude Include="libs\taglib\include\taglib\xiphcomment.h" />
     <ClInclude Include="libs\taglib\include\taglib\xmfile.h" />
     <ClInclude Include="libs\taglib\include\taglib\xmproperties.h" />
-    <ClInclude Include="src\tx4_worker.h" />
-    <ClInclude Include="src\tx4_util.h" />
+    <QtMoc Include="src\toolbar\tx4_toolbar.h" />
+    <QtMoc Include="src\tx4_events_group.h" />
+    <QtMoc Include="src\tx4_events_group_title.h" />
+    <QtMoc Include="src\tx4_events_page.h" />
+    <QtMoc Include="src\toolbar\tx4_toolbar_button_icon.h" />
+    <QtMoc Include="src\tx4_list_button.h" />
+    <QtMoc Include="src\tx4_list_item.h" />
+    <ClInclude Include="src\tx4_defines.h" />
+    <ClInclude Include="src\util\tx4_worker.h" />
+    <ClInclude Include="src\util\tx4_util.h" />
     <QtMoc Include="src\tx4_label.h" />
     <QtMoc Include="src\tx4_events_section.h" />
     <QtMoc Include="src\tx4.h" />

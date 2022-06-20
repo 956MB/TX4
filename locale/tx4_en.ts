@@ -5,29 +5,29 @@
     <name>tx4_control_bar</name>
     <message>
         <source>PLAY</source>
-        <translation>PLAY</translation>
+        <translation type="vanished">PLAY</translation>
     </message>
     <message>
         <source>PAUSE</source>
-        <translation>PAUSE</translation>
+        <translation type="vanished">PAUSE</translation>
     </message>
     <message>
         <source>SYNC CLIPS</source>
-        <translation>SYNC</translation>
+        <translation type="vanished">SYNC</translation>
     </message>
 </context>
 <context>
     <name>tx4_dir</name>
     <message>
         <source>Select root of &quot;TESLACAM&quot; drive...</source>
-        <translation>Select root of &quot;TeslaCam&quot; folder...</translation>
+        <translation type="vanished">Select root of &quot;TeslaCam&quot; folder...</translation>
     </message>
 </context>
 <context>
     <name>tx4_event_preview</name>
     <message>
         <source>THUMB UNAVAILABLE</source>
-        <translation>THUMBNAIL UNAVAILABLE</translation>
+        <translation type="vanished">THUMBNAIL UNAVAILABLE</translation>
     </message>
 </context>
 <context>
@@ -49,19 +49,19 @@
     <name>tx4_events_section</name>
     <message>
         <source>RECENT</source>
-        <translation>RECENT</translation>
+        <translation type="vanished">Recent</translation>
     </message>
     <message>
         <source>SAVED</source>
-        <translation>SAVED</translation>
+        <translation type="vanished">Saved</translation>
     </message>
     <message>
         <source>SENTRY</source>
-        <translation>SENTRY</translation>
+        <translation type="vanished">Sentry</translation>
     </message>
     <message>
         <source> EVENTS</source>
-        <translation> EVENTS</translation>
+        <translation type="vanished"> EVENTS</translation>
     </message>
     <message>
         <source>NO EVENTS LOADED</source>
@@ -69,19 +69,19 @@
     </message>
     <message>
         <source> SELECTED</source>
-        <translation> SELECTED</translation>
+        <translation type="vanished"> SELECTED</translation>
     </message>
     <message>
         <source>RETURN</source>
-        <translation>RETURN</translation>
+        <translation type="vanished">RETURN</translation>
     </message>
     <message>
         <source>SELECT ALL</source>
-        <translation>SELECT ALL</translation>
+        <translation type="vanished">SELECT ALL</translation>
     </message>
     <message>
         <source>DESELECT ALL</source>
-        <translation>DESELECT ALL</translation>
+        <translation type="vanished">DESELECT ALL</translation>
     </message>
 </context>
 <context>
@@ -119,11 +119,11 @@
     <name>tx4_toolbar</name>
     <message>
         <source>VIEW EVENTS</source>
-        <translation>OPEN EVENTS</translation>
+        <translation type="vanished">OPEN EVENTS</translation>
     </message>
     <message>
         <source>LOAD DIR</source>
-        <translation>LOAD DIR</translation>
+        <translation type="vanished">LOAD DIR</translation>
     </message>
     <message>
         <source>EVENT QUEUE (0)</source>
@@ -135,11 +135,11 @@
     </message>
     <message>
         <source>true</source>
-        <translation>true</translation>
+        <translation type="vanished">true</translation>
     </message>
     <message>
         <source>false</source>
-        <translation>false</translation>
+        <translation type="vanished">false</translation>
     </message>
     <message>
         <source>AUTO LOAD: </source>
@@ -155,15 +155,15 @@
     </message>
     <message>
         <source>EVENT QUEUE: </source>
-        <translation>EVENT QUEUE:</translation>
+        <translation type="vanished">EVENT QUEUE:</translation>
     </message>
     <message>
         <source>DIR LOADED</source>
-        <translation>DIR LOADED</translation>
+        <translation type="vanished">DIR LOADED</translation>
     </message>
     <message>
         <source>AUTO LOAD</source>
-        <translation>AUTO LOAD</translation>
+        <translation type="vanished">AUTO LOAD</translation>
     </message>
 </context>
 </TS>

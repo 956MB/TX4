@@ -33,7 +33,7 @@ class CaptionButton : public QWidget
 {
     Q_OBJECT
 public:
-    enum class IconType
+    enum IconType
     {
         Minimize,
         Restore,

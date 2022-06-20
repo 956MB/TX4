@@ -32,5 +32,51 @@
         <file>icons/icons8-expand-arrow-left-hover.png</file>
         <file>icons/icons8-expand-arrow-right.png</file>
         <file>icons/icons8-expand-arrow-right-hover.png</file>
+        <file>icons/fixed-minimize-active-dark-1.ico</file>
+        <file>icons/fixed-minimize-active-light-1.ico</file>
+        <file>icons/fixed-minimize-inactive-dark-1.ico</file>
+        <file>icons/fixed-minimize-inactive-light-1.ico</file>
+        <file>icons/dots_icon.png</file>
+        <file>icons/play_icon.png</file>
+        <file>icons/import_icon.png</file>
+        <file>icons/plus_icon.png</file>
+        <file>icons/minus_icon.png</file>
+        <file>icons/back_arrow.png</file>
+        <file>icons/bar.png</file>
+        <file>icons/list.png</file>
+        <file>icons/arrow_left_normal.png</file>
+        <file>icons/arrow_left_disabled.png</file>
+        <file>icons/arrow_right_disabled.png</file>
+        <file>icons/arrow_right_normal.png</file>
+        <file>icons/skip_back_disabled.png</file>
+        <file>icons/skip_forward_disabled.png</file>
+        <file>icons/fullscreen.png</file>
+        <file>icons/skip_forward.png</file>
+        <file>icons/skip_back.png</file>
+        <file>icons/play.png</file>
+        <file>icons/pause.png</file>
+        <file>icons/back_arrow_2.png</file>
+        <file>icons/max-12.ico</file>
+        <file>icons/min-12.ico</file>
+        <file>icons/min-15.ico</file>
+        <file>icons/max-15.ico</file>
+        <file>icons/close-15.ico</file>
+        <file>icons/close-12.ico</file>
+        <file>icons/max-10.ico</file>
+        <file>icons/min-10.ico</file>
+        <file>icons/close-10.ico</file>
+        <file>icons/back_arrow_3.png</file>
+        <file>icons/L3.png</file>
+        <file>icons/L4.png</file>
+        <file>icons/L13H.png</file>
+        <file>icons/L13V.png</file>
+        <file>icons/L121H.png</file>
+        <file>icons/L121V.png</file>
+        <file>icons/skip_back_curved_disabled.png</file>
+        <file>icons/skip_forward_curved_disabled.png</file>
+        <file>icons/fullscreen_curved.png</file>
+        <file>icons/skip_back_curved.png</file>
+        <file>icons/skip_forward_curved.png</file>
+        <file>icons/play_curved.png</file>
     </qresource>
 </RCC>
